@@ -1,6 +1,8 @@
 # KIV/DIP Paper
 
-KIV/DIP Diplomová práce
+> My master's thesis (supposedly).
+
+**Subject:** KIV/DIP Diplomová práce
 
 ## References
 
