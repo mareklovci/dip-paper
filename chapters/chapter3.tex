@@ -1,0 +1,257 @@
+\chapter{Model analysis}\label{ch:model-analysis}
+
+As mentioned in the introduction, many of todays ML systems suffer from inability to provide credible explanation of their conclusions.
+
+Interpretability of the system is not about complete comprehention of the every single detail of the model for all of the data, it is about understanding classifiers judgement for the given case.
+In general, interpretability leads to more accurate verdicts and to a~model that generalizes better~\cite{article:interpretability-in-machine-learning}.
+The combination of sturdy and unbiased data base, explainable model and problem undestanding is necessary to create rubust ML solution, that performs on real-world data.
+
+For instance, in healthcare, finance or automotive industries it is crucial to be able to audit/review the desision process and guarantee it is not prejudicial or violating any laws~\cite{article:interpretability-in-machine-learning}.
+Furthermore, in safety-critical systems like medical applications or self-driving cars, a~single wrong prediction can have a~significant impact.
+Therefore it is critical to be able to verify the model and system should be able to explain how it reached a~given recommendation.
+Such demand on interpretability will only growth with the rise of the enforcement of privacy and data protection regulation laws like CCPA or GDPR and quality solution becomes even more essential.
+
+To solve this problem, one possibility is to use explainable models (see table~\ref{table:explainable-algorithms}) such as \say{decision tree} but large tree will not give us an answer what the overall logic of the system was or which feature was more important.
+Second option is to analyze data and construct model with meaningfull data properties in mind - disadvantages of this solution are mentioned in the section~\ref{subsec:system-security}.
+
+The other options are to analyze the data used for training and explain model through selection of meaningful input and output characteristics, to build build an explainable model using statistical methods and tthe last one is to analyze the dependencies between the input, output, and intermediate information about model.
+To the last group belongs model \textit{interprettation frameworks} like \textbf{ELI5}, \textbf{Skater} or \textbf{SHAP} (Shapley additive explanations).
+The one to be presented is called \textbf{LIME}.
+
+\section{Local Interpretable Model-agnostic Explanations}\label{sec:explainer}
+
+LIME (Local Interpretable Model-agnostic Explanations) is a~general framework that explains the predictions of any machine learning model in an interpretable manner.
+Basically is LIME trying to fit a~linear model into a~complex non-linear one.
+In order to achieve model indepence, it looks on the training dataset, on the outcome and gives result why model decided as such, modifying the input to the model locally, while treating ML model as a~black-box~\cite{lime}.
+This means, that explanatory model is not trying to undestand the entire model at the same time, instead an input instance is tweaked and the impact on the output is monitored~\cite{article:interpretability-in-machine-learning}.
+Ergo, in the context of text classification, some of the words are replaced or modified, to determine which elements of the input impact the predictions~\cite{article:interpretability-in-machine-learning}.
+
+In conclusion, explanation provided by LIME is local to the given query, interpretable for an end user to understand and model-agnostic, which means that explanation system is independent on the undelying ML model.
+
+By explaining a~prediction is meant to present textual or visual output that provide undestanding of connection between components of the output and the model's prediction~\cite{lime}.
+To illustrate the situation, imagine that patient has a~pertussis (also known as whooping cough or 100-day cough), but ML model predicts diagnosis that patient has a~flu.
+The early symptoms of this disease are the same as the ones of the flu.
+LIME highlights the symptoms in the patient’s history that led to the prediction.
+Runny nose and fever are interpretted as contributing to the \say{flu} prediction, while strong cough is indication, that estimated diagnosis might be wrong.
+With those data specialist can make an informed decision whether or not to trust the prediction and make additional tests to confirm diagnosis, which can prevent future complications.
+
+In the paper named \textit{\say{\say{Why Should I Trust You?} Explaining the Predictions of Any Classifier}} the explanation produced by LIME is expressed by the equation (\ref{eq:lime})~\cite{lime}.
+
+\begin{equation} \label{eq:lime}
+    \xi(x) = \argmin_{g \in G} \mathcal{L}(f, g, \pi_x) + \Omega(g)
+\end{equation}
+
+They define explanation as a~model \( g \in G \), where \( G \) is a~set of interpretable models.
+Model \( g \) is in state to be demonstrated to the user using visual or textual elements.
+Because of the possibility, that \( g \in G \) is not simple enough to be easily interpretable, measure of complexity \( \Omega(g) \) is introduced.
+
+\begin{displayquote}
+    For example, for decision trees \( \Omega(g) \) may be the depth of the tree, while for linear models, \( \Omega(g) \) may be the number of non-zero weights~\cite{lime}.
+\end{displayquote}
+
+Model being explained is denoted \( f: \mathbb{R}^d \to \mathbb{R} \), while \( f(x) \) is the transition function whose output can be used as a~label for the explanation model.
+Expression \( \pi_x(z) \) is a~proximity measure between an instance \( z \) to \( x \), to define locality around \( x \).
+Let us express \( \pi_x(z) \) as an exponential kernel (a window function) defined on some distance function \( D \) (e.g.\ cosine distance for text) with width \( \sigma \), equation (\ref{eq:pi_x_z}).
+
+\begin{equation}\label{eq:pi_x_z}
+    \pi_x(z) = \exp \left( \dfrac{-D(x, z)^2}{\sigma^2} \right)
+\end{equation}
+
+If \( x \) and \( z \) are row vectors, their cosine similarity \( k \) is defined by equation~(\ref{eq:metric_cosine}).
+On L2-normalized data, this function is equivalent to \textit{linear kernel}~(\ref{eq:metric_linear}) for column vectors, only slower.
+
+\begin{equation}\label{eq:metric_linear}
+    k(x, z) = x^\intercal z
+\end{equation}
+
+This is called cosine similarity, because Euclidean normalization projects the vectors onto the unit sphere, and their dot product is then the cosine of the angle between the points denoted by the vectors~\cite{scikit-learn}.
+
+\begin{equation}\label{eq:metric_cosine}
+    D \triangleq k(x, z) = \dfrac{x z^\intercal}{\norm{x} \cdot \norm{z}}
+\end{equation}
+
+In the following example usage of LIME framework, I am using TF-IDF vectorizer which will give us L2 normalized data.
+
+Interpretable representation used for text classification can be described as a~binary vector indicating the presence or absence of a~word.
+Let \( x \in \mathbb{R}^d \) be the original vector representation of a~word and \( x^\prime \in \{ 0, 1 \}^{d^\prime} \) to be binary vector of interpretable representation.
+Algorithm implemented by the framework samples instances around \( x^\prime \) by taking nonzero elements of \( x^\prime \).
+In the paper they denote such vector as \( z^\prime \in \{ 0, 1 \}^{d^\prime} \).
+
+\begin{equation} \label{eq:perturbed_sample}
+    x^\prime = \begin{bmatrix} 0 & 1 & 1 & 1 \end{bmatrix}
+    \Rightarrow
+    \begin{matrix}
+        z^\prime_1 = \begin{bmatrix} 0 & 0 & 1 & 1 \end{bmatrix} \\
+        z^\prime_2 = \begin{bmatrix} 0 & 0 & 0 & 1 \end{bmatrix} \\
+        z^\prime_2 = \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\
+        \ldots
+    \end{matrix}
+\end{equation}
+
+After this transformation, the original representation \( z \in \mathbb{R}^d \) is obtained and \( f(z) \) is acquired.
+The \( f(z) \) is obtained using LASSO (least absolute shrinkage and selection operator) linear regression algorithm with \( x^\prime_i \) as features and \( f(z) \) as target.
+
+When we let \( G \) be the class of linear models, such that \( g(z^\prime) = w_g \cdot z^\prime \), we can define \( \mathcal{L} \) as locally weighted square loss function~(\ref{eq:square_loss}).
+
+\begin{equation} \label{eq:square_loss}
+    \mathcal{L}(f, g, \pi_x) = \sum_{z, z^\prime \in \mathcal{Z}} \pi_x(z) \left( f(z) - g(z^\prime) \right)^2
+\end{equation}
+
+\subsection{LIME evaluation}\label{subsec:lime-evaluation}
+
+Solution provided by LIME presents locally faithful explanations.
+Those explanations are obtained by fitting linear model into more complex one.
+Linearization in such manner enables to achieve interpretability even though the original model might be to complex to explain globally.
+Locality used for explaining is captured by \( \pi_x \), which in combination with \textit{exponential kernel} leads to robustness to sampling noise.
+
+Thanks to its flexibility this framework can be used for explaining text classification (e.g.\ Random Forests, Naive Bayes), image classification (e.g.\ neural networks) and regression.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[clip, trim=0cm 13cm 0cm 0cm, width=1\textwidth]{imgs/lime-example.pdf}
+    \caption{LIME explanation for given URL (text classification)}
+    \label{fig:lime}
+\end{figure}
+\FloatBarrier
+
+In order to undestand how LIME performs on the test data, an performed an experiment.
+For every URL in the testing set, the explanation procedure was executed.
+The output consists of list of URL features and number denoting whether feature supports or contradicts class affiliation.
+In our case, if the number is greater than zero, the feature supports benign class and vice versa.
+If the number is zero, it means that the feature was not present in the training data, therefore LIME is not able to make any assumptions based on that.
+
+The goal of the experiment was to figure out the most important features.
+Each item in the testing data set containing 300 malicious and 3000 non-malicious URLs was evaluated, and the feature weights were counted.
+The process is not suitable for much larger sets, because the explanation retrieval can be time consuming - taking roughly one second to get the explanation for an URL - taking about one hour to process the entire set of 3300 URLs for one classifier.
+The counting was done in a four ways:
+
+\begin{enumerate}
+    \item \textbf{cumulative} - both positive and negative numbers were added up,
+    \item \textbf{absolute} - the absolute value of numbers was added up,
+    \item \textbf{malign} - only negative numbers were added up,
+    \item \textbf{benign} - only positive numbers were added up.
+\end{enumerate}
+
+\begin{table}[htb]
+    \centering
+
+    \begin{tabular}{llrlrlrlr}
+        \toprule
+                                & \multicolumn{2}{c}{Cumulative}    & \multicolumn{2}{c}{Absolute}  & \multicolumn{2}{c}{Malign}    & \multicolumn{2}{c}{Benign}    \\ \cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7} \cmidrule(lr){8-9}
+        Classifier              & Token     & Value                 & Token     & Value             & Token    & Value              & Token     & Value             \\
+        \midrule
+        \multirow{10}{*}{SGD}   & html      & \( 86.42 \)           & html      & \( 86.42 \)       & net      & \( -23.01 \)       & html      & \( 86.42 \)       \\
+                                & htm       & \( 28.04 \)           & htm       & \( 28.04 \)       & php      & \( -20.26 \)       & htm       & \( 28.04 \)       \\
+                                & org       & \( 25.61 \)           & org       & \( 25.61 \)       & a        & \( -19.70 \)       & org       & \( 25.61 \)       \\
+                                & watch     & \( 21.26 \)           & net       & \( 23.01 \)       & index    & \( -8.95 \)        & watch     & \( 21.26 \)       \\
+                                & youtube   & \( 18.79 \)           & watch     & \( 21.26 \)       & 2        & \( -8.59 \)        & youtube   & \( 18.79 \)       \\
+                                & people    & \( 18.30 \)           & php       & \( 20.26 \)       & 1        & \( -6.60 \)        & people    & \( 18.30 \)       \\
+                                & wiki      & \( 16.99 \)           & a         & \( 19.70 \)       & i        & \( -6.56 \)        & wiki      & \( 16.99 \)       \\
+                                & the       & \( 16.21 \)           & youtube   & \( 18.79 \)       & co       & \( -6.20 \)        & the       & \( 16.21 \)       \\
+                                & 2011      & \( 15.46 \)           & people    & \( 18.30 \)       & f        & \( -6.08 \)        & 2011      & \( 15.46 \)       \\
+                                & ca        & \( 15.39 \)           & wiki      & \( 16.99 \)       & x        & \( -5.95 \)        & ca        & \( 15.39 \)       \\
+        \midrule
+        \multirow{10}{*}{LRC}   & html      & \( 83.94 \)           & html      & \( 83.94 \)       & net      & \( -16.16 \)       & html      & \( 83.94 \)       \\
+                                & htm       & \( 30.45 \)           & htm       & \( 30.45 \)       & a        & \( -10.98 \)       & htm       & \( 30.45 \)       \\
+                                & watch     & \( 23.63 \)           & watch     & \( 23.63 \)       & index    & \( -10.87 \)       & watch     & \( 23.63 \)       \\
+                                & youtube   & \( 23.47 \)           & youtube   & \( 23.47 \)       & php      & \( -9.53 \)        & youtube   & \( 23.47 \)       \\
+                                & org       & \( 19.78 \)           & org       & \( 19.78 \)       & 2        & \( -6.54 \)        & org       & \( 19.78 \)       \\
+                                & people    & \( 17.66 \)           & people    & \( 17.66 \)       & x        & \( -5.98 \)        & people    & \( 17.66 \)       \\
+                                & 2011      & \( 16.52 \)           & 2011      & \( 16.52 \)       & info     & \( -5.96 \)        & 2011      & \( 16.52 \)       \\
+                                & wiki      & \( 13.16 \)           & net       & \( 16.16 \)       & co       & \( -5.65 \)        & wiki      & \( 13.16 \)       \\
+                                & ca        & \( 13.05 \)           & wiki      & \( 13.16 \)       & in       & \( -5.10 \)        & ca        & \( 13.05 \)       \\
+                                & life      & \( 13.02 \)           & ca        & \( 13.05 \)       & ru       & \( -5.02 \)        & life      & \( 13.02 \)       \\
+        \midrule
+        \multirow{10}{*}{MNB}   & youtube   & \( 21.16 \)           & youtube   & \( 21.16 \)       & a        & \( -6.76 \)        & youtube   & \( 21.16 \)       \\
+                                & watch     & \( 19.61 \)           & watch     & \( 19.61 \)       & net      & \( -6.01 \)        & watch     & \( 19.61 \)       \\
+                                & html      & \( 13.15 \)           & html      & \( 13.15 \)       & php      & \( -4.64 \)        & html      & \( 13.15 \)       \\
+                                & wiki      & \( 10.54 \)           & wiki      & \( 10.54 \)       & d        & \( -4.07 \)        & wiki      & \( 10.54 \)       \\
+                                & people    & \( 9.90 \)            & people    & \( 9.90 \)        & f        & \( -3.57 \)        & people    & \( 9.90 \)        \\
+                                & 2011      & \( 9.41 \)            & 2011      & \( 9.41 \)        & b        & \( -3.44 \)        & 2011      & \( 9.41 \)        \\
+                                & wikipedia & \( 9.17 \)            & wikipedia & \( 9.17 \)        & x        & \( -3.40 \)        & wikipedia & \( 9.17 \)        \\
+                                & org       & \( 8.49 \)            & org       & \( 8.49 \)        & 3        & \( -3.39 \)        & org       & \( 8.49 \)        \\
+                                & montreal  & \( 7.26 \)            & montreal  & \( 7.26 \)        & 2        & \( -3.20 \)        & montreal  & \( 7.26 \)        \\
+                                & facebook  & \( 7.23 \)            & facebook  & \( 7.23 \)        & ru       & \( -3.08 \)        & facebook  & \( 7.23 \)        \\
+        \bottomrule
+    \end{tabular}
+
+    \caption{The most valuable tokens for each classifier}
+    \label{table:explanations-statistics}
+\end{table}
+\FloatBarrier
+
+In the table~\ref{table:explanations-statistics} is ten most valuable tokens according to each of the four metrics and all three classifiers.
+I may be not surprising that the \textbf{cumulative} and \textbf{benign} metrics show the same results.
+Those two may become interesting when analyzing dataset containing entities constructed e.g.\ for \textit{evasion} attack.
+
+The \textbf{malign} metric reveals structure of malicious URLs in the dataset - single characters, file extensions and suspicious TLDs occupying the \say{top ten}.
+The \textbf{absolute} metrics is just a~combination of those already mentioned.
+
+More diverse and larger testing dataset may show more interesting results, although the process is very time consuming therefore unsuitable for frequent and comprehensive analysis.
+The results for \textit{Linear Regression} and \textit{Stochastic Gradient Descend} are very similar, the \textit{Multinomial Naive Bayes} has some differences (order, occurrence of words and overall lower values).
+
+\subsection{LIME and URL classification}\label{subsec:lime-and-url-classification}
+
+For the testing purpose, I constructed purely fictional URL address \url{https://www.facebook.net/pages/220333-zip-secure/passwordlogin}.
+The URL is intended to be a~malicious one, with strongly polarized expressions, which I observed empirically.
+For example, \textit{facebook} always contribute to the benign decision, whereas \textit{login} or \textit{secure} make decision shift to the malign side.
+
+\begin{figure}[htb]
+    \centering
+    \begin{subfigure}{.3\textwidth}
+        \includegraphics[clip, trim=8.5cm 22.5cm 6.6cm 0cm, width=1\textwidth]{imgs/sgd.pdf}
+        \centering
+        \caption{SGD}
+        \label{fig:exp_sgd}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.3\textwidth}
+        \includegraphics[clip, trim=8.5cm 22.5cm 6.6cm 0cm, width=1\textwidth]{imgs/lrc.pdf}
+        \centering
+        \caption{LRC}
+        \label{fig:exp_lrc}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{.3\textwidth}
+        \includegraphics[clip, trim=8.5cm 22.5cm 6.6cm 0cm, width=1\textwidth]{imgs/mnb.pdf}
+        \centering
+        \caption{MNB}
+        \label{fig:exp_mnb}
+    \end{subfigure}
+
+    \caption{All explanations generated by LIME}
+    \label{fig:all-explanations}
+\end{figure}
+\FloatBarrier
+
+Prediction probabilities that the URL belongs to the malicious class are in the table~\ref{table:prediction-probabilities}, the probability that the URL belongs to the class \textit{good} is complementary to one.
+
+\begin{table}[htb]
+    \centering
+
+    \begin{tabular}{lc}
+        \toprule
+        Classifier & Probability \\
+        \midrule
+        SGD & 0.66 \\
+        LRC & 0.93 \\
+        MNB & 0.95 \\
+        \bottomrule
+    \end{tabular}
+
+    \caption{Prediction probabilities for all classifiers that the example URL address is malicious}
+    \label{table:prediction-probabilities}
+\end{table}
+\FloatBarrier
+
+From the results, it seems that LIME explainer works correctly.
+The infomation we get from the explanations are not really usefull for real-life URL classification, but can be used for model tuning during development.
+
+Suppose that we are trying to create a model, resistant to evasion attack.
+The way of feature extraction presented in this paper, does not allow to create a comprehensive \textit{blacklist} of forbidden features.
+The URLs tend to be quite short, therefore every feature counts.
+LIME can help us to identify which features manifest themselves the most.
+Based on this information an engineer can adjust the model parameters in a way to lower the weights of the most significant attributes - making it harder for an adversary to create adversarial samples, hopefully improving model objectivity at the same time.
+The same information can be used to find possible weaknesses in data distribution, such as too many similar entities in the training data or missing features.
+
+Model explanations might be very usefull (even necessary) in some situations and can be used to \say{sanity check} our trust in model decision and our belief in constructed classifiers.

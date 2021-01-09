@@ -1,0 +1,44 @@
+% blank page declaration
+\DeclareNewLayer[
+    foreground,
+    textarea, % use only the textarea
+    contents={
+        \parbox[b][\layerheight][c]{\layerwidth}
+        {\centering The space above and below the message intentionally is left blank.}
+    }
+    ]{blankpage.fg}
+\DeclarePageStyleByLayers{blank}{blankpage.fg}
+
+% blank page command - usage: \blankpage
+\newcommand{\blankpage}{\newpage\null\thispagestyle{blank}\newpage}
+
+% CrowdStrike
+\newcommand{\crowdstrike}{CrowdStrike\textsuperscript{\textregistered}}
+
+% bold italic text
+\newcommand{\textitbf}[1]{{\textit{\textbf{#1}}}}
+
+% tf-idf
+\newcommand{\tf}[1]{\operatorname{TF} \left( #1 \right)}
+\newcommand{\idf}[1]{\operatorname{IDF} \left( #1 \right)}
+\newcommand{\tfidf}[1]{\operatorname{TF-IDF} \left( #1 \right)}
+\newcommand{\df}[1]{\operatorname{DF} \left( #1 \right)}
+
+% define norm brackets
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% signature line
+\newcommand{\sign}[2]{%
+\begin{tabular}[t]{@{}r@{}}
+    \\[-2ex]
+    \makebox[#1]{\dotfill}\\
+    \strut#2\strut
+\end{tabular}%
+}
+
+\newcommand{\Date}[1]{%
+\begin{tabular}[t]{@{}p{#1}@{}}
+    \\[-2ex]
+    \strut \dotfill\strut
+\end{tabular}%
+}

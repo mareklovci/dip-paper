@@ -1,0 +1,111 @@
+\documentclass[a4paper,11pt,openany,oneside]{book}
+\usepackage[
+a4paper,
+left=2.5cm,
+right=2.5cm,
+top=2.5cm,
+bottom=2.5cm,
+bindingoffset=.5cm
+]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % use vector font, not the bitmap one
+
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage[inline]{enumitem}
+\usepackage{placeins}
+\usepackage[group-separator={,}]{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{bibliography.bib}
+
+\usepackage{listings}
+
+% appendices
+\usepackage{appendix}
+
+% quotations
+\usepackage{csquotes}
+\newcommand{\say}[1]{\enquote{#1}}
+
+% for typesetting urls
+\usepackage{hyperref}
+\urlstyle{sf}
+
+% tabulky
+\usepackage{booktabs}
+\usepackage{tabularx,ragged2e}
+\usepackage{multirow}
+
+% tikz graphs and images
+\usepackage{tikz}
+
+% for blank page
+\usepackage{scrlayer}
+
+\usepackage{color}
+
+% declare argmin and argmac
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% import acronyms, show glossary in TOC
+\usepackage[acronym,toc]{glossaries}
+
+\usepackage{etoolbox}
+\apptocmd{\lim}{\limits}{}{}
+
+\setcounter{biburlnumpenalty}{9000} % break on URL numbers
+\setcounter{biburllcpenalty}{9000} % break on URL lower case letters
+\setcounter{biburlucpenalty}{9000} % break on URL UPPER CASE letters
+
+% \setlength{\parskip}{1em} %paragraph spacing
+% \renewcommand{\baselinestretch}{1.5} % MS Word 1.5 spacing
+
+\makeglossaries
+\loadglsentries{sections/glossary}
+
+\input{sections/commands}
+
+\begin{document}
+    \frontmatter
+
+    \include{sections/titlepage}
+
+    \input{sections/assignment}
+    %\input{sections/declaration}
+    %\input{sections/abstract}
+
+    \tableofcontents
+    %\listoffigures
+    %\listoftables
+
+    \input{sections/introduction}
+
+    \mainmatter
+
+    \include{chapters/chapter1}
+    %\include{chapters/chapter2}
+    %\include{chapters/chapter3}
+    %\include{chapters/chapter4}
+
+    %\begin{appendices}
+    %    \include{appendices/appendixa}
+    %    \include{appendices/appendixb}
+    %\end{appendices}
+
+    %\newpage
+    %\printglossary[type=\acronymtype]
+    %\printglossary
+
+    \newpage
+    \printbibliography
+
+\end{document}

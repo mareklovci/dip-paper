@@ -1,0 +1,60 @@
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\chapter{URL tokenizer}\label{ch:url-tokenizer}
+
+Implementation of algorithm infering the location of spaces in a~string as presented in the original \textit{StackOverflow} question~\cite{stackoverflow:tokenizer}.
+The code is written at the Python programming language.
+
+\begin{lstlisting}[language=Python]
+    from math import log
+
+    words = open("words-by-frequency.txt").read().split()
+    wordcost = dict((k, log((i+1)*log(len(words)))) for i,k in enumerate(words))
+    maxword = max(len(x) for x in words)
+
+
+    def infer_spaces(s):
+
+        def best_match(i):
+            candidates = enumerate(reversed(cost[max(0, i-maxword):i]))
+            return min((c + wordcost.get(s[i-k-1:i], 9e999), k+1) for k,c in candidates)
+
+        # Build the cost array.
+        cost = [0]
+        for i in range(1,len(s)+1):
+            c,k = best_match(i)
+            cost.append(c)
+
+        # Backtrack to recover the minimal-cost string.
+        out = []
+        i = len(s)
+        while i>0:
+            c,k = best_match(i)
+            assert c == cost[i]
+            out.append(s[i-k:i])
+            i -= k
+
+        return " ".join(reversed(out))
+\end{lstlisting}
