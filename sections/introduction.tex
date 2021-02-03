@@ -1,13 +1,75 @@
 \chapter{Introduction}\label{ch:introduction}
 
-In our highly disruptive society over 1 trillion MB of data is generated daily. \url{https://techjury.net/blog/how-much-data-is-created-every-day/#gref}
+In our highly disruptive society over 1 trillion (\( 10^{12} \)) MB of data is generated daily~\cite{techjury2021}.
 All industries are generating data and are in need of using those data to analyze, manage and control various systems.
+But how do we know, those data are objetively correct?
+
+As Orr (1998) stated,
+\blockquote[][]{data quality is the measure of the agreement between the data views presented by an information system and the same data in the real world.
+A system's data quality of 100\% would indicate, for example, that our data views are in perfect agreement with the real world, whereas a data quality rating of 0\% would indicate no agreement at all~\cite{orr1998}.}
+
+Ensuring certain level of data quality is an IT project like any other.
+There exists some iniciatives for improving especially Open Data Quality, e.g. 5 Star Data, but none of them is really comprehensive.
+In short, objective evaluation of Data Quality is hard.
+
+Main issue with this topic is that DQ is shrouded in misconceptions.
+Data Quality is a business problem, not an IT problem.
+But IT enables the business to improve it through tools and processes.
+Bad data impacts every system and every person interating with them.
+Therefore it should be everybody's responsibility to maintain good standards and practices that in turn will increase confidence in data used for reporting and analytics.
+
+There are two main causes of failure in Data Quality Management implementation.
+The first one is related to missing data quality process, e.g. lack of proactive DQ surveillance~\cite{risto2011}.
+The second one is a lack of data quality measurements~\cite{haug2013}.
+
+Data Quality Assessment (DQA) and Master Data Management (MDM) are both connected to assuring level of DQ, in this body of work we are going to use them interchangeably.
+
+The cost of bad data is defined as \textit{direct} + \textit{indirect} costs.
+Direct costs are, for example, manual and automatic cleaning of master data.
+Indirect cost, on the other hand, is financial loss caused by poor-quality master data resulting in
+\begin{enumerate*}[label=(\roman*)]
+    \item inadequate managerial decision,
+    \item process failure and
+    \item missed opportunity.
+\end{enumerate*}
+
+Even though the goal of DQA is to lower \textit{cost} \& \textit{complexity}, the DQ process can still provide low quality master data.
+The usual culprit in such cases is already mentioned
+\begin{enumerate*}[label=(\roman*)]
+    \item lack of DQ measurements (or faulty definition) and
+    \item absence of clear roles in the data life-cycle process~\cite{haug2013}.
+\end{enumerate*}
+
+The solution to the problems mentioned above are
+\begin{enumerate*}[label=(\roman*)]
+    \item a data model definition (metadata) and
+    \item proactive data quality surveillance~\cite{risto2011}.
+\end{enumerate*}
+
+\blockquote[][]{One certain way to improve the quality of data: improve its use!}~\cite{orr1998}
+
+\section{Focus of work}
+
+There are many things that must be taken into account when implementing the DQ methodology.
+To name a few:
+
+\begin{itemize}
+    \item stakeholders and participants' involvement,
+    \item metadata management,
+    \item architecture styles,
+    \item functional services,
+    \item data modeling,
+    \item data consolidation and integration,
+    \item management guidance,
+    \item master data identification and
+    \item master data synchronization~\cite{loshin2008}.
+\end{itemize}
 
 \section{Ideas}
 
 \subsection{Data Quality Rules}
 
-There are a number of general data quality rules one can deduce from a Feedback-Control Systems view of information systems~\cite{10.1145/269012.269023}.
+There are a number of general data quality rules one can deduce from a Feedback-Control Systems view of information systems~\cite{orr1998}.
 
 \begin{enumerate}
     \item Unused data cannot remain correct for very long;
@@ -37,18 +99,6 @@ There are a number of general data quality rules one can deduce from a Feedback-
 
 \subsection{Differential Privacy}
 
-\subsection{Quality Classification}
+DQ dimensions vs DQ metrics
 
-The original idea was to leverage some Machine Learning classification algorithm to automatically classify datasets.
-During thesis elaboration the referential materials turned out to be insufficient in providing usefull information on the topic, hence different technique was chosen (composite statistical score-card evaluation).
-Shortcoming of white-papers about Machine Learning supported DQ classification probably results from the absence of well-defined general DQA algorithm and output classes.
-Complexity of developing all-embracing method for DQA competes with unfolding general artificial intelligence, indeed.
-
-Resulting system should be similar to machine learning ensemble methods (ensemble voting).
-
-%Artificial intelligence is one of the most promising technologies of our times~\cite{ai_citizens}.
-
-%In the chapter~\ref{ch:machine-learning-and-cybersecurity}, I will discuss the ML model security risks and convolution of machine learning, cybersecurity and enterpise solutions.
-%Chapter~\ref{ch:malicious-url-detection-and-classification} is going to present available datasets and on page~\pageref{sec:text-feature-extraction} will be demonstrated approach for malicious URL detection.
-%The third chapter on page~\pageref{ch:model-analysis} introduces the model explanation framework.
-%As a~practical example of use of machine learning for cybersecurity with ability to justify its claims, I am going to make an application in Python programming language using machine learning library \textit{scikit-learn} and LIME (Local Interpretable Model-agnostic Explanations) framework for explaining classification of URL addresses.
+"Confidetial/secret data will always have limited quality."
