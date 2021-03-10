@@ -13,14 +13,14 @@ There exists some iniciatives for improving especially Open Data Quality, e.g. 5
 In short, objective evaluation of Data Quality is hard.
 
 Main issue with this topic is that DQ is shrouded in misconceptions.
-Data Quality is a business problem, not an IT problem.
+Data Quality is a~business problem, not an IT problem.
 But IT enables the business to improve it through tools and processes.
 Bad data impacts every system and every person interating with them.
 Therefore it should be everybody's responsibility to maintain good standards and practices that in turn will increase confidence in data used for reporting and analytics.
 
 There are two main causes of failure in Data Quality Management implementation.
-The first one is related to missing data quality process, e.g. lack of proactive DQ surveillance~\cite{risto2011}.
-The second one is a lack of data quality measurements~\cite{haug2013}.
+The first~one is related to missing data quality process, e.g. lack of proactive DQ surveillance~\cite{risto2011}.
+The second one is a~lack of data quality measurements~\cite{haug2013}.
 
 Data Quality Assessment (DQA) and Master Data Management (MDM) are both connected to assuring level of DQ, in this body of work we are going to use them interchangeably.
 
@@ -48,7 +48,7 @@ The solution to the problems mentioned above are
 
 \blockquote[][]{One certain way to improve the quality of data: improve its use!}~\cite{orr1998}
 
-\section{Focus of work}
+\section*{Focus of work}
 
 There are many things that must be taken into account when implementing the DQ methodology.
 To name a few:
@@ -65,40 +65,40 @@ To name a few:
     \item master data synchronization~\cite{loshin2008}.
 \end{itemize}
 
-\section{Ideas}
-
-\subsection{Data Quality Rules}
-
-There are a number of general data quality rules one can deduce from a Feedback-Control Systems view of information systems~\cite{orr1998}.
+Batini et al. (2009) recognized activities of data quality methodology.
+In the most general case, the list is composed of four phases listed below~\cite{batini2009}.
+Each of the four sections has additional steps defined, but we will not discuss them explicitly here.
 
 \begin{enumerate}
-    \item Unused data cannot remain correct for very long;
-    \item data quality in an information system is a function of its use, not its collection;
-    \item data quality will, ultimately, be no better than its most stringent use;
-    \item data quality problems tend to become worse as the system ages;
-    \item the less likely some data attribute (element) is to change, the more traumatic it will be when if finally does change;
-    \item laws of data quality apply qually to data and metadata.
+    \item \textit{State reconstruction}, which is aimed to get information about business processes and services, data collection, quality issues, and corresponding costs.
+    \item \textit{Measurement}, where the objective is to measure the quality of data collection along relevant quality dimensions.
+    \item \textit{Assessment}, which refers to the event when \textit{measurements} are compared with certain reference values to determine the state of quality and to assess the causes of poor data.
+    \item \textit{Improvement} concerns the selection of the steps, strategies, and techniques for reaching new data quality targets.
 \end{enumerate}
 
-\noindent In principle, we can classify three types of system stability:
+To limit the scope, in order to achieve a good and reasonable goal within a limited given time and resource, this thesis will focus on these parts:
+\begin{enumerate*}[label=(\roman*)]
+    \item Measurement of Quality,
+    \item Data Quality Score Assesment.
+\end{enumerate*}
 
-\begin{enumerate}
-    \item Stable System (Absolute and Conditional stability);
-    \item Marginally Stable System;
-    \item Unstable System.
-\end{enumerate}
+\subsection*{Measurement of Quality}
 
-\subsection{Analytics Types}
+MoQ is part of the \textit{measurement phase}.
+The idea is to select the quality dimensions affected by the quality issues identified in the DQ requirements analysis and define corresponding metrics~\cite{loshin2008}.
+Measurement can be objective when it is based on quantitative metrics, or subjective, when it is based on qualitative evaluations by data administrators and users~\cite{loshin2008}.
 
-\begin{itemize}
-    \item Descriptive – what happened in the past;
-    \item Diagnostic – why something happened in the past;
-    \item Predictive – what is most likely to happen in the future;
-    \item Prescriptive – recommends actions to affect those outcomes.
-\end{itemize}
+\subsection*{Data Quality Score Assesment}
 
-\subsection{Differential Privacy}
+To achieve the completition ofthe assignment, we will focus on automatic assesment of the final dataset score.
+We will define a procedure to objectively evaluate the quality of the given dataset.
+This way we will be able to asign a mark to the dataset giving an idea of the current qualitative state.
 
-DQ dimensions vs DQ metrics
+\section*{Research Goal}
 
-"Confidetial/secret data will always have limited quality."
+The main research goal of this study is to define and use methodology for data quality assesment.
+Therefore to identify, collect, analyze, and evaluate the quality metrics for a data to allow quantifying and improve their value.
+The selected quality metrics should be the ones objectively quantifying data value.
+
+In the applied section of work, we are going to use, test and evaluate data from the (currently) ongoing COVID-19 pandemic.
+The reason of choice is general availability, vast collection and opened licence of selected datasets.

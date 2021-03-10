@@ -1,4 +1,261 @@
-\chapter{Machine Learning and Cybersecurity}\label{ch:machine-learning-and-cybersecurity}
+\chapter{Literature review}\label{ch:literature-review}
+
+To answer the main thesis question, a review of existing studies will be needed.
+The topic of DQ and the cost on business is well researched.
+One of the oldest articles was written by Gerald A. Feltham in 1968 with title \enquote{The Value of Information}.
+Many articles and studies were written on the topic since then, therefore we can recognize some basic structures when talking about DQ methodology.
+
+\section{Hybrid Approach}
+
+In the article \textit{Data quality assessment: The Hybrid Approach} the authors defined data quality as \enquote{fit for use}.
+They reviewed several assessment techniques, including
+\begin{enumerate*}[label=(\roman*)]
+    \item AIMQ (Lee et al., 2002),
+    \item TQDM (English, 1999),
+    \item cost-effect of low data quality (Loshin, 2004) and
+    \item subjective-objective data quality assessment (McGilvray, 2008).
+\end{enumerate*}
+
+The result of the study is a general framework for creating customized, bussiness unique data quality assessment process.
+The process consists of seven consecutive activities:
+
+\begin{itemize}
+    \item select data items;
+    \item select a place where data is to be measured;
+    \item identify reference data;
+    \item identify DQ dimensions;
+    \item identify DQ metrics;
+    \item perform measurement;
+    \item conduct analysis of the results.
+\end{itemize}
+
+\section{AIMQ}
+
+AIMQ is a methodology for information quality (IQ) assessment and benchmarking.
+The methodology is developed on the basis of other academic studies (e.g., Wang \& Strong, Goodhue, Jarke \& Vassiliou) and several practitioners’ view (e.g., Department of Defense, HSBC, and AT\&T), and is validated using cases from three large health organizations.
+The methodology consists of a model of IQ, a questionnaire to measure IQ, and analysis techniques in interpreting IQ.
+The important components in AIMQ are the IQ model and IQ dimensions, which are critical for the information consumers.
+The IQ model in AIMQ, PSP/IQ model, has four quadrants that are relevant to an IQ improvement decision.
+Those four quadrants are sound information, useful information, dependable information, and usable information.
+This model is used to assess how well an organization develops sound and useful information products and delivers dependable and usable information services to the consumers.
+
+\section{CDQM}
+
+A comprehensive data quality methodology (CDQM) for web and structured data is a methodology developed by Batini et al. (2008).
+The methodology is similar to the others.
+It consists of three main phases: 
+\begin{enumerate*}[label=(\roman*)]
+    \item state reconsruction (modeling of organizational context),
+    \item assessment (problem identification and DQ measurement) and
+    \item choice of the optimal improvement process.
+\end{enumerate*}
+
+The choice of the optimal improvement process creates feedback loop on the previous phase.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/cdqm-diagram.png}
+    \caption{Diagram of the CDQ methodology~\cite{batini2008}}
+    \label{fig:cdqm-diagram}
+\end{figure}
+\FloatBarrier
+
+\subsection{State reconstruction}
+
+TODO
+
+\subsection{Assessment}
+
+TODO
+
+\subsection{Choice of the optimal improvement process}
+
+TODO
+
+\section{BODQ}
+
+Otto et al. (2011) developed a design process for the identification of business oriented DQ metrics~\cite{otto2011}.
+The paper does not present any concrete DQ metrics even though they studied data quality problems in three companies.
+Instead, those three companies' data problems were used to create an assumption that data defects cause business problems~\cite{otto2011}.
+According to Otto et al. (2011), the identification of DQ metrics therefore should be based on how the data impacts process metrics~\cite{otto2011}.
+
+A method engineering (ME) is used to design the framework.
+Methodology therefore consists of five components:
+
+\begin{itemize}
+    \item design activities,
+    \item design results,
+    \item meta-model,
+    \item roles and
+    \item techniques.
+\end{itemize}
+
+\subsection{Meta-model}
+
+Otto et al. (2011) describe entities and relations used to characterize the activities of the procedure model~\cite{otto2011}.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/otto-figure-1.png}
+    \caption{Entities and relations of a business oriented data quality metric~\cite{otto2011}}
+    \label{fig:otto-figure-1}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Business Problem}
+
+Business problem is either system state (e.g. the package cannot be delivered) or incident (e.g. scrap parts production) causing decrease of system performance, therefore impacts \textit{process metrics} results.
+It directly impacts business process and is defined by \textit{probability of occurence}\footnotemark and \textit{intensity of impact}\footnotemark.
+
+\footnotetext[1]{Probability of occurence of event \( E \) can be denoted as \( P(E) = \frac{r}{n} \), where \( r \) is number of ways \( E \) can happen from all possible ways \( n \), \( P(E) \in [0, 1] \).}
+\footnotetext[2]{
+    Intensity of impact is a measure of the time-averaged power density of a wave at a particular location.
+    In our case, intesity should be defined as \( I = \frac{\langle BC \rangle}{BA} \), where \( \langle BC \rangle \) is time-averaged business cost of problem and \( BA \) business area through which the problem propagates during certain time frame, \( I \in [0, \inf] \).
+    If we define business area as sum of employees impacted by problem and their time spend to solve it, the unit of intensity would be costs per hour.
+}
+
+\subsubsection{Business Process}
+
+By business process is meant sequence of tasks intended to generate value for customer and profit for the company.
+The business process is controlled and defined as part of a~business strategy with corresponding modeling and measuring tools such as BPMN~2.0 or Key Performance Indicators (KPIs).
+
+\subsubsection{Process Metric}
+
+Quantitative measure of the degree to which a process fulfill a given quality attribute (e.g. scrap rate).
+
+\subsubsection{Data}
+
+Data is representation of objects and object relations.
+
+\subsubsection{Data Defect}
+
+It is an incident (e.g. wrong entered data), causing value decrease of data quality metrics.
+As well as \textit{business problem}, a data defect poses a risk in terms of \textit{probability of occurence} and \textit{intensity of impact}.
+
+\subsubsection{Data Quality Metric}
+
+Quantitative measure of the degree to which data fulfill a given quality attribute (e.g. accuracy, consistency, currency,\ldots).
+
+\subsection{Procedure Model}\label{subsec:procedure-model}
+
+Procedure model defined by Otto et al. (2011) consists of three phases and seven activities.
+Activity flow model is shown in the figure~\ref{fig:otto-figure-2}.
+Letter color codes under the activities indicate degree of usage in the respective companies mentioned in the paper.
+Black color means that activity was fully used, grey color means partial usage and white indicates no use at all.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/otto-figure-2.png}
+    \caption{Procedure model and degree of usage of activities in each case~\cite{otto2011}}
+    \label{fig:otto-figure-2}
+\end{figure}
+\FloatBarrier
+
+\subsubsection{Phase 1}
+
+First phase is used to collect information.
+It consists of three activities:
+
+\begin{enumerate}
+    \item Identify Business Processes and Process Metrics,
+    \item Identify IT Systems,
+    \item Identify Business Problems and Data Defects.
+\end{enumerate}
+
+\subsubsection{Phase 2}
+
+Second phase is used to specify requirements and design data quality mestrics.
+It consists of two activities:
+
+\begin{enumerate}
+    \item Define and Rank Requirements for Data Quality Metrics,
+    \item Specify Data Quality Metrics.
+\end{enumerate}
+
+\subsubsection{Phase 3}
+
+Third phase is intended to approve and decument results.
+As well assecond phase, this one consists of two activities:
+
+\begin{enumerate}
+    \item Verify Requirements Fulfillment,
+    \item Document Data Quality Metrics Specification.
+\end{enumerate}
+
+\subsection{Roles}
+
+In the last part, the authors declare six roles and their assignment to activities from section~\ref{subsec:procedure-model}.
+Those roles are:
+
+\begin{itemize}
+    \item Chief Data Steward,
+    \item Business Data Steward,
+    \item Technical Data Steward,
+    \item Process Owner,
+    \item Process user and
+    \item Sponsor.
+\end{itemize}
+
+\section{ORME}
+
+Batini et al. (2007) provided DQ assessment methodology called ORME (from italian word \enquote{orme} meaning track or trace).
+The methodology consists of four Data Quality Risk evaluation phases:
+
+\begin{enumerate}
+    \item prioritization,
+    \item identification,
+    \item measurement,
+    \item monitoring.
+\end{enumerate}
+
+In the work, authors provided a comprehensive classification of costs of poor data quality.
+In short, they categorized costs into three classes:
+
+\begin{itemize}
+    \item current cost of insufficient data quality,
+    \item cost of IT/DQ initiative to improve current quality status,
+    \item benefits gained from improvement initiative implementation.
+\end{itemize}
+
+\subsection{Prioritization}
+
+In this phase the model reconstruction happen.
+All the relationships among organization units, processes, services and data are put together and organized e.g. in the form of matrices (database/organization matrix, dataflow/organization matrix, database/process matrix).
+The main goal is to provide map of the main data use across data providers, consumers and flows.
+
+\subsection{Identification}
+
+This phase main focus is on identification of loss events and definition of overall economic loss metrics.
+In this case, loss can be expressed in 
+\begin{enumerate*}[label=(\roman*)]
+    \item absolute values (e.g. 100 USD),
+    \item a percentage with respect to reference variables (e.g. 10\% of GDP), or
+    \item a qualitative evaluation (e.g. low-medium-high).
+\end{enumerate*}
+
+\subsection{Measurement}
+
+In this phase actual qualitative and quantitative assessment of data quality is conducted.
+
+\subsection{Monitoring}
+
+The last phase establishes a feedback loop and threshold in the DQ assessment process.
+DQ dimensions should be, according to the authors, evaluated periodically.
+Therefore quality rule violation allerts and automatic processes should be defined in order to ensure required DQ levels.
+
+Authors suggest discriminant analysis as an easy and effective way of loss event identification.
+The goal is to identify loss event based on set of new values in the data source.
+The model is build on a training set, with two classes (\textit{loss} and \textit{no loss}) in consideration.
+A set of linear functions from predictors is constructed,
+
+\begin{equation*}
+    L = b_1 x_1 + b_2 x_2 + \ldots + b_3 x_3 + c
+\end{equation*}
+
+where \( b_k \) are discriminant coeficient, \( x_k \) are input variables (predictors) and \( c \) is a constant.
+
+\newpage
+\section{Other}
 
 \begin{figure}[htb]
     \centering
@@ -113,6 +370,11 @@ Currency
 Format Compliance
 Referential Integrity
 
+Two main perspectives on Data Quality Management:
+
+Broad Perspective (from the enterprise poin of view on the lifecycle of data circulating in the company)~\cite{book:dama}
+Narrow Perspective (from the viewpoint of tasks to be done by data management professionals)~\cite{pres:dcam}
+
 % \section{AI as a~tool for security breaches mitigation}\label{sec:ai-as-a-tool-for-security-breaches-mitigation}
 
 %In the section~\ref{subsec:evasion} the principle of \textbf{model verifiability} was already mentioned.
@@ -214,3 +476,41 @@ Each group's frequency distribution of salary will be within a~distance \( t \) 
 \textbf{Differential privacy} and its variants (epsilon, epsilon-delta) are statistical techniques aiming to protect data against \textit{differentiated attack}.
 The model guarantees that even if someone has complete information about 99 of 100 people in a~data set, they still cannot deduce the sensitive information about the final person~\cite{web:differential-privacy}.
 The mechanism works by adding random noise to the aggregate data, leaving only a~trend without possibility to figure out exact values in data (e.g.\ information that \( n\% \) of users prefer some product over another).
+
+\subsection{Data Quality Rules}
+
+There are a number of general data quality rules one can deduce from a Feedback-Control Systems view of information systems~\cite{orr1998}.
+
+\begin{enumerate}
+    \item Unused data cannot remain correct for very long;
+    \item data quality in an information system is a function of its use, not its collection;
+    \item data quality will, ultimately, be no better than its most stringent use;
+    \item data quality problems tend to become worse as the system ages;
+    \item the less likely some data attribute (element) is to change, the more traumatic it will be when if finally does change;
+    \item laws of data quality apply qually to data and metadata.
+\end{enumerate}
+
+\subsection{System Stability}
+
+In principle, we can classify three types of system stability:
+
+\begin{enumerate}
+    \item Stable System (Absolute and Conditional stability);
+    \item Marginally Stable System;
+    \item Unstable System.
+\end{enumerate}
+
+\subsection{Analytics Types}
+
+\begin{itemize}
+    \item Descriptive – what happened in the past;
+    \item Diagnostic – why something happened in the past;
+    \item Predictive – what is most likely to happen in the future;
+    \item Prescriptive – recommends actions to affect those outcomes.
+\end{itemize}
+
+\subsection{Differential Privacy}
+
+DQ dimensions vs DQ metrics
+
+"Confidetial/secret data will always have limited quality."

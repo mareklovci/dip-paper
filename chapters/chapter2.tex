@@ -1,8 +1,65 @@
-\chapter{Quality Classification}\label{ch:quality-classification}
+\chapter{Methodology}\label{ch:methodology}
 
-The original idea was to leverage some Machine Learning classification algorithm to automatically classify datasets.
-During thesis elaboration the referential materials turned out to be insufficient in providing usefull information on the topic, hence different technique was chosen (composite statistical score-card evaluation).
-Shortcoming of white-papers about Machine Learning supported DQ classification probably results from the absence of well-defined general DQA algorithm and output classes.
-Complexity of developing all-embracing method for DQA competes with unfolding general artificial intelligence, indeed.
+Data Quality methodology consists of two main parts, the model and the metamodel.
+The model defines activities, their description, goals and sequence of order needed for extraction of Data Quality metrics.
+The metamodel defines components of DQ process, maps the relationship among the components and activities respectively.
 
-Resulting system should be similar to machine learning ensemble methods (ensemble voting).
+\section{Data Quality Criteria}
+
+Tabular vs relational data
+Tabular data structures: Cross-Sectional, Time-Series, Pooled Cross-Sections, Panel (Longitudal)
+Metrics usability with raw (non-aggregated) and aggregated data.
+
+
+In order to provide 
+
+\subsection{Accuracy}
+
+TODO
+
+\subsection{Completeness}
+
+TODO
+
+\subsection{Consistency}
+
+There are several forms of data consistency.
+The \textbf{first form} is actual wide or narrow distribution of data.
+In this way, consistency of data can be viewed as stability, uniformity or constancy.
+Typical measures include statistics such as the range (i.e., the largest value minus the smallest value among a distribution of data), the variance (i.e., the sum of the squared deviations of each value in a distribution from the mean value in a distribution divided by the number of values in a distribution) and the standard deviation (i.e., the square root of the variance).
+If one is evaluating the consistency of data drawn in a sample from a population, the standard error of the mean (i.e., the standard deviation of the sampled population divided by the square root of the sample size) is often examined.
+Finally, the constancy of data produced by instruments and tests is typically measured by estimating the reliability of obtained scores.
+Reliability estimates include test-retest coefficients, split-half measures and Kuder-Richardson Formula \textnumero 20 indexes~\cite{quora:consistency2017}.
+For Time Series data, stationary analysis can be done.
+If the data is non-stationary then it is likely to have some degree of inconsistency.
+
+Then, there is \textbf{second form} of data consistency; whether data are uniformly defined throughout the dataset, that is, across variables and over time.
+For example, suppose we want to use the data to estimate real estate sales per year to see how that number has changed over time.
+In this case, we have to make sure the estimates of real estate sales are uniformly defined over time.
+Specifically, does the data series always either include apartments or exclude apartments from the counts?
+Does it always either include houses or exclude houses from the counts?
+If the data sometimes include apartments, but not always, or if the data sometimes include houses, but not always, then the data are inconsistent.
+
+The \textbf{third form} of consistency tightly coupled with relational databases and their referential integrity.
+A relational database is said to be ACID (vs non-relational BASE), meaning
+\begin{enumerate*}[label=(\roman*)]
+    \item atomicity,
+    \item consistency,
+    \item isolation and
+    \item durability.
+\end{enumerate*}
+The term onsistency there refers to the requirement that any given database transaction must affect data only in allowed ways, therefore data must be valid according to all defined rules, including constraints, cascades, triggers, and any combination thereof.
+
+Inconsistencies in data can be due to changes over time and/or across variables for example, in
+\begin{enumerate*}[label=(\roman*)]
+    \item vintages or time periods,
+    \item units,
+    \item levels of accuracy,
+    \item levels of completeness,
+    \item inclusions and exclusions.
+\end{enumerate*}
+Those inconsistencies occur most often when merging or aggregating datasets, therefore the user has to make sure data are consistently defined throughout.
+
+\subsection{Timeliness}
+
+TODO
