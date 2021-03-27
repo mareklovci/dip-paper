@@ -7,3 +7,134 @@ Complexity of developing all-embracing method for DQA competes with unfolding ge
 
 Resulting system should be similar to machine learning ensemble methods (ensemble voting).
 
+\section{Data Quality Criteria}
+
+Tabular vs relational data
+Tabular data structures: Cross-Sectional, Time-Series, Pooled Cross-Sections, Panel (Longitudal)
+Metrics usability with raw (non-aggregated) and aggregated data.
+
+
+In order to provide 
+
+\subsection{Accuracy}
+
+TODO
+
+\subsection{Completeness}
+
+Blake and Mangiameli (2011) defined completeness as follows.
+On the level of data values, a~data value is incomplete (i.e., the metric value is zero) if and only if it is \enquote*{NULL}, otherwise it is complete (i.e., the metric value is one).
+A tuple in a relation is defined as complete if and only if all data values are complete (i.e., none of its data values is \enquote*{NULL}).
+For a relation \( R \), let \( T_R \) be the number of tuples in \( R \) which have at least one \enquote*{NULL}-value and let \( N_R \) be the total number of tuples in \( R \). Then, the completeness \( C \) of \( R \) is defined as follows~\cite{blake2011}.
+
+\begin{equation}
+    C = 1 - \frac{T_R}{N_R} = \frac{N_R - T_R}{N_R}
+\end{equation}
+
+\subsection{Consistency}
+
+There are several forms of data consistency.
+The \textbf{first form} is actual wide or narrow distribution of data.
+In this way, consistency of data can be viewed as \textit{stability}, \textit{uniformity} or \textit{constancy}.
+Typical measures include statistics such as the \textit{range} (i.e., the largest value minus the smallest value among a distribution of data), the \textit{variance} (i.e., the sum of the squared deviations of each value in a distribution from the mean value in a distribution divided by the number of values in a distribution) and the \textit{standard deviation} (i.e., the square root of the variance).
+
+\begin{figure}[htb]
+    \centering
+    
+    \begin{equation*}
+        \sigma = \sqrt{\frac{1}{N}\sum_{i=1}^{N} (x_{i} - \mu)^2}
+    \end{equation*}
+
+    \caption{Population Standard Deviation formula}
+    \label{form:population-standard-dev}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[htb]
+    \centering
+    
+    \begin{equation*}
+        s = \sqrt{\frac{1}{N - 1}\sum_{i=1}^{N} (x_{i} - \bar{x})^2}
+    \end{equation*}
+
+    \caption{Sample Standard Deviation formula}
+    \label{form:sample-standard-dev}
+\end{figure}
+\FloatBarrier
+
+If one is evaluating the consistency of data drawn in a sample from a population, the \textit{standard error of the mean} (i.e., the standard deviation of the sampled population divided by the square root of the sample size) is often examined.
+Finally, the constancy of data produced by instruments and tests is typically measured by estimating the reliability of~obtained scores.
+Reliability estimates include test-retest coefficients, split-half measures and Kuder-Richardson Formula \textnumero 20 indexes~\cite{quora:consistency2017}.
+For Time Series data, stationary analysis can be done.
+If the data is non-stationary then it is likely to have some degree of inconsistency.
+
+\begin{figure}[htb]
+    \centering
+    
+    \begin{equation*}
+        \sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}}
+    \end{equation*}
+
+    \caption{Standard Error of the Mean formula}
+    \label{form:sem}
+\end{figure}
+\FloatBarrier
+
+Then, there is \textbf{second form} of data consistency; whether data are uniformly defined throughout the dataset, that is, across variables and over time.
+For example, suppose we want to use the data to estimate real estate sales per year to see how that number has changed over time.
+In this case, we have to make sure the estimates of real estate sales are uniformly defined over time.
+Specifically, does the data series always either include apartments or exclude apartments from the counts?
+Does it always either include houses or exclude houses from the counts?
+If the data sometimes include apartments, but not always, or if the data sometimes include houses, but not always, then the data are inconsistent.
+
+The \textbf{third form} of consistency tightly coupled with relational databases and their referential integrity.
+A relational database is said to be ACID (vs non-relational BASE), meaning
+\begin{enumerate*}[label=(\roman*)]
+    \item atomicity,
+    \item consistency,
+    \item isolation and
+    \item durability.
+\end{enumerate*}
+The term onsistency there refers to the requirement that any given database transaction must affect data only in allowed ways, therefore data must be valid according to all defined rules, including constraints, cascades, triggers, and any combination thereof.
+
+Inconsistencies in data can be due to changes over time and/or across variables for example, in
+\begin{enumerate*}[label=(\roman*)]
+    \item vintages or time periods,
+    \item units,
+    \item levels of accuracy,
+    \item levels of completeness,
+    \item inclusions and exclusions.
+\end{enumerate*}
+Those inconsistencies occur most often when merging or aggregating datasets, therefore the user has to make sure data are consistently defined throughout.
+
+\subsection{Timeliness}
+
+Timeliness is another one of the major dimensions in the field of data quality.
+Timely dataset is product of function of the forecast update frequency (a dataset released annualy will be updated only once a year)~\cite{atz2014tau}.
+
+\begin{equation*}
+    T = I \frac{f_U}{today - last update}
+\end{equation*}
+
+\begin{equation*}
+    \tau = \frac{1}{N} \sum_{i = 1}^N I \frac{f_{U_i} \lambda + \delta}{today - {last update}_i}
+\end{equation*}
+
+\begin{table}[htbp]
+    \centering
+
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        \( \tau \)  & Data Timeliness   \\ \midrule
+        0.9-1       & exemplar          \\
+        0.7-0.9     & standard          \\
+        0.5-0.7     & ok                \\
+        0.25-0.5    & poor              \\
+        0-0.25      & obsolete          \\
+        \bottomrule
+    \end{tabular}
+
+    \caption{Proposed benchmarks for different levels of \( \tau \)~\cite{atz2014tau}}
+    \label{table:timeliness-benchmarks}
+\end{table}
+\FloatBarrier
