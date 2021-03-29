@@ -4,7 +4,7 @@ Data Quality methodology consists of two main parts, the model and the metamodel
 The model defines activities, their description, goals and sequence of order needed for extraction of Data Quality metrics.
 The metamodel defines components of DQ process, maps the relationship among the components and activities respectively.
 
-\section{Data Quality vs Security}
+\section{Data Quality and Security}
 
 In addition to model and architecture security mechanism, we have to consider security of data sets.
 Data often contains personal information of users - so called \textit{sensitive attributes}.
@@ -41,6 +41,8 @@ The mechanism works by adding random noise to the aggregate data, leaving only a
 \section{Business Problems and Data Defects}
 
 TODO
+
+Source: https://www-356.ibm.com/partnerworld/gsd/showimage.do?id=36622
 
 \section{Model}
 
@@ -180,8 +182,43 @@ Qualitative degradation of data by Proof of Constancy would not be the so import
 However, lower update frequancy of IoT device would suggest an error within a system, which could serve as a warning to network operators about a faulty device.
 Data from defective equipment should also not be taken into account in many cases.
 
-\subsection{Open Source Data Library}
+\subsection{Open Data Library}
 
 The last Use Case shows usage of completely decentralized solution.
 The system would allow those who collect and generate data to be rewarded and data would be accessible for use within a decentralized marketplace.
+This decentralized network would democratize access to data while rewarding those who generate it.
 
+Data collection would be done through an application (system) used by a community of collectors who are rewarded for their actions.
+This reward is calculated according to a~\enquote*{collection value} price.
+
+The collection value would be calculated using an algorithm that takes into account several criteria, such as:
+\begin{itemize}
+    \item demand and rarity,
+    \item online availability and accessibility,
+    \item data licensing market value.
+\end{itemize}
+
+Each collector receives a quality score to maintain a high level of reliability
+The verified data is then made accessible (through contracting) on the decentralized marketplace and regularly updated to keep it accurate.
+
+Depending on the data, a blockchain could be used as a storage.
+Using the blockchain makes the data unalterable, guaranteeing the transparency and traceability of its validation process (collection, verification, update).
+The blockchain (tamper-proof, immutable and decentralized) ensures the integrity and verification of the data available on the marketplace.
+This brings confidence and security to the data acquirers that exploit it. 
+Using \textbf{Smart Contract} technology also guarantees the rewards of the collectors.
+
+Due to the variety of open data, automation of the verification process is practically impossible.
+The data must be verified manually.
+Thus, a collector has two functions:
+\begin{itemize}
+    \item initiate the data collection (input and update data),
+    \item verify the data collected (check a collected data not yet verified).
+\end{itemize}
+
+The mechanism ensures that reward for data collection is divided between collector and verifier.
+For example, the collector, who initiated the data, would obtain 60-80\% of the reward.
+The verifier would obtain remaining 20-40\%.
+
+\subsubsection{Smart Contracts}
+
+TODO
