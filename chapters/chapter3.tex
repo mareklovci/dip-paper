@@ -24,12 +24,21 @@ TODO
 
 Blake and Mangiameli (2011) defined completeness as follows.
 On the level of data values, a~data value is incomplete (i.e., the metric value is zero) if and only if it is \enquote*{NULL}, otherwise it is complete (i.e., the metric value is one).
-A tuple in a relation is defined as complete if and only if all data values are complete (i.e., none of its data values is \enquote*{NULL}).
+A tuple in a relation is defined as complete if all data values are complete (i.e., none of its data values is \enquote*{NULL}).
 For a relation \( R \), let \( T_R \) be the number of tuples in \( R \) which have at least one \enquote*{NULL}-value and let \( N_R \) be the total number of tuples in \( R \). Then, the completeness \( C \) of \( R \) is defined as follows~\cite{blake2011}.
 
 \begin{equation}
     C = 1 - \frac{T_R}{N_R} = \frac{N_R - T_R}{N_R}
 \end{equation}
+
+This definition of \textit{completeness} meets the requirements for metrics according to Heinrich et al. (2018).
+The metric values are within the bounded interval \( \left[0; 1\right] \) for all aggregation levels.
+The minimum value represents perfectly poor data quality and vice versa.
+To archieve full score, no tuple must not contain a null value, as well as relations must not contain any tuple with data values which equal \enquote*{NULL}.
+
+The metric is reliable because all configuration parameters of the metric can be determined by a database query.
+Due to the existence of a mathematical formula, the metric is objective and because the metric quantifies a dimension at all quality levels according to the corresponding definition, the determination of the metric value is also valid.
+The metric formula is applicable to single data values as well as to sets of data values.
 
 \subsection{Consistency}
 
@@ -110,15 +119,47 @@ Those inconsistencies occur most often when merging or aggregating datasets, the
 \subsection{Timeliness}
 
 Timeliness is another one of the major dimensions in the field of data quality.
-Timely dataset is product of function of the forecast update frequency (a dataset released annualy will be updated only once a year)~\cite{atz2014tau}.
+Obsolete data suppress innovation, therefore businesses and startups want to trust the data publisher that the data will remain available and relevant, especially when using open data or reference data from central registers.
+A measure of timeliness has to focus on the update cycle.
+Automation must be a key part of this process, leading to the efficiency in publishing and processing of data.
+Meeting all these points is a necessary, but not sufficient condition to create a sustainable data ecosystem.
 
-\begin{equation*}
+Atz (2014) proposed an unique metric for measuring the timeliness of data.
+The research defines timely dataset as a product of function of the forecast update frequency (a dataset released annualy will be updated only once a year)~\cite{atz2014tau}.
+The concept of timeliness \( T \) can be expressed by the equation~\ref{eq:timeliness}.
+
+\begin{equation}\label{eq:timeliness}
     T = I \frac{f_U}{today - last update}
-\end{equation*}
+\end{equation}
+
+In the equation~\ref{eq:timeliness}, the \( I \) is an indicator function causing \textit{Heaviside} step function effect returning 1 when the ratio is greater than one and 0 otherwise.
+For example, a dataset with a daily cycle and a last major update last month would result in a 0.
+On the other hand, a dataset with monthly cycle and an update in last two weeks, would yield 1.
+In the equation \( f_U \) represents \textit{update frequency}; the terms \textit{today} and \textit{last update} are timepoints corresponding to the names.
+
+% Důvod přítomnosti indikátorové funkce je ten, že nemáme nástroj, kterým bychom zhodnotili způsob stárnutí datasetu.
+The reason for the presence of the indicator function is that we do not have a tool to evaluate the aging of the dataset.
+% Data mohou zastarávat lineárně a spojitě, ale také nelineárně a nespojitě.
+Data can become obsolete linearly and continuously, but also non-linearly and discontinuously.
+% Tato funkční závislost je nám skryta, data považujeme tedy buď za aktuální nebo zastaralá.
+This functional dependence is hidden from us, so we consider the data to be either current or obsolete.
+
+% \[ T = \begin{cases} 0 & x\leq 0 \\ \frac{100-x}{100} & 0\leq x\leq 100 \\ 0 & 100\leq x \end{cases} \]
+
+Atz (2014) introduced a metric for measuring data catalogue timeliness, \( \tau \).
+In general, minor changes such as typo correction should not be considered as an update.
 
 \begin{equation*}
-    \tau = \frac{1}{N} \sum_{i = 1}^N I \frac{f_{U_i} \lambda + \delta}{today - {last update}_i}
+    \tau = \frac{1}{N} \sum_{i = 1}^N I \left( \frac{f_{U_i} \cdot \lambda + \delta}{today - {last update}_i} \right)
 \end{equation*}
+
+The \( \tau \) of a data catalogue is the average across datasets, indicated by the subscript \textit{i}~\cite{atz2014tau}.
+The number of datasets in the catalog is denoted by the \textit{N}.
+
+Two parameters in a linear form have been introduced to the core of the expression.
+The lambda (\( \lambda \)) is degree of freedom relative to the update frequency; the days we allow the update of the data catalog.
+For example, considering 5\% of the time reserve (e.g., due to ETL delays), the annual renewal dataset is going have a buffer of 0.6 months and for a monthly dataset it implies 1.5 days in tolerance.
+The delta (\( \delta \)) is a fixed number of days applicable to all datasets, for example one day for processing~\cite{atz2014tau}.
 
 \begin{table}[htbp]
     \centering
