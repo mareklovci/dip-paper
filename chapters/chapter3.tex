@@ -9,16 +9,32 @@ Resulting system should be similar to machine learning ensemble methods (ensembl
 
 \section{Data Quality Criteria}
 
-Tabular vs relational data
-Tabular data structures: Cross-Sectional, Time-Series, Pooled Cross-Sections, Panel (Longitudal)
-Metrics usability with raw (non-aggregated) and aggregated data.
+% Tabular vs relational data
+% Tabular data structures: Cross-Sectional, Time-Series, Pooled Cross-Sections, Panel (Longitudal)
+% Metrics usability with raw (non-aggregated) and aggregated data.
 
+In order to provide an objective way to measure data quality, we have to choose some DQ metrics and define formal way to compute them.
+The list of all candidates can be seen in the Figure~\ref{fig:dq-criteria}.
+Many of these candidates are very suitable for specific cases, but completely inappropriate for general use.
+After narrowing the selection due to general applicability, we get this list of metrics: completeness, uniqueness, timeliness, validity, accuracy and consistency~\cite{ehdi2019}.
 
-In order to provide 
+\paragraph*{Uniqueness} indicates that each data record should be unique, or else the risk of accessing obsolete information rises.
+Just one instance of each real-world object should be recorded in a dataset.
+We may have two rows with objects \enquote{John Doe} and \enquote{Jonathan Doe}, who are the same person, but the latter has the most up-to-date information.
+Any metrics involving those object instances (e.g., customer count, average spend per customer and sales frequency) would return incorrect results.
+Identifying a suitable primary key is the first step in resolving this issue.
+In the example, having different names and Customer IDs, but matching email addresses is a good indicator that they are in fact the same individual.
+This means that before any analysis or modeling, an additional phase of data inspection is required to consolidate these records.
 
-\subsection{Accuracy}
+Leveraging information theory enables us to move the idea forward.
+The supporting method for calculating uniqueness could be the calculation of entropy for each record and comparison through distance statistics~\cite{venkatesh2010}.
+For each key, we could compute the Shannon entropy \( H \) of the values.
+The higher the entropy, the more diverse the key's values are.
+Entities with similar entropy are likely to be the same objects.
 
-TODO
+\paragraph*{Validity}
+
+\paragraph*{Accuracy}
 
 \subsection{Completeness}
 
@@ -45,7 +61,6 @@ The metric formula is applicable to single data values as well as to sets of dat
 There are several forms of data consistency.
 The \textbf{first form} is actual wide or narrow distribution of data.
 In this way, consistency of data can be viewed as \textit{stability}, \textit{uniformity} or \textit{constancy}.
-Typical measures include statistics such as the \textit{range} (i.e., the largest value minus the smallest value among a distribution of data), the \textit{variance} (i.e., the sum of the squared deviations of each value in a distribution from the mean value in a distribution divided by the number of values in a distribution) and the \textit{standard deviation} (i.e., the square root of the variance).
 
 \begin{figure}[htb]
     \centering
@@ -58,6 +73,8 @@ Typical measures include statistics such as the \textit{range} (i.e., the larges
     \label{form:population-standard-dev}
 \end{figure}
 \FloatBarrier
+
+Typical measures include statistics such as the \textit{range} (i.e., the largest value minus the smallest value among a distribution of data), the \textit{variance} (i.e., the sum of the squared deviations of each value in a distribution from the mean value in a distribution divided by the number of values in a distribution) and the \textit{standard deviation} (i.e., the square root of the variance).
 
 \begin{figure}[htb]
     \centering
@@ -179,3 +196,7 @@ The delta (\( \delta \)) is a fixed number of days applicable to all datasets, f
     \label{table:timeliness-benchmarks}
 \end{table}
 \FloatBarrier
+
+The tau of data is constrained by design to a binary classification, up-to-date or not.
+In the most serious scenario, this means that a data catalogue that is one day late is considered the same as one that fails to fully update the datasets.
+However, the advantages of simplicity outweigh the disadvantages of a more complex method.
