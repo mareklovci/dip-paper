@@ -32,9 +32,17 @@ For each key, we could compute the Shannon entropy \( H \) of the values.
 The higher the entropy, the more diverse the key's values are.
 Entities with similar entropy are likely to be the same objects.
 
-\paragraph*{Validity}
+\paragraph*{Validity} is a quality dimension that refers to information that does not obey business standards or conforms to a particular format.
+For example, surname must be a sequence of alphabetic characters and telephone numbers must be composed of numeric characters and must comply with specific regional rules.
+Regular expressions can be used to check for validity in a variety of contexts.
+Databases containing regular expressions for many common data types are available online.
+For discrete data types, simple frequency statistics can tell whether there is a validity issue (e.g., school grades data type with more than 4-5 elements).
+It basically becomes a completeness problem once invalid data is found.
 
-\paragraph*{Accuracy}
+\paragraph*{Accuracy} shows how reliable the data reflect the object or event in the real world.
+For example, if a temperature in the room is 21°C, but the thermometer says it is 25°C, that information is inaccurate.
+Probably the easiest way to improve accuracy is to introduce redundancy into the system.
+An additional check of the acquired data will help to identify discrepancies before entering the system.
 
 \subsection{Completeness}
 
