@@ -188,7 +188,7 @@ Its main goal is to \textit{collect} and \textit{verify} data with output from \
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.7\textwidth]{figures/dq-methodology.png}
+    \includegraphics[width=1\textwidth]{figures/dq-methodology.png}
     \caption{Methodology Metamodel}
     \label{fig:methodology-metamodel}
 \end{figure}
@@ -196,7 +196,12 @@ Its main goal is to \textit{collect} and \textit{verify} data with output from \
 
 \subsection{Specification Process}
 
-TODO
+% Specifikační proces slouží jako nástroj pro definování kvalitativních a kvantifikovatelných požadavků na kvalitu.
+The specification process serves as a tool for defining qualitative and quantifiable quality requirements.
+This is a key part of the system.
+% Je to však také jediná část procesu, která vyžaduje nezbytnou iniciativu analytika či analytického týmu.
+However, it is also the only part of the process that requires the necessary initiative of the analyst or analytical team.
+Now, we describe each part of the process.
 
 \subsubsection{Identification}
 
@@ -217,7 +222,10 @@ This activity has to ensure that selected metrics are meaningful enough, capturi
 
 \subsection{Execution Process}
 
-TODO
+The second main component is the execution process.
+This includes the actual collection and validation of data against the requirements obtained by the analysis from the first process.
+Ideally, in a semi-automated information system, this part runs independently, without human intervention.
+However, we are aware that in many cases it is not possible to implement a fully automated system, either due to the information complexity of the task or the financial costs of system development.
 
 \subsubsection{Collection}
 
@@ -242,11 +250,30 @@ Especially when processing image data and data with a high level of abstraction.
 
 \subsubsection{Contract}
 
-TODO
+The contractual process is a subprocess that has the task of marking data as trustworthy if all the necessary requirements are met.
+This is the same concept as the so-called \enquote{smart contracts}.
+Smart contracts are essentially blockchain programs that are processed when mandatory conditions are fulfilled.
+They are commonly used to simplify agreement implementation so that all parties can be sure of the result instantly, without intermediary intervention or time loss.
+This leads to workflow automation, initiating the next step if all conditions have been satisfied.
+
+The contracts work by following simple \enquote{if-then} statements.
+This mechanism might include allcation of funds to the appropriate parties, sending notifications, or releasing a ticket.
 
 \subsection{Supporting Techniques}
 
-TODO
+There are a several data quality rules one can deduce from a Feedback-Control Systems view of information systems reviewed by Orr (1998).
+
+\begin{enumerate}
+    \item Unused data cannot remain correct for very long;
+    \item data quality in an information system is a function of its use, not its collection;
+    \item data quality cannot be better than its most strict use;
+    \item data quality problems tend to become worse as the system ages;
+    \item the less likely some data attribute is to change, the harder it will be to change it when the time comes;
+    \item laws of data quality apply equally to data and metadata~\cite{orr1998}.
+\end{enumerate}
+
+To prevent the consequences of these rules and the unauthorized creation of data, we present two additianal concepts.
+These concepts should be incorporated into the design of the information system respecting the proposed methodology.
 
 \subsubsection{Proof of Constancy}
 
@@ -266,13 +293,9 @@ The more collectors initiate, update and verify data correctly, the higher their
 A higher quality score leads to a higher level of \enquote*{trust}.
 On the other hand, incorrect collection leads to a retroactive decrease of the collector's quality score.
 
-\subsection{Roles}
-
-TODO
-
 \section{Use Cases}
 
-In this part, we will present several use cases, to illustrate versatile use of the presented framework.
+In this part, we will present several use cases to illustrate versatile use of the presented framework.
 
 \subsection{Enterprise Information System}
 
@@ -348,7 +371,3 @@ Thus, a collector has two functions:
 The mechanism ensures that reward for data collection is divided between collector and verifier.
 For example, the collector, who initiated the data, would obtain 60-80\% of the reward.
 The verifier would obtain remaining 20-40\%.
-
-\subsubsection{Smart Contracts}
-
-TODO

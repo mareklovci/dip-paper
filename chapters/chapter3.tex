@@ -5,8 +5,6 @@ During thesis elaboration the referential materials turned out to be insufficien
 Shortcoming of white-papers about Machine Learning supported DQ classification probably results from the absence of well-defined general DQA algorithm and output classes.
 Complexity of developing all-embracing method for DQA competes with unfolding general artificial intelligence, indeed.
 
-Resulting system should be similar to machine learning ensemble methods (ensemble voting).
-
 \section{Data Quality Criteria}
 
 % Tabular vs relational data
@@ -18,7 +16,9 @@ The list of all candidates can be seen in the Figure~\ref{fig:dq-criteria}.
 Many of these candidates are very suitable for specific cases, but completely inappropriate for general use.
 After narrowing the selection due to general applicability, we get this list of metrics: completeness, uniqueness, timeliness, validity, accuracy and consistency~\cite{ehdi2019}.
 
-\paragraph*{Uniqueness} indicates that each data record should be unique, or else the risk of accessing obsolete information rises.
+\subsection{Uniqueness}
+
+Uniqueness indicates that each data record should be unique, or else the risk of accessing obsolete information rises.
 Just one instance of each real-world object should be recorded in a dataset.
 We may have two rows with objects \enquote{John Doe} and \enquote{Jonathan Doe}, who are the same person, but the latter has the most up-to-date information.
 Any metrics involving those object instances (e.g., customer count, average spend per customer and sales frequency) would return incorrect results.
@@ -32,14 +32,18 @@ For each key, we could compute the Shannon entropy \( H \) of the values.
 The higher the entropy, the more diverse the key's values are.
 Entities with similar entropy are likely to be the same objects.
 
-\paragraph*{Validity} is a quality dimension that refers to information that does not obey business standards or conforms to a particular format.
+\subsection{Validity}
+
+Validiy is a quality dimension that refers to information that does not obey business standards or conforms to a particular format.
 For example, surname must be a sequence of alphabetic characters and telephone numbers must be composed of numeric characters and must comply with specific regional rules.
 Regular expressions can be used to check for validity in a variety of contexts.
 Databases containing regular expressions for many common data types are available online.
 For discrete data types, simple frequency statistics can tell whether there is a validity issue (e.g., school grades data type with more than 4-5 elements).
 It basically becomes a completeness problem once invalid data is found.
 
-\paragraph*{Accuracy} shows how reliable the data reflect the object or event in the real world.
+\subsection{Accuracy}
+
+Accuracy shows how reliable the data reflect the object or event in the real world.
 For example, if a temperature in the room is 21°C, but the thermometer says it is 25°C, that information is inaccurate.
 Probably the easiest way to improve accuracy is to introduce redundancy into the system.
 An additional check of the acquired data will help to identify discrepancies before entering the system.
@@ -205,6 +209,37 @@ The delta (\( \delta \)) is a fixed number of days applicable to all datasets, f
 \end{table}
 \FloatBarrier
 
-The tau of data is constrained by design to a binary classification, up-to-date or not.
-In the most serious scenario, this means that a data catalogue that is one day late is considered the same as one that fails to fully update the datasets.
+The trivial case (only one dataset in the catalog) is constrained, by design, to a binary classification, data are either up-to-date or not.
+This means that a data catalogue that is one day late is considered the same as one that fails to fully update the datasets.
 However, the advantages of simplicity outweigh the disadvantages of a more complex method.
+
+\section{Weighted Aggregation}
+
+Probably the best known project dealing with data classification is \enquote{5-star Open Data}.
+This classification system defines quality in terms of how well they provide the context in which the data is located as well as in how well machine-readable the data is~\cite{w3org5stardata}.
+% Data nejvyšší kvality jsou ta, která mají plně definovanou ontologii a jsou propojena s dalšími datasety.
+The highest quality data are those that have a fully defined ontology and are connected to other datasets~\cite{5stardata}.
+% Pro tento případ se využívá schéma RDF a jazyk SPARQL.
+The RDF schema and the SPARQL language are used for this case~\cite{5stardata}.
+% Automatickou klasifikaci datasetu lze provést testem existence hypertextových odkazů.
+Automatic classification of a dataset can be performed by testing the existence of hyperlinks.
+% Využití tohoto frameworku je v kontextu internetu, není tedy pro náš účel příliš vhodný.
+The use of this framework is in the context of the Internet, so it is not very suitable for our purpose.
+
+% TODO? Data Classification - Security dimension https://www.imperva.com/learn/data-security/data-classification/
+
+Considering that we want to achieve the relative objectivity of the framework, we will have to use the general metrics discussed in the previous section.
+The resulting system should therefore be similar to machine learning ensemble voting.
+A Regression Voting Ensemble is a machine learning model that combines the average predictions of contributing models to improve model performance.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/voting.png}
+    \caption{Voting Model}
+    \label{fig:voting}
+\end{figure}
+\FloatBarrier
+
+\begin{equation*}
+    y_f = \sum_{i = 1}^{N} w_i y_i
+\end{equation*}
