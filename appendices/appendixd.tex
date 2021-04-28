@@ -1,0 +1,47 @@
+\chapter{Metadata File Structure}\label{ch:metadata-file-structure}
+
+\begin{figure}[htb]
+    \centering
+    \begin{lstlisting}[language=json,firstnumber=1]
+{
+    "@context": [
+        "http://www.w3.org/ns/csvw",
+        {
+            "@language": "cs"
+        }
+    ],
+    "url": "zakladni-prehled.csv",
+    "dc:title": "COVID-19: Zakladni prehled",
+    "dc:description": "...",
+    "dc:source": "Krajske hygienicke stanice v CR",
+    "dcat:keyword": ["COVID-19", "widget", "aktualni situace"],
+    "dc:publisher": {
+        "schema:name": "UZIS CR",
+        "schema:url": {
+            "@id": "https://www.uzis.cz/"
+        }
+    },
+    "dc:license": {
+        "@id": "https://data.gov.cz/podminky-uziti/volny-pristup/"
+    },
+    "dc:modified": {
+        "@value": "2021-04-18",
+        "@type": "xsd:date"
+    },
+    "tableSchema": {
+        "columns": [
+            {
+                "name": "datum",
+                "titles": "datum",
+                "datatype": "date",
+                "dc:description": "Datum vytvoreni aktualizace."
+            },...
+        ]
+    }
+}
+    \end{lstlisting}
+
+    \caption{Metadata file structure}
+    \label{ls:metadata}
+\end{figure}
+\FloatBarrier
