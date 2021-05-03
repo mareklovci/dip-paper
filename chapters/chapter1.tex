@@ -8,36 +8,110 @@ Many articles and studies were written on the topic since then, therefore we can
 \section{Hybrid Approach}
 
 In the article \textit{Data quality assessment: The Hybrid Approach} the authors defined data quality as \enquote{fit for use}.
-They reviewed several assessment techniques, including
-\begin{enumerate*}[label=(\roman*)]
+They reviewed several assessment techniques, including:
+\begin{itemize}
     \item AIMQ (Lee et al., 2002),
     \item TQDM (English, 1999),
     \item cost-effect of low data quality (Loshin, 2004) and
     \item subjective-objective data quality assessment (McGilvray, 2008).
-\end{enumerate*}
+\end{itemize}
 
 The result of the study is a general framework for creating customized, bussiness unique data quality assessment process.
 The process consists of seven consecutive activities:
-
-\begin{itemize}
-    \item select data items;
-    \item select a place where data is to be measured;
-    \item identify reference data;
-    \item identify DQ dimensions;
-    \item identify DQ metrics;
-    \item perform measurement;
+\begin{enumerate*}[label=(\roman*)]
+    \item select data items,
+    \item select a place where data is to be measured,
+    \item identify reference data,
+    \item identify DQ dimensions,
+    \item identify DQ metrics,
+    \item perform measurement and
     \item conduct analysis of the results.
-\end{itemize}
+\end{enumerate*}
 
-\section{AIMQ}
+The methodology can be summarized as follows.
+The input data (i) are measured (vi) and thus the dimensions (iv) and metrics (v) are obtained.
+Metrics are applied to the data in the central repository (ii).
+If necessary, the data may be validated against the reference data (iii).
 
-AIMQ is a methodology for information quality (IQ) assessment and benchmarking.
-The methodology is developed on the basis of other academic studies (e.g., Wang \& Strong, Goodhue, Jarke \& Vassiliou) and several practitioners’ view (e.g., Department of Defense, HSBC, and AT\&T), and is validated using cases from three large health organizations.
-The methodology consists of a model of IQ, a questionnaire to measure IQ, and analysis techniques in interpreting IQ.
-The important components in AIMQ are the IQ model and IQ dimensions, which are critical for the information consumers.
-The IQ model in AIMQ, PSP/IQ model, has four quadrants that are relevant to an IQ improvement decision.
-Those four quadrants are sound information, useful information, dependable information, and usable information.
-This model is used to assess how well an organization develops sound and useful information products and delivers dependable and usable information services to the consumers.
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/hybrid-generic-at.jpg}
+    \caption{A generic AT according to the Hybrid Approach methodology~\cite{woodal2013}}
+    \label{fig:hybrid-generic-at}
+\end{figure}
+\FloatBarrier
+
+The methodology is tested by the authors on two practical cases.
+The first use case is to adapt the framework for an MRO (Maintenance Repair and Operations) company.
+The second use case is the adaptation of the methodology for the London Underground.
+
+A very important result of the study is a configurable process model.
+It is possible to design an alternative configuration of the process model to suit the case study or specific domain.
+
+\begin{figure}[htb]
+    \centering
+    
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[height=6cm]{figures/hybrid-at-mro.jpg}
+        \centering
+        \caption{An AT for the MRO organisation}
+        \label{fig:subim1}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[height=6cm]{figures/hybrid-at-lu.png}
+        \centering
+        \caption{An AT for London Underground}
+        \label{fig:subim2}
+    \end{subfigure}
+
+    \caption{ATs for the case studies~\cite{woodal2013}}
+    \label{fig:image2}
+\end{figure}
+\FloatBarrier
+
+In the \textit{Hybrid Approach}, the ATs developed between 1998 and 2008 were incorporated, and they all suggest very similar ideas to evaluating DQ~\cite{woodal2013}.
+The methodology, thanks to the fact that it takes over the best practices of other methodologies, will be up-to-date for a long time.
+The only problem arises when multiple stakeholders demand conflicting requirements.
+If one party requires some activity and the other does not, the activity cannot simply be incorporated due to time and resource costs.
+A thorough analysis is needed in this regard.
+
+\section{AIM Quality}
+
+The AIM Quality is a information quality assessment and benchmarking methodology for Management Information Systems (MIS).
+The methodology consists of three main components, a model, a questionnaire to measure information quality, and analysis techniques for information quality interpretation.
+The methodology has been built on the foundations of other academic studies (e.g., Wang \& Strong, Goodhue, Jarke \& Vassiliou) as well as professional white-papers (e.g., Department of Defense, HSBC, and AT\&T), and has been validated on health organizations use cases.
+
+The important components in AIMQ are the IQ dimensions, critical for the information consumers.
+The authors grouped IQ dimensions into four categories, \textit{intrinsic} IQ (the information itself contains a certain level of quality), \textit{contextual} IQ (quality must be considered within the business context), \textit{representational} IQ (expressing whether the information is comprehensible in the information system) and \textit{accessibility} IQ (expressing whether the information is accessible in the information system, but at the same time securely stored).
+
+The information quality model in AIMQ, Product Service Provider (PSP/IQ) model, has four quadrants relevant to the IQ improvement decision process.
+The model is shown in the Table~\ref{table:psp-iq}.
+This model can be used to evaluate how well a company develops \textit{sound} and \textit{useful} information products and delivers \textit{dependable} and \textit{usable} information services to the consumers.
+
+\begin{table}[htbp]
+    \centering
+
+    \begin{tabular}{@{}l|ll@{}}
+        \toprule
+                        & \shortstack{Conforms to \\ specifications}    & \shortstack{Meets or exceeds consumer \\ expectations}    \\ \midrule
+        Product Quality & Sound information                             & Useful information                                        \\
+        Service Quality & Dependable information                        & Usable information                                        \\
+        \bottomrule
+    \end{tabular}
+
+    \caption{The PSP/IQ model~\cite{lee2002}}
+    \label{table:psp-iq}
+\end{table}
+\FloatBarrier
+
+\subsection{Four PSP/IQ model quadrants}
+
+The next four paragraphs contain examples of DQ dimensions contained in each of the quadrants.
+
+\paragraph*{Sound Information Dimensions} Free-of-error, Concise representation, Completeness, Consistent representation.
+\paragraph*{Useful Information Dimensions} Appropriate amount, Relevancy, Understandability, Iterpretability, Objectivity.
+\paragraph*{Dependable Information Dimensions} Timeliness, Security.
+\paragraph*{Usable Information Dimensions} Believability, Accessibility, Ease of operation, Reputation.
 
 \section{CDQM}
 
