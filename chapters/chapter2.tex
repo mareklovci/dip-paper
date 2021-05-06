@@ -4,40 +4,6 @@ Data Quality methodology consists of two main parts, the model and the metamodel
 The model defines activities, their description, goals and sequence of order needed for extraction of Data Quality metrics.
 The metamodel defines components of DQ process, maps the relationship among the components and activities respectively.
 
-\section{Data Quality and Security}
-
-In addition to model and architecture security mechanism, we have to consider security of data sets.
-Data often contains personal information of users - so called \textit{sensitive attributes}.
-Such information can be in a~form of personal identifiers or quasi-identifiers.
-\textit{Personal identifier} is an unique information that identifies a~user - a~birth number, bank account number and other types of personal IDs.
-\textit{Quasi-identifiers} are characteristics which needs to be used in combination with others to identify an entity - examples are gender, postal code, age or nationality.
-
-To prevent data stealing and following re-identification of users, several models exists to protect personal information of individuals in dataset.
-Those privacy models are \textbf{optimal k-anonymity}, \textbf{l-diversity}, \textbf{t-closeness} and \textbf{differential privacy}.
-Three general types of attack to datasets exists:
-\begin{enumerate*}[label=(\roman*)]
-    \item \label{itm:reident} re-identifying an individual,
-    \item \label{itm:query} query whether an individual is a~member of a~dataset,
-    \item \label{itm:linking} linking an individual to a~sensitive attribute.
-\end{enumerate*}
-
-\textbf{Optimal k-anonymity} protects against both cases~\ref{itm:reident} and~\ref{itm:query} by transforming quasi-identifiers so that at least \( k - 1 \) members of set are indistinguishable from each other - group based anonymization.
-Identifiers are transformed by suppression (needless attributes are replaced with \textit{dummy} values) and generalization (individual values of attributes are replaced with a~broader category - e.g.\ specific age can be replaced by a~range).
-As \( k \) increases risk of data exploit reduces, on the other hand data quality decreases - we are talking about a~\textit{privacy-utility} tradeoff.
-Moreover, the \( k \) is limit - in order for this method to work if \( k \) is set to \( k \triangleq 10 \) then any group must contain at least \( 10 \) individuals.
-The first drawback of k-anonymity is vulnerability to \textit{homogeneity attack} which works on premise of data having sensitive value identical within a~set of \( k \) records - it is enough to find the group of records, the individual belongs to, if all of them have the same sensitive value.
-Second drawback is the possibility of \textit{background knowledge attack} where attacker identifies associations among one or more quasi-identifiers and reduces the set of possible values for the sensitive attribute.
-
-Both \textbf{l-diversity} and \textbf{t-closeness} are group based anonymization techniques building on a~concept of \textbf{optimal k-anonymity}.
-In addition to \textbf{optimal k-anonymity}, \textbf{T-closeness} transforms quasi-identifiers such that each group is within a~distance \( t \) of the distribution of sensitive values for the entire dataset~\cite{web:privacy-models}.
-The distance is measured as the cumulative absolute difference of the distributions, as \( t \) decreases both risk of sensitive attribute disclosure and data quality decreases.
-Suppose that the sensitive attribute is salary.
-Each group's frequency distribution of salary will be within a~distance \( t \) from the salary frequency distribution for the entire dataset~\cite{web:privacy-models}.
-
-\textbf{Differential privacy} and its variants (epsilon, epsilon-delta) are statistical techniques aiming to protect data against \textit{differentiated attack}.
-The model guarantees that even if someone has complete information about 99 of 100 people in a~data set, they still cannot deduce the sensitive information about the final person~\cite{web:differential-privacy}.
-The mechanism works by adding random noise to the aggregate data, leaving only a~trend without possibility to figure out exact values in data (e.g.\ information that \( n\% \) of users prefer some product over another).
-
 \section{Business Problems and Data Defects}
 
 % Není možné mluvit o kvalitě dat a metodikách pro její zajištění, bez zmínky o konkrétních typech problémů, které se v rámci tématu vyskytují.
@@ -188,7 +154,7 @@ Its main goal is to \textit{collect} and \textit{verify} data with output from \
 
 \begin{figure}[htb]
     \centering
-    \includegraphics[width=1\textwidth]{figures/dq-methodology.png}
+    \includegraphics[width=.8\textwidth]{figures/dq-methodology.pdf}
     \caption{Methodology Metamodel}
     \label{fig:methodology-metamodel}
 \end{figure}
@@ -203,6 +169,14 @@ This is a key part of the system.
 However, it is also the only part of the process that requires the necessary initiative of the analyst or analytical team.
 Now, we describe each part of the process.
 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.8\textwidth]{figures/specification-process.pdf}
+    \caption{Specification Process}
+    \label{fig:specification-process}
+\end{figure}
+\FloatBarrier
+
 \subsubsection{Identification}
 
 This activity focuses on identification of systems, processes and business schemes generatig data.
@@ -212,8 +186,9 @@ Also, we need to identify the subprocesses or activities that are mostly affecte
 \subsubsection{Metrics Specification}
 
 The goal of this activity is to identify the process metrics or KPIs.
-Measuring data quality is all about understanding what data quality attributes are and choosing the correct data quality metrics.
-Data Quality Attributes were discussed in back in chapter~\ref{ch:related-work} section~\ref{sec:data-quality-attributes} and will be further discussed in chapter~\ref{ch:quality-classification-system}.
+Measuring data quality is all about understanding what data quality attributes are, and choosing the correct data quality metrics.
+A comprehensive list of Data Quality Attributes by Eppler (2006), is available in appendix~\ref{ch:data-quality-attributes}.
+Specific attributes will be further discussed in chapter~\ref{ch:quality-classification-system}.
 
 \subsubsection{Proof of Concept Verification}
 
@@ -226,6 +201,14 @@ The second main component is the execution process.
 This includes the actual collection and validation of data against the requirements obtained by the analysis from the first process.
 Ideally, in a semi-automated information system, this part runs independently, without human intervention.
 However, we are aware that in many cases it is not possible to implement a fully automated system, either due to the information complexity of the task or the financial costs of system development.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.8\textwidth]{figures/execution-process.pdf}
+    \caption{Execution Process}
+    \label{fig:execution-process}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Collection}
 
@@ -257,7 +240,7 @@ They are commonly used to simplify agreement implementation so that all parties 
 This leads to workflow automation, initiating the next step if all conditions have been satisfied.
 
 The contracts work by following simple \enquote{if-then} statements.
-This mechanism might include allcation of funds to the appropriate parties, sending notifications, or releasing a ticket.
+This mechanism might include allocation of funds to the appropriate parties, sending notifications, or releasing a ticket.
 
 \subsection{Supporting Techniques}
 

@@ -52,20 +52,20 @@ It is possible to design an alternative configuration of the process model to su
     \centering
     
     \begin{subfigure}{0.45\textwidth}
-        \includegraphics[height=6cm]{figures/hybrid-at-mro.jpg}
+        \includegraphics[height=7cm]{figures/hybrid-at-mro.jpg}
         \centering
         \caption{An AT for the MRO organisation}
-        \label{fig:subim1}
+        \label{fig:hybrid-at-mro}
     \end{subfigure}
     \begin{subfigure}{0.45\textwidth}
-        \includegraphics[height=6cm]{figures/hybrid-at-lu.png}
+        \includegraphics[height=7cm]{figures/hybrid-at-lu.png}
         \centering
         \caption{An AT for London Underground}
-        \label{fig:subim2}
+        \label{fig:hybrid-at-lu}
     \end{subfigure}
 
     \caption{ATs for the case studies~\cite{woodal2013}}
-    \label{fig:image2}
+    \label{fig:bybrid-at}
 \end{figure}
 \FloatBarrier
 
@@ -113,18 +113,16 @@ The next four paragraphs contain examples of DQ dimensions contained in each of 
 \paragraph*{Dependable Information Dimensions} Timeliness, Security.
 \paragraph*{Usable Information Dimensions} Believability, Accessibility, Ease of operation, Reputation.
 
-\section{CDQM}
+\section{Comprehensive Data Quality Methodology}
 
 A comprehensive data quality methodology (CDQM) for web and structured data is a methodology developed by Batini et al. (2008).
-The methodology is similar to the others.
-It consists of three main phases: 
+The methodology consists of three main phases: 
 \begin{enumerate*}[label=(\roman*)]
     \item state reconsruction (modeling of organizational context),
     \item assessment (problem identification and DQ measurement) and
     \item choice of the optimal improvement process.
 \end{enumerate*}
-
-The choice of the optimal improvement process creates feedback loop on the previous phase.
+From the last phase there is feedback to the previous phase.
 
 \begin{figure}[htb]
     \centering
@@ -136,17 +134,78 @@ The choice of the optimal improvement process creates feedback loop on the previ
 
 \subsection{State reconstruction}
 
-TODO
+In the state reconstruction phase, the business/organizational context linked to internal and external data is modelled in terms of organizational units, processes, and rules~\cite{batini2008}.
+This phase offers an overview of data providers and users, the flow of data and the use of data between them~\cite{batini2008}.
+
+The state of data and their use-cases are recreated int he first step.
+For a meaningful representation of this knowledge, two matrices are used.
+The first one is Data Organizational Unit matrix.
+The matrix's cells indicate whether an organizational unit generates (i.e., owns) or utilizes a collection of data.
+The second one is Dataflow Organizational Unit matrix.
+In this case, each cell of the matrix indicates whether an entity is a data flow consumer or provider~\cite{batini2008}.
+
+In the second step, the Process Organizational Unit matrix identifies and describes the owner and contributing units for each process.
+This matrix assists in the delegation of responsibility for quality improvement activities~\cite{batini2008}.
+
+This step helps in provisioning of a comprehensive view of organizational processes and, as a result, aids in the decision-making process for quality improvement activities~\cite{batini2008}.
+The Service Norm Process matrix is built to provide the information on how each macroprocess produce services for the clients and how the processes cooperate in the production of those services~\cite{batini2008}.
 
 \subsection{Assessment}
 
-TODO
+In the assessment phase, internal and external users are involved to identify relevant DQ issues.
+After obtaining information about the DQ issues, it is necessary to define quantitative metrics to evaluate the severity of DQ problems.
+
+\begin{table}[htbp]
+    \centering
+
+    \begin{tabular}{@{}lllll@{}}
+        \toprule
+        Quality dimension/database  & \shortstack{Duplicate \\ objects} & \shortstack{Matching \\ objects}  & Accuracy  & Currency          \\ \midrule
+        Social Security DB          & 5\%                               &                                   & 98\%      & 3 months delay    \\
+        Accident Insurance DB       & 8\%                               &                                   & 95\%      & 5 months delay    \\
+        Chamber of Commerce DB      & 1\%                               &                                   & 98\%      & 10 months delay   \\
+        The three databases         &                                   & 98\%                              &           &                   \\
+        \bottomrule
+    \end{tabular}
+
+    \caption{Example databases, quality dimensions and metrics~\cite{batini2008}}
+    \label{table:ex-dat}
+\end{table}
+\FloatBarrier
 
 \subsection{Choice of the optimal improvement process}
 
-TODO
+The organisation must set target quality values \( DQ_{ij}^* \), based on actual quality values \( DQ_{ij} \) linked with the \textit{i-th} data set and the \textit{j-th} quality dimension, to be achieved through the improvement process~\cite{batini2008}.
+DQ targets are defined by performing a \textit{process-oriented} and a \textit{cost-oriented} analysis~\cite{batini2008}.
 
-\section{BODQ}
+In the \textit{cost-oriented} analysis, the economic costs – that the business can afford for the DQ improvement process – needs to be defined.
+A major obstacle is the difficulty of estimating costs and benefits in advance.
+
+A \textit{non-quality costs} (\( C_{ij} \)) are the costs associated with poor data quality and, therefore, with all the inevitable activities to correct errors and re-execute tasks~\cite{batini2008}.
+The evaluation of quality targets is in the Figure~\ref{fig:cdqm-q}.
+
+\begin{figure}[htb]
+    \centering
+    
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{figures/cdqm-less-q.png}
+        \centering
+        \caption{Evaluation of less ambitious quality targets}
+        \label{fig:cdqm-less-q}
+    \end{subfigure}
+    \begin{subfigure}{0.45\textwidth}
+        \includegraphics[width=\textwidth]{figures/cdqm-more-q.png}
+        \centering
+        \caption{Evaluation of less ambitious quality targets}
+        \label{fig:cdqm-more-q}
+    \end{subfigure}
+
+    \caption{Evaluation of quality targets~\cite{batini2008}}
+    \label{fig:cdqm-q}
+\end{figure}
+\FloatBarrier
+
+\section{Business Oriented Data Quality}
 
 Otto et al. (2011) developed a design process for the identification of business oriented DQ metrics~\cite{otto2011}.
 The paper does not present any concrete DQ metrics even though they studied data quality problems in three companies.
@@ -155,14 +214,13 @@ According to Otto et al. (2011), the identification of DQ metrics therefore shou
 
 A method engineering (ME) is used to design the framework.
 Methodology therefore consists of five components:
-
-\begin{itemize}
+\begin{enumerate*}[label=(\roman*)]
     \item design activities,
     \item design results,
     \item meta-model,
     \item roles and
     \item techniques.
-\end{itemize}
+\end{enumerate*}
 
 \subsection{Meta-model}
 
@@ -260,15 +318,14 @@ As well assecond phase, this one consists of two activities:
 
 In the last part, the authors declare six roles and their assignment to activities from section~\ref{subsec:procedure-model}.
 Those roles are:
-
-\begin{itemize}
+\begin{enumerate*}[label=(\roman*)]
     \item Chief Data Steward,
     \item Business Data Steward,
     \item Technical Data Steward,
     \item Process Owner,
     \item Process user and
     \item Sponsor.
-\end{itemize}
+\end{enumerate*}
 
 \section{ORME}
 
@@ -328,98 +385,56 @@ A set of linear functions from predictors is constructed,
 
 where \( b_k \) are discriminant coeficient, \( x_k \) are input variables (predictors) and \( c \) is a constant.
 
-\section{Data Quality Attributes}\label{sec:data-quality-attributes}
+\section{Data Quality and Security}
 
-Eppler (2006) presented list of seventy of the most used data and information quality criteria explicitly defined in the literature.
-They provide criterial basis for most of the DQ frameworks.
-The list is shown in the figure~\ref{fig:dq-criteria}.
+Given the continuous risk of data braches, we should consider the impact of security mechanisms on data quality.
+This topic is very timely, especially with the need to comply with the GDRP regulations.
+Data Quality and Data Security are two key issues that address various problems in Data Engineering, such as large volumes and diversity of data, credibility of data and their sources, data collection and processing speed, and so on~\cite{talha2019}.
+Confidentiality, Integrity, and Availability are the three key security assets defined in terms of data security~\cite{talha2019}.
+The ISO/IEC 25010 standard defines each of these properties in detail~\cite{iso25010}.
+Whereas in terms of data quality, there is no consensus on any of the properties that define data quality or the precise definition of each property~\cite{batini2009}.
+
+The main point of data security principle, particularly confidentiality and integrity, is to protect data from unauthorized access.
+However, implementing a comprehensive data quality management system necessarily requires unrestricted read and write access to all data~\cite{talha2019}.
+Since the data quality system can share data with other systems or be accessed by individuals with different business interests, this requirement can lead to plenty of security issues~\cite{talha2019}.
+As a result, data privacy can be a major obstacle to data quality.
+Security exceptions may be required by a quality management system, which poses potential security risks.
+This tensions between the two systems complicates their development and necessitates the emergence of new access control policies that allow quality processes to access the data they need without jeopardizing their security~\cite{talha2019}.
+As Talha (2019) mentions, a sturdy \textit{access control model} such as TBAC (Task Based Access Control), RBAC (Role Based Access Control), ABAC (Attribute Based Access Control), OrBAC (Organization Based Access Control), PuRBAC (Purpose-Aware Role-Based Access Control) must be used to fulfill the policy.
 
 \begin{figure}[htb]
-    \begin{multicols}{3}
-        \begin{enumerate}
-            \item Comprehensiveness
-            \item Accuracy
-            \item Clarity
-            \item Applicability
-            \item Conciseness
-            \item Consistency
-            \item Correctness
-            \item Currency
-            \item Convenience
-            \item Timeliness
-            \item Traceability
-            \item Interactivity
-            \item Accessibility
-            \item Security
-            \item Maintainability
-            \item Speed
-            \item Objectivity
-            \item Attributability
-            \item Value-added
-            \item Reputation (source)
-            \item Ease-of-use
-            \item Precision
-            \item Comprehensibility
-            \item Trustworthiness\newline (source)
-            \item Reliability
-            \item Price 
-            \item Verifiability
-            \item Testability
-            \item Provability
-            \item Performance
-            \item Ethics
-            \item Privacy
-            \item Helpfulness
-            \item Neutrality
-            \item Ease of Manipulation
-            \item Validity
-            \item Relevance
-            \item Coherence
-            \item Interpretability
-            \item Completeness
-            \item Learnability
-            \item Exclusivity
-            \item Right Amount
-            \item Existence of meta information
-            \item Appropriateness\newline of meta information
-            \item Target group orientation
-            \item Reduction of complexity
-            \item Response time
-            \item Believability
-            \item Availability
-            \item Consistent Representation
-            \item Ability to represent null values
-            \item Semantic Consistency
-            \item Concise Representation
-            \item Obtainability
-            \item Stimulating
-            \item Attribute granularity
-            \item Flexibility
-            \item Reflexivity
-            \item Robustness
-            \item Equivalence of redundant or distributed data
-            \item Concurrency of redundant or distributed data
-            \item Nonduplication
-            \item Essentialness
-            \item Rightness
-            \item Usability
-            \item Cost
-            \item Ordering
-            \item Browsing
-            \item Error rate
-        \end{enumerate}
-    \end{multicols}
-
     \centering
-    \caption{Data \& Information Quality Criteria~\cite{eppler2006}}
-    \label{fig:dq-criteria}
+    \includegraphics[width=0.7\textwidth]{figures/rbacm.png}
+    \caption{Role Based Access Control Model}
+    \label{fig:rbacm}
 \end{figure}
 \FloatBarrier
 
-Two main perspectives on Data Quality Management:
+\textit{Differential privacy} has risen to prominence in applied mathematics as a leading data security technique, allowing accurate data analysis while preserving formal privacy guarantees~\cite{cummings2018}.
+Data often contains \textit{sensitive attributes}, users' personal information, in a form of \textit{personal identifiers} or \textit{quasi-identifiers}.
+\textit{Personal Identifiers} (PID) are data elements that identify a unique user in the dataset and allow another person to make the assumption of person's identity without their knowledge or consent (e.g., ID Number, Bank Account Number,\ldots).
+A \textit{quasi-identifier} is a set of attributes that, when combined with external information, can be used to reidentify (or reduce uncertainty about) all or some of the entities to whom information is being referred (e.g., gender, postal code, age or nationality)~\cite{qid-springer}.
 
-Broad Perspective (from the enterprise poin of view on the lifecycle of data circulating in the company)~\cite{book:dama}
-Narrow Perspective (from the viewpoint of tasks to be done by data management professionals)~\cite{pres:dcam}
+The personal data can be obscured using \textit{anonymization} techniques, allowing for accurate data analysis.
+Narayanan (2008) proved, that \textit{anonymized} data can be \enquote{easily} recovered using \textit{linkage attack} (combining pieces of anonimized data to reveal one's identity).
+To prevent data misuse (re-identification of users) after a security breach, several more advanced models – \textit{optimal k-anonymity}, \textit{l-diversity}, \textit{t-closeness} and \textit{differential privacy} – exists to safeguard individuals' personal information in datasets.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/cdf3.png}
+    \caption{Simplified explanation of diffirential privacy error~\cite{difpriv2016}}
+    \label{fig:cdf3}
+\end{figure}
+\FloatBarrier
+
+\textit{Differential privacy} algorithm stores complete and trusted data in some cases only.
+In a certain subset of data, statistical noise is added, which compromises individual records (the record may or may not be true), but still allows accurate statistical analysis over the entire dataset~\cite{difpriv2016}.
+By leveraging of Laplace distribution to spread data over a large \textit{state space} and to increase the level of anonymity, the differential privacy model ensures that even if someone has full information on 99 of 100 people in a data collection, they will not be able to deduce information about the final user~\cite{web:differential-privacy,dwork2014}.
+This mechanism is interesting because it certainly affects the quality of the data, but in a different way than we would expect – making impossible to look at a specific record, but allowing analysis of the whole and the trend.
+
+% Two main perspectives on Data Quality Management:
+% Broad Perspective (from the enterprise poin of view on the lifecycle of data circulating in the company)~\cite{book:dama}
+% Narrow Perspective (from the viewpoint of tasks to be done by data management professionals)~\cite{pres:dcam}
 
 % \section{Requirements for Data Quality Metrics}
 

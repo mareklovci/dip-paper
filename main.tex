@@ -35,7 +35,6 @@ bindingoffset=.5cm
 
 % quotations
 \usepackage{csquotes}
-\newcommand{\say}[1]{\enquote{#1}}
 
 % for typesetting urls
 \usepackage{hyperref}
@@ -118,7 +117,7 @@ bindingoffset=.5cm
     \include{sections/titlepage}
 
     \input{sections/assignment}
-    %\input{sections/declaration}
+    \input{sections/declaration}
     %\input{sections/abstract}
 
     \tableofcontents
@@ -136,10 +135,11 @@ bindingoffset=.5cm
     \include{chapters/chapter5}
 
     \begin{appendices}
-    %    \include{appendices/appendixa}
-    %    \include{appendices/appendixb}
+        \include{appendices/appendixe}    
         \include{appendices/appendixc}
         \include{appendices/appendixd}
+        %    \include{appendices/appendixb}
+        \include{appendices/appendixa}
     \end{appendices}
 
     %\newpage
