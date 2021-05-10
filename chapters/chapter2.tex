@@ -20,6 +20,14 @@ Lookup table should contain a field value of \enquote{Minor} which maps to \enqu
 However, source data field contains \enquote{Mino} - missing the \textit{r} and fails the lookup, resulting in the target data field containing null.
 If this occurs on a key field, a possible join would be missed and the entire row could fall out.
 
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/missing-data.png}
+    \caption{Missing Data}
+    \label{fig:missing-data}
+\end{figure}
+\FloatBarrier
+
 \subsection*{Truncation of Data}
 
 Many data is being lost by truncation of the data fields.
@@ -29,6 +37,14 @@ This happens when there are invalid field lengths on target database or by trans
 Source field value \enquote{iShares Global High Yield Corp Bond UCITS ETF} is being truncated to \textit{varchar(32)}.
 since the source data field did not have the correct length to capture the entire field, only \enquote{iShares Global High Yield Corp B} is stored.
 
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/truncation-data.png}
+%     \caption{Data Truncation}
+%     \label{fig:truncation-data}
+% \end{figure}
+% \FloatBarrier
+
 \subsection*{Data Type Mismatch}
 
 Data types not setup correctly on target database cause serious problems.
@@ -37,6 +53,14 @@ This usually happens when using ETL pipeline with an automatic or semi-automatic
 The data engineer relies on error-free data type recognition and does not check the accuracy of the output tables.
 
 \paragraph*{Example} Source data field was required to be a \textit{varchar}, however, when initially configured, was setup as a \textit{date}.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/mismatch-data.png}
+%     \caption{Data Type Mismatch}
+%     \label{fig:mismatch-data}
+% \end{figure}
+% \FloatBarrier
 
 \subsection*{Null Translation}
 
@@ -50,6 +74,14 @@ However, the logic was not implemented, resulting in the target data field conta
     None is a concept that describes the absence of anything at all (nothingness), while Null means \textit{unknown} (we do not know if there is a value or not).
 }
 
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/null-translation.png}
+%     \caption{Null Translation}
+%     \label{fig:null-translation}
+% \end{figure}
+% \FloatBarrier
+
 \subsection*{Wrong Translation}
 
 Wrong translations happen when a source data field for \textit{null} was supposed to be transformed to \enquote{None} in the target data field, but was not transformed correctly.
@@ -61,6 +93,14 @@ Let's look at a very basic example.
 During analytical processing of medical data (e.g., list of patients with oncological finding), we need to set target field to \textit{true} if the one or multiple source values indicate certain treatment.
 However, the target field is populated (either with blank charater or other values) although source values do not correspond to the required logic.
 
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/wrong-translation.png}
+%     \caption{Wrong Translation}
+%     \label{fig:wrong-translation}
+% \end{figure}
+% \FloatBarrier
+
 \subsection*{Misplaced Data}
 
 If the source data fields are not being transformed to the correct target data fields, we call the issue \enquote{Misplaced Data}.
@@ -69,6 +109,14 @@ One of the possible causes is that development team inadvertently mapped the sou
 \paragraph*{Example} A source data field was supposed to be transformed to target data field \enquote{Last\_Update}.
 However, the development team inadvertently mapped the source data field to \enquote{Date\_Created}.
 
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/misplaced-data.png}
+%     \caption{Misplaced Data}
+%     \label{fig:misplaced-data}
+% \end{figure}
+% \FloatBarrier
+
 \subsection*{Extra Records}
 
 Records which should be excluded in the ETL are included in the ETL.
@@ -76,12 +124,28 @@ This happens when developers do not include filter in their code.
 
 \paragraph*{Example} If a record has the deleted field populated, the record and any data related to that record should not be in any ETL.
 
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/extra-records.png}
+%     \caption{Extra Records}
+%     \label{fig:extra-records}
+% \end{figure}
+% \FloatBarrier
+
 \subsection*{Not Enough Records}
 
 Records which should be in the ETL are not included in the ETL.
 Development team had a filter in their code which should not have been there.
 
 \paragraph*{Example} If a record was in a certain state, it should be sent through ETL pipeline over to the data warehouse.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/notenough-records.png}
+%     \caption{Not Enough Records}
+%     \label{fig:notenough-records}
+% \end{figure}
+% \FloatBarrier
 
 \subsection*{Transformation Logic Errors}
 
@@ -95,11 +159,27 @@ This leads to the logic being re-written to become clearer.
 
 \paragraph*{Example} Foreign country cities that contain special language specific characters might need to be dealt with in the ETL code (e.g., Århus).
 
-\subsection*{Simple and small Errors}
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/logic-errors.png}
+%     \caption{Transformation Logic Errors}
+%     \label{fig:logic-errors}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Simple and Small Errors}
 
 Capitalization, spacing and other small errors cause problems with data.
 Data inconsistencies are easy to fix, but happen often.
 The only real solution is to always double check data and ETL procedure.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/small-errors.png}
+%     \caption{Simple and Small Errors}
+%     \label{fig:small-errors}
+% \end{figure}
+% \FloatBarrier
 
 \subsection*{Sequence Generator}
 
@@ -107,6 +187,14 @@ Ensuring that the sequence number of reports are in the correct order is very im
 If the sequence generator is not configured correctly, procedure results in records with a duplicate sequence number.
 
 \paragraph*{Example} Duplicate records in the sales report were doubling up several sales transactions which skewed the report significantly.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/sequence-generator-error.png}
+%     \caption{Sequence Generator Error}
+%     \label{fig:sequence-generator-error}
+% \end{figure}
+% \FloatBarrier
 
 \subsection*{Undocumented Requirements}
 
@@ -124,6 +212,14 @@ This issue happens when development team does not add the appropriate code to fi
 
 \paragraph*{Example} Duplicate records in the sales report were doubling up several sales transactions which skewed the report significantly.
 
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/duplicate-records.png}
+%     \caption{Duplicate Records}
+%     \label{fig:duplicate-records}
+% \end{figure}
+% \FloatBarrier
+
 \subsection*{Numeric Field Precision}
 
 Numbers that are not formatted to the correct decimal point or not rounded per specifications cause precision problems.
@@ -137,6 +233,14 @@ Data rows that get rejected by ETL process due to data issues.
 Development team did not take into account data conditions that break the ETL for a particular row.
 
 \paragraph*{Example} Missing data rows on the sales table caused major issues with the end of year sales report.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.8\textwidth]{figures/rejected-rows.png}
+    \caption{Talend ETL Rejects Rows}
+    \label{fig:rejected-rows}
+\end{figure}
+\FloatBarrier
 
 % a~\cite{web:common-defects}
 
@@ -305,7 +409,7 @@ The first authority being \textit{k} nearest neighbours of the same sensors (or 
 Nearest neighbors provide redundancy by which data can be verified.
 And, of course, the data itself must meet the criteria restrictions set by the domain of use.
 
-% Špatnou kvalita by vedla ke snížení významnosti senzoru v klusteru, případně jeho dočasnému nebo úplnému vyřazení z provozu.
+% Špatná kvalita by vedla ke snížení významnosti senzoru v klusteru, případně jeho dočasnému nebo úplnému vyřazení z provozu.
 Poor quality would reduce the importance of the sensor in the cluster, or its temporary or complete decommissioning.
 % Tento systém by vytořil i velice účinnou obranou bariéru proti útokům.
 This system would also create a very effective defense barrier against attacks, especially against data poisoning.
@@ -334,14 +438,8 @@ The collection value would be calculated using an algorithm that takes into acco
     \item data licensing market value.
 \end{itemize}
 
-Each collector receives a quality score to maintain a high level of reliability
+Each collector receives a quality score to maintain a high level of reliability.
 The verified data is then made accessible (through contracting) on the decentralized marketplace and regularly updated to keep it accurate.
-
-Depending on the data, a blockchain could be used as a storage.
-Using the blockchain makes the data unalterable, guaranteeing the transparency and traceability of its validation process (collection, verification, update).
-The blockchain (tamper-proof, immutable and decentralized) ensures the integrity and verification of the data available on the marketplace.
-This brings confidence and security to the data acquirers that exploit it. 
-Using \textbf{Smart Contract} technology also guarantees the rewards of the collectors.
 
 Due to the variety of open data, automation of the verification process is practically impossible.
 The data must be verified manually.
@@ -354,3 +452,9 @@ Thus, a collector has two functions:
 The mechanism ensures that reward for data collection is divided between collector and verifier.
 For example, the collector, who initiated the data, would obtain 60-80\% of the reward.
 The verifier would obtain remaining 20-40\%.
+
+Depending on the data, a decentralized network like filecoin could be used as data storage.
+Using the blockchain makes the data unalterable, guaranteeing the transparency and traceability of its validation process (collection, verification, update).
+The blockchain (tamper-proof, immutable and decentralized) ensures the integrity and verification of the data available on the marketplace.
+This brings confidence and security to the data users.
+Using \textbf{Smart Contract} technology also guarantees the rewards of the collectors.

@@ -59,7 +59,7 @@ We will use this checklist as a base for our own data evaluation.
     %\begin{tabular}{@{}llrrrrrrrrrr@{}}
     \begin{tabular}{llrrrrrrrrrr}
         \toprule
-        \multirow{2}{*}{Dimensions} & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
+        \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
         \multirow{2}{*}{Relevance}  & Adaptability                      & 2 & 2 & 2 & 0 & 2 & 0 & 2 & 0 & 2 &   \\
                                     & Value                             & 2 & 0 &   &   &   &   &   &   &   &   \\
@@ -77,7 +77,7 @@ We will use this checklist as a base for our own data evaluation.
     \item The purpose of the data is clear.
     \begin{answered}
         Yes, the general purpose of the data is obvious.
-        The data is provided by the Institute of Health Information and Statistics of the Czech Republic.
+        The data is provided by the Institute of Health Information and Statistics of the Czech Republic (IHIS CR).
         Individual datasets have a description that specifies their purpose.
     \end{answered}
 
@@ -155,21 +155,21 @@ We will use this checklist as a base for our own data evaluation.
     %\begin{tabular}{@{}llrrrrrrrrrr@{}}
     \begin{tabular}{llrrrrrrrrrr}
         \toprule
-        \multirow{2}{*}{Dimensions} & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
+        \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{13}{*}{Accuracy}  & Form Design and Completion        &   &   &   &   &   &   &   &   &   &   \\
-                                    & Frame                             &   &   &   &   &   &   &   &   &   &   \\
-                                    & Over Coverage                     &   &   &   &   &   &   &   &   &   &   \\
-                                    & Under Coverage                    &   &   &   &   &   &   &   &   &   &   \\
-                                    & Response                          &   &   &   &   &   &   &   &   &   &   \\
-                                    & Completeness                      &   &   &   &   &   &   &   &   &   &   \\
-                                    & Bias                              &   &   &   &   &   &   &   &   &   &   \\
-                                    & Validity                          &   &   &   &   &   &   &   &   &   &   \\
-                                    & Reliability                       &   &   &   &   &   &   &   &   &   &   \\
-                                    & Collection                        &   &   &   &   &   &   &   &   &   &   \\
-                                    & Processing                        &   &   &   &   &   &   &   &   &   &   \\
-                                    & Imputation                        &   &   &   &   &   &   &   &   &   &   \\
-                                    & Analysis                          &   &   &   &   &   &   &   &   &   &   \\
+        \multirow{13}{*}{Accuracy}  & Form Design and Completion        & 2 & 2 & 2 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+                                    & Frame                             & 2 & 2 &   &   &   &   &   &   &   &   \\
+                                    & Over Coverage                     & 0 & 0 &   &   &   &   &   &   &   &   \\
+                                    & Under Coverage                    & 0 & 1 &   &   &   &   &   &   &   &   \\
+                                    & Response                          & 1 & 2 &   &   &   &   &   &   &   &   \\
+                                    & Completeness                      & 0 & 0 & 0 & 0 &   &   &   &   &   &   \\
+                                    & Bias                              & 0 & 1 & 0 & 0 & 0 & 0 &   &   &   &   \\
+                                    & Validity                          & 2 & 0 & 0 & 1 &   &   &   &   &   &   \\
+                                    & Reliability                       & 0 & 1 & 0 &   &   &   &   &   &   &   \\
+                                    & Collection                        & 2 & 0 & 2 & 0 & 0 & 0 & 1 & 2 & 1 & 1 \\
+                                    & Processing                        & 0 & 0 & 1 & 0 &   &   &   &   &   &   \\
+                                    & Imputation                        & 0 & 2 &   &   &   &   &   &   &   &   \\
+                                    & Analysis                          & 0 & 0 & 0 & 1 &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
 
@@ -183,97 +183,117 @@ We will use this checklist as a base for our own data evaluation.
 \begin{QandA}
     \item The data retrieval form was designed by a team that includes methodologists, a form design expert, representatives for those who are responsible for completing the form, as well as other subject matter experts.
     \begin{answered}
-        
+        Data are issued by IHIS CR.
+        The criterion is \textbf{met}.
     \end{answered}
 
     \item The purpose and population of interest are clear and well documented.
     \begin{answered}
-        
+        The purpose of the data is clear.
+        The population to be monitored is precisely defined, individuals infected with COVID-19 and individuals tested or vaccinated.
     \end{answered}
 
     \item There is adequate justification for each field gathered.
     \begin{answered}
-        
+        The accessible data is preprocessed and therefore each field in the dataset has a purpose.
+        The purpose may not be obvious at first glance, but all fields are defined and annotated in the metadata. 
+        We consider this criterion to be \textbf{met}.
     \end{answered}
 
     \item The form is user-friendly and is accompanied by a clear, readily accessible, and user-friendly manual that describes in detail the data collection guidelines including when and how to complete the form and defines each field in detail.
     \begin{answered}
-        
+        Data is available through a well-defined API.
+        Although instructions for data collection are either missing or very difficult to find.
+        As this absolutely essential requirement is violated, we consider the criterion to be \textbf{not met}.
     \end{answered}
 
     \item Those responsible for completing the form receive training so that they are able to properly complete the form.
     \begin{answered}
-        
+        Unknown.
     \end{answered}
 
     \item As part of training, the importance of the data is conveyed and those responsible for completing the form are tested and immediate feedback is provided regarding the reliability and validity of their performance.
     \begin{answered}
-        
+        Unknown.
     \end{answered}
 
     \item Those responsible for completing the form are allocated the time and have the motivation to do so, as well as confidence in the form completion process.
     \begin{answered}
-        
+        Unknown.
     \end{answered}
 
     \item The data are monitored for outliers, logical errors, completeness, and consistency and ongoing monitoring and constructive feedback is provided to the primary collectors where necessary.
     \begin{answered}
-        
+        Data monitoring information is unknown. But the data contains logical errors.
+        Feedback to primary collectors (hospitals, medical facilities and sanitation stations) is very difficult to implement.
+        We consider the criterion to be \textbf{not met}.
     \end{answered}
 
     \item Any major revisions to the original form design (purpose, structure, etc.) of the database and the dates of any major revisions are known, documented, and readily available. Moreover, an explicit consideration of overall trade-offs between accuracy, cost, timeliness, and respondent burden was conducted at the design stage.
     \begin{answered}
-        
+        Information on the design phase is unknown.
+        To our knowledge, changes to the API design are not available to the public, if documented at all.
+        For this reason, we consider the criterion to be \textbf{not met}.
     \end{answered}
 
     \item A revised form is pilot tested until high standards of reliability and validity are met and the pilot test results are readily available.
     \begin{answered}
-        
+        Unknown.
     \end{answered}
 
 \end{QandA}
 
 \subsubsection{Frame}
 
+By the "frame" we mean the structure of files containing data.
+The COVID-19 API is well documented and easy to understand.
+During the epidemic, the API was shown to be continuously updated.
+
 \begin{QandA}
     \item The frame is known and documented.
     \begin{answered}
-        
+        The criterion is \textbf{met}.
     \end{answered}
 
     \item The frame is maintained in an ongoing manner.
     \begin{answered}
-        
+        The criterion is \textbf{met}.
     \end{answered}
 
 \end{QandA}
 
 \subsubsection{Over Coverage}
 
+Over-coverage is caused by the existence of objects not belonging to the frame, as well as units that appear in the target population multiple times~\cite{over-coverage}.
+
 \begin{QandA}
     \item Only qualifying data suppliers are on the frame.
     \begin{answered}
-        
+        Information on data suppliers is not available.
+        The criterion is \textbf{unknown}.
     \end{answered}
 
     \item The data are checked for duplicates and erroneous entries from qualifying suppliers.
     \begin{answered}
-        
+        Unknown.
     \end{answered}
 
 \end{QandA}
 
 \subsubsection{Under Coverage}
 
+Over-coverage is caused by exclussion of objects belonging to the frame~\cite{under-coverage}.
+
 \begin{QandA}
     \item Data are received from all qualifying data suppliers on the frame.
     \begin{answered}
-        
+        Unknown.
     \end{answered}
 
     \item The list of those actually sending data are compared to independent lists.
     \begin{answered}
-        
+        Given the nature of the data, the existence of third party lists can be questioned.
+        We therefore consider the criterion not to be met.
     \end{answered}
 
 \end{QandA}
@@ -283,12 +303,14 @@ We will use this checklist as a base for our own data evaluation.
 \begin{QandA}
     \item The overall expected and actually received number of records are known and tracked per year and response across month is checked and compared against previous years.
     \begin{answered}
-        
+        This criterion is in principle difficult to meet.
+        The number of records is not known in advance and, due to the relatively short existence of the dataset, it was not possible until recently to compare the data with previous time periods.
+        We consider the criterion to be \textbf{not met}, although the question remains whether it is valid for our case.
     \end{answered}
 
     \item The amount of missing data per record is known and tracked per field per year and key fields (e.g., age, gender, and clinical code) are at least 98\% complete.
     \begin{answered}
-        
+        Key data has been remeasured, the criterion is \textbf{met}.
     \end{answered}
 
 \end{QandA}
@@ -296,24 +318,24 @@ We will use this checklist as a base for our own data evaluation.
 \subsubsection{Completeness}
 
 \begin{QandA}
-    \item The patient service form/chart used for data retrieval form abstraction is easy to understand.
+    \item The patient service form/chart used for data retrieval from abstraction is easy to understand.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item The form/chart used for abstraction is complete.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item All patient encounters/visits are abstracted and represented in the database.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item All fields are systematically completed per patient record.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
 \end{QandA}
@@ -323,32 +345,34 @@ We will use this checklist as a base for our own data evaluation.
 \begin{QandA}
     \item Explicit standard guidelines are in place and adherence is monitored for data collection
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Clear guidelines and training eliminate as much as possible the need for interpretation.
     \begin{answered}
-        
+        The IHIS CR does not provide data training for external candidates and we do not have information available about the training of internal employees.
+        The data are quite clear, but due to their sensitivity it is appropriate to interpret them.
+        For this reason, we consider the criterion to be \textbf{not met}.
     \end{answered}
 
     \item For data that need to be classified, clear coding standards are available.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item For data that need to be classified, the available standards are adhered to.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item For data that need to be classified, only highly trained certified staff classify the data.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Sources of bias (e.g., upcoding) are understood and eliminated if possible and ongoing quality assurance tests ensure that data collection, abstraction, and entry are conducted in a standard manner according to guidelines.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
 \end{QandA}
@@ -358,22 +382,25 @@ We will use this checklist as a base for our own data evaluation.
 \begin{QandA}
     \item The patient service form/chart is complete and reflects the patient encounter and the codesheet or abstract that is based on the form/chart reflects what is in the form/chart.
     \begin{answered}
-        
+        Since we do not work with complete input data, this question is irrelevant.
+        However, we have a dataset with patient data (age, gender, residence) that directly corresponds to the input data.
+        For this reason, we consider the requirement to be \textbf{met}.
     \end{answered}
 
     \item Adequate resources are in place to ensure valid timely data and ongoing database improvement.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Random audits and/or reabstraction studies are conducted and the data are compared to external sources of the same or similar data (if possible).
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Validity coefficients are available and are greater than or equal to 0.8 for key data elements (i.e., postal code, patient age, most responsible diagnosis, procedures, and comorbities).
     \begin{answered}
-        
+        The IHIS CR itself does not provide any validity metrics.
+        This requirement is \textbf{not met}.
     \end{answered}
 
 \end{QandA}
@@ -383,22 +410,19 @@ We will use this checklist as a base for our own data evaluation.
 \begin{QandA}
     \item Reliability studies of key data elements (e.g., age, gender, and clinical code) are conducted at regular intervals.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Intra rater coefficients are available.
     \begin{answered}
-        
-    \end{answered}
-
-    \item Inter rater coefficients are available.
-    \begin{answered}
-        
+        The IHIS CR itself does not provide any reliability metrics.
+        This requirement is \textbf{not met}.
     \end{answered}
 
     \item Rater coefficients are greater than or equal to 0.8 for key data elements (i.e., postal code, patient age, most responsible diagnosis, procedures, and comorbities).
     \begin{answered}
-        
+        Intra-rater coefficients are not available.
+        The criterion is \textbf{not known}.
     \end{answered}
 
 \end{QandA}
@@ -408,52 +432,58 @@ We will use this checklist as a base for our own data evaluation.
 \begin{QandA}
     \item Standard data retrieval form is in place.
     \begin{answered}
-        
+        From the data user's point of view, the data is accessible in standard formats.
+        This requirement is \textbf{met}.
     \end{answered}
 
-    \item Range checks are place for all fields at data entry and key logic checks are run (e.g., checks for clinical impossibilities or date of birth greater than call date).    
+    \item Range checks are place for all fields at data entry and key logic checks are run (e.g., checks for clinical impossibilities or date of birth greater than call date).
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Standard data specifications are provided to vendor(s).
     \begin{answered}
-        
+        The institute provides a dictionary with metadata.
+        This requirement is \textbf{met}.
     \end{answered}
 
     \item Standard test data are used to test edits.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Data entry software and equipment are user friendly.
     \begin{answered}
-        
+        Information on internal software and hardware is \textbf{not known}.
     \end{answered}
 
     \item Staff is available and motivated to enter the data and data entry is monitored and constructive feedback is provide to staff.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Edit errors are set aside and made available for analysis.
     \begin{answered}
-        
+        The institute does not provide any dataset regarding data errors.
+        This requirement is \textbf{not met}.
     \end{answered}
 
     \item Data entry of abstracted data takes place in close proximity to the original data (original forms/charts).
     \begin{answered}
-        
+        Although no information is available about internal processes, the data is prone to factual accuracy.
+        Let us consider this requirement to be \textbf{met}.
     \end{answered}
 
     \item Error detection reports are generated.
     \begin{answered}
-        
+        The institute does not provide any documentation regarding data errors.
+        This requirement is \textbf{not met}.
     \end{answered}
 
     \item Error correction is documented.
     \begin{answered}
-        
+        The institute does not provide any documentation regarding data errors.
+        This requirement is \textbf{not met}.
     \end{answered}
 
 \end{QandA}
@@ -463,37 +493,42 @@ We will use this checklist as a base for our own data evaluation.
 \begin{QandA}
     \item All programming is tested and the results are documented.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Ongoing quality control checks are conducted on electronically extracted data.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Documentation on how the various systems involved interact, extract, change, and/or append the data exists and is available.
     \begin{answered}
-        
+        The information mentioned in the request is not known to the public.
+        This requirement is \textbf{not met}.
     \end{answered}
 
     \item Ongoing tests are run to ensure all systems are interacting properly.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
 \end{QandA}
 
 \subsubsection{Imputation}
 
+The replacement of approximate values for incomplete or conflicting data elements is known as data imputation~\cite{data-imputation}.
+The substituted values are meant to produce a data record that is not subject to edit failure~\cite{data-imputation}.
+
 \begin{QandA}
     \item Imputation is automatically derived.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item The raw data are preserved.
     \begin{answered}
-        
+        Although information on internal processes is not available, it can be assumed with great certainty that the original data is not modified in any way.
+        Let us consider this requirement to be \textbf{met}.
     \end{answered}
 
 \end{QandA}
@@ -503,22 +538,23 @@ We will use this checklist as a base for our own data evaluation.
 \begin{QandA}
     \item Edit errors are analyzed.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Error detection analyses are conducted and the data are checked for missing data.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Outliers or other suspicious data are investigated.
     \begin{answered}
-        
+        Information on internal procedures is \textbf{not known}.
     \end{answered}
 
     \item Regular standard summary analyses are conducted and made available.
     \begin{answered}
-        
+        Although we have summary data in the form of a graphical report, it is not a statistical report summarizing the qualitative status of the data.
+        For this reason, we consider the requirement to be \textbf{not met}.
     \end{answered}
 
 \end{QandA}
@@ -531,9 +567,9 @@ We will use this checklist as a base for our own data evaluation.
     %\begin{tabular}{@{}llrrrrrrrrrr@{}}
     \begin{tabular}{llrrrrrrrrrr}
         \toprule
-        \multirow{2}{*}{Dimensions} & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
+        \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{2}{*}{Timeliness}   & Data Currency                     &   &   &   &   &   &   &   &   &   &   \\
+        \multirow{2}{*}{Timeliness} & Data Currency                     &   &   &   &   &   &   &   &   &   &   \\
                                     & System Efficiency                 &   &   &   &   &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
@@ -591,7 +627,7 @@ We will use this checklist as a base for our own data evaluation.
     %\begin{tabular}{@{}llrrrrrrrrrr@{}}
     \begin{tabular}{llrrrrrrrrrr}
         \toprule
-        \multirow{2}{*}{Dimensions}     & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
+        \multirow{2}{*}{Dimension}      & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                         &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
         \multirow{2}{*}{Accessibility}  & Awareness                         &   &   &   &   &   &   &   &   &   &   \\
                                         & Ease of Access                    &   &   &   &   &   &   &   &   &   &   \\
@@ -641,7 +677,7 @@ We will use this checklist as a base for our own data evaluation.
     %\begin{tabular}{@{}llrrrrrrrrrr@{}}
     \begin{tabular}{llrrrrrrrrrr}
         \toprule
-        \multirow{2}{*}{Dimensions}         & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
+        \multirow{2}{*}{Dimension}          & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                             &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
         \multirow{2}{*}{Interpretability}   & Documentation                     &   &   &   &   &   &   &   &   &   &   \\
                                             & Education                         &   &   &   &   &   &   &   &   &   &   \\
@@ -691,7 +727,7 @@ We will use this checklist as a base for our own data evaluation.
     %\begin{tabular}{@{}llrrrrrrrrrr@{}}
     \begin{tabular}{llrrrrrrrrrr}
         \toprule
-        \multirow{2}{*}{Dimensions} & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
+        \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
         \multirow{3}{*}{Coherence}  & Standardization                   &   &   &   &   &   &   &   &   &   &   \\
                                     & Linkage                           &   &   &   &   &   &   &   &   &   &   \\
