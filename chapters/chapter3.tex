@@ -5,7 +5,7 @@ During thesis elaboration the referential materials turned out to be insufficien
 Shortcoming of white-papers about Machine Learning supported DQ classification probably results from the absence of well-defined general DQA algorithm and output classes.
 Complexity of developing all-embracing method for DQA competes with unfolding general artificial intelligence, indeed.
 
-\section{Data Quality Criteria}
+\section{Data Quality Dimensions}
 
 % Tabular vs relational data
 % Tabular data structures: Cross-Sectional, Time-Series, Pooled Cross-Sections, Panel (Longitudal)
@@ -175,12 +175,12 @@ This functional dependence is hidden from us, so we consider the data to be eith
 
 % \[ T = \begin{cases} 0 & x\leq 0 \\ \frac{100-x}{100} & 0\leq x\leq 100 \\ 0 & 100\leq x \end{cases} \]
 
-Atz (2014) introduced a metric for measuring data catalogue timeliness, \( \tau \).
+Atz (2014) introduced a metric for measuring data catalogue timeliness, \( \tau \) (equation~\ref{eq:tau}).
 In general, minor changes such as typo correction should not be considered as an update.
 
-\begin{equation*}
+\begin{equation}\label{eq:tau}
     \tau = \frac{1}{N} \sum_{i = 1}^N I \left( \frac{f_{U_i} \cdot \lambda + \delta}{today - {last update}_i} \right)
-\end{equation*}
+\end{equation}
 
 The \( \tau \) of a data catalogue is the average across datasets, indicated by the subscript \textit{i}~\cite{atz2014tau}.
 The number of datasets in the catalog is denoted by the \textit{N}.
@@ -226,11 +226,10 @@ Automatic classification of a dataset can be performed by testing the existence 
 % Využití tohoto frameworku je v kontextu internetu, není tedy pro náš účel příliš vhodný.
 The use of this framework is in the context of the Internet, so it is not very suitable for our purpose.
 
-% TODO? Data Classification - Security dimension https://www.imperva.com/learn/data-security/data-classification/
-
 Considering that we want to achieve the relative objectivity of the framework, we will have to use the general metrics discussed in the previous section.
 The resulting system should therefore be similar to machine learning ensemble voting.
 A Regression Voting Ensemble is a machine learning model that combines the average predictions of contributing models to improve model performance.
+Model is shown in the picture~\ref{fig:voting}.
 
 \begin{figure}[htb]
     \centering
@@ -240,6 +239,25 @@ A Regression Voting Ensemble is a machine learning model that combines the avera
 \end{figure}
 \FloatBarrier
 
-\begin{equation*}
+The model can be expressed using the equation~\ref{eq:voting-model}.
+
+\begin{equation}\label{eq:voting-model}
     y_f = \sum_{i = 1}^{N} w_i y_i
-\end{equation*}
+\end{equation}
+
+In the following chapter, we will use this concept as a base to evaluate the performance of the data catalog.
+
+\section{Data Quality Framework Evaluation Instrument}
+
+The Data Quality Framework Evaluation Instrument is a tool developed by Long et al. (2004).
+The instrument's primary goal is to promote continuous data quality enhancement and the user limitations tracking~\cite{long2004}.
+The instrument is structured as a four-level conceptual framework, with 89 requirements at its root~\cite{long2004}.
+Using the instrument algorithm, the criteria can be folded into the second level of 24 data quality characteristics which can then be rolled up into 6 data quality dimensions~\cite{long2004}.
+The five dimensions can be combined into a single overall data collection evaluation~\cite{long2004}.
+The instrument is designed for the evaluation of medical datasets, we will try to use it unchanged for COVID-19 datasets.
+
+\subsection{Instrument Usage}
+
+Each of the 89 criteria is meant to be scored as \enquote{unknown (0)}, \enquote{not met (2)}, or \enquote{met (3)}~\cite{long2004}.
+Each score must be briefly substantiated in writing.
+All dimensions are scored as \enquote{unknown (0)}, \enquote{not acceptable (1)}, \enquote{marginal (2)}, and \enquote{appropriate (3)}~\cite{long2004}.

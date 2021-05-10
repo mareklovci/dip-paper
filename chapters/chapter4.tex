@@ -46,7 +46,7 @@ This is an array of objects even if the array contains only one object.
 
 An example of the structure of the metadata file can be found in the appendix~\ref{ch:metadata-file-structure}.
 
-\section{Data Quality Analysis}
+\section{Data Quality Criteria Analysis}
 
 Long et al. (2004) wrote a comprehesive data quality checklist for emergency medical services data~\cite{long2004}.
 We will use this checklist as a base for our own data evaluation.
@@ -61,8 +61,8 @@ We will use this checklist as a base for our own data evaluation.
         \toprule
         \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{2}{*}{Relevance}  & Adaptability                      & 2 & 2 & 2 & 0 & 2 & 0 & 2 & 0 & 2 &   \\
-                                    & Value                             & 2 & 0 &   &   &   &   &   &   &   &   \\
+        \multirow{2}{*}{Relevance}  & Adaptability                      & 3 & 3 & 3 & 0 & 3 & 0 & 3 & 0 & 3 &   \\
+                                    & Value                             & 3 & 0 &   &   &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
 
@@ -157,19 +157,19 @@ We will use this checklist as a base for our own data evaluation.
         \toprule
         \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{13}{*}{Accuracy}  & Form Design and Completion        & 2 & 2 & 2 & 1 & 0 & 0 & 0 & 1 & 1 & 0 \\
-                                    & Frame                             & 2 & 2 &   &   &   &   &   &   &   &   \\
+        \multirow{13}{*}{Accuracy}  & Form Design and Completion        & 3 & 3 & 3 & 2 & 0 & 0 & 0 & 2 & 2 & 0 \\
+                                    & Frame                             & 3 & 3 &   &   &   &   &   &   &   &   \\
                                     & Over Coverage                     & 0 & 0 &   &   &   &   &   &   &   &   \\
-                                    & Under Coverage                    & 0 & 1 &   &   &   &   &   &   &   &   \\
-                                    & Response                          & 1 & 2 &   &   &   &   &   &   &   &   \\
+                                    & Under Coverage                    & 0 & 2 &   &   &   &   &   &   &   &   \\
+                                    & Response                          & 2 & 3 &   &   &   &   &   &   &   &   \\
                                     & Completeness                      & 0 & 0 & 0 & 0 &   &   &   &   &   &   \\
-                                    & Bias                              & 0 & 1 & 0 & 0 & 0 & 0 &   &   &   &   \\
-                                    & Validity                          & 2 & 0 & 0 & 1 &   &   &   &   &   &   \\
-                                    & Reliability                       & 0 & 1 & 0 &   &   &   &   &   &   &   \\
-                                    & Collection                        & 2 & 0 & 2 & 0 & 0 & 0 & 1 & 2 & 1 & 1 \\
-                                    & Processing                        & 0 & 0 & 1 & 0 &   &   &   &   &   &   \\
-                                    & Imputation                        & 0 & 2 &   &   &   &   &   &   &   &   \\
-                                    & Analysis                          & 0 & 0 & 0 & 1 &   &   &   &   &   &   \\
+                                    & Bias                              & 0 & 2 & 0 & 0 & 0 & 0 &   &   &   &   \\
+                                    & Validity                          & 3 & 0 & 0 & 2 &   &   &   &   &   &   \\
+                                    & Reliability                       & 0 & 2 & 0 &   &   &   &   &   &   &   \\
+                                    & Collection                        & 3 & 0 & 3 & 0 & 0 & 0 & 2 & 3 & 2 & 2 \\
+                                    & Processing                        & 0 & 0 & 2 & 0 &   &   &   &   &   &   \\
+                                    & Imputation                        & 0 & 3 &   &   &   &   &   &   &   &   \\
+                                    & Analysis                          & 0 & 0 & 0 & 2 &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
 
@@ -569,7 +569,7 @@ The substituted values are meant to produce a data record that is not subject to
         \toprule
         \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{2}{*}{Timeliness} & Data Currency                     & 2 & 2 & 2 & 2 &   &   &   &   &   &   \\
+        \multirow{2}{*}{Timeliness} & Data Currency                     & 3 & 3 & 3 & 3 &   &   &   &   &   &   \\
                                     & System Efficiency                 & 0 & 0 &   &   &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
@@ -633,8 +633,8 @@ The substituted values are meant to produce a data record that is not subject to
         \toprule
         \multirow{2}{*}{Dimension}      & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                         &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{2}{*}{Accessibility}  & Awareness                         & 2 & 2 &   &   &   &   &   &   &   &   \\
-                                        & Ease of Access                    & 2 & 2 &   &   &   &   &   &   &   &   \\
+        \multirow{2}{*}{Accessibility}  & Awareness                         & 3 & 3 &   &   &   &   &   &   &   &   \\
+                                        & Ease of Access                    & 3 & 3 &   &   &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
 
@@ -689,8 +689,8 @@ The substituted values are meant to produce a data record that is not subject to
         \toprule
         \multirow{2}{*}{Dimension}          & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                             &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{2}{*}{Interpretability}   & Documentation                     & 1 & 2 &   &   &   &   &   &   &   &   \\
-                                            & Education                         & 2 & 1 &   &   &   &   &   &   &   &   \\
+        \multirow{2}{*}{Interpretability}   & Documentation                     & 2 & 3 &   &   &   &   &   &   &   &   \\
+                                            & Education                         & 3 & 2 &   &   &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
 
@@ -743,9 +743,9 @@ The substituted values are meant to produce a data record that is not subject to
         \toprule
         \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{3}{*}{Coherence}  & Standardization                   & 0 & 2 & 2 & 1 &   &   &   &   &   &   \\
-                                    & Linkage                           & 2 & 2 & 2 & 2 &   &   &   &   &   &   \\
-                                    & Historical Comparability          & 2 & 1 &   &   &   &   &   &   &   &   \\
+        \multirow{3}{*}{Coherence}  & Standardization                   & 0 & 3 & 3 & 2 &   &   &   &   &   &   \\
+                                    & Linkage                           & 3 & 3 & 3 & 3 &   &   &   &   &   &   \\
+                                    & Historical Comparability          & 3 & 2 &   &   &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
 
@@ -757,7 +757,7 @@ The substituted values are meant to produce a data record that is not subject to
 \subsubsection{Standardization}
 
 \begin{QandA}
-    \item All data elements are compared to a standard data dictionary in an ongoing manner and for classified data, standard classification methodologies are used (e.g., ICD10).
+    \item All data elements are compared to a standard data dictionary in an ongoing manner and for classified data, standard classification methodologies are used (e.g., International Classification of Diseases – ICD10).
     \begin{answered}
         Information on internal procedures is \textbf{not known}.
     \end{answered}
@@ -828,6 +828,70 @@ The substituted values are meant to produce a data record that is not subject to
     \end{answered}
 
 \end{QandA}
+
+\section{Data Quality Evaluation}
+
+\subsection{Data Quality Characteristics Evaluation}
+
+\begin{table}[htbp]
+    \centering
+
+    \begin{tabular}{llll}
+        \toprule
+        Dimension                           & Characteristics               & Score & Final Score           \\ \midrule
+        \multirow{2}{*}{Relevance}          & Adaptability                  & 2.0   & marginal (2)          \\
+                                            & Value                         & 1.5   & marginal (2)          \\ \midrule
+        \multirow{13}{*}{Accuracy}          & Form Design and Completion    & 1.5   & marginal (2)          \\
+                                            & Frame                         & 3.0   & appropriate (3)       \\
+                                            & Over Coverage                 & 0.0   & unknown (0)           \\
+                                            & Under Coverage                & 1.0   & not acceptable (1)    \\
+                                            & Response                      & 2.5   & appropriate (3)       \\
+                                            & Completeness                  & 0.0   & unknown (0)           \\
+                                            & Bias                          & 0.33  & unknown (0)           \\
+                                            & Validity                      & 1.25  & not acceptable (1)    \\
+                                            & Reliability                   & 0.67  & not acceptable (1)    \\
+                                            & Collection                    & 1.5   & marginal (2)          \\
+                                            & Processing                    & 0.5   & not acceptable (1)    \\
+                                            & Imputation                    & 1.5   & marginal (2)          \\
+                                            & Analysis                      & 0.5   & not acceptable (1)    \\ \midrule
+        \multirow{2}{*}{Timeliness}         & Data Currency                 & 3.0   & appropriate (3)       \\
+                                            & System Efficiency             & 0.0   & unknown (0)           \\ \midrule
+        \multirow{2}{*}{Accessibility}      & Awareness                     & 3.0   & appropriate (3)       \\
+                                            & Ease of Access                & 3.0   & appropriate (3)       \\ \midrule
+        \multirow{2}{*}{Interpretability}   & Documentation                 & 2.5   & appropriate (3)       \\
+                                            & Education                     & 2.5   & appropriate (3)       \\ \midrule
+        \multirow{3}{*}{Coherence}          & Standardization               & 2.0   & marginal (2)          \\
+                                            & Linkage                       & 3.0   & appropriate (3)       \\
+                                            & Historical Comparability      & 2.5   & appropriate (3)       \\
+            
+        \bottomrule
+    \end{tabular}
+
+    \caption{Total Score of DQ Characteristics}
+    \label{table:characteristics-score}
+\end{table}
+\FloatBarrier
+
+\begin{table}[htbp]
+    \centering
+
+    \begin{tabular}{lll}
+        \toprule
+        Dimension                           & Total Score   \\ \midrule
+        \multirow{2}{*}{Relevance}          & 1.75          \\
+        \multirow{13}{*}{Accuracy}          & 1.1           \\
+        \multirow{2}{*}{Timeliness}         & 1.5           \\
+        \multirow{2}{*}{Accessibility}      & 3.0           \\
+        \multirow{2}{*}{Interpretability}   & 2.5           \\
+        \multirow{3}{*}{Coherence}          & 2.5           \\
+            
+        \bottomrule
+    \end{tabular}
+
+    \caption{Total Score of DQ Characteristics}
+    \label{table:characteristics-score}
+\end{table}
+\FloatBarrier
 
 One of the most serious errors in the data catalog is the absence of categorization of deaths.
 % V datasetu, obsahujícím data o úmrtí pacientů, se dozvíme datum úmrtí, věk pacienta, pohlaví a kódy kraje a obce ze kterého pacient pocházel.
