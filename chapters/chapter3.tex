@@ -261,3 +261,36 @@ The instrument is designed for the evaluation of medical datasets, we will try t
 Each of the 89 criteria is meant to be scored as \enquote{unknown (0)}, \enquote{not met (2)}, or \enquote{met (3)}~\cite{long2004}.
 Each score must be briefly substantiated in writing.
 All dimensions are scored as \enquote{unknown (0)}, \enquote{not acceptable (1)}, \enquote{marginal (2)}, and \enquote{appropriate (3)}~\cite{long2004}.
+
+Long et al. (2004) proposed the following procedure for aggregating criteria into characteristics.
+\begin{enumerate}
+    \item If one of the criteria within a characteristic is \enquote{unknown} then the characteristic is scored as \enquote{unknown}~\cite{long2004}.
+    \item If the status of all the criteria is known and more than half are \enquote{not acceptable} then the characteristic is \enquote{not acceptable}~\cite{long2004}.
+    \item If the status of all the criteria is known and half are \enquote{met} then the characteristic is scored as \enquote{marginal}~\cite{long2004}.
+    \item If all the criteria are \enquote{met} then the characteristic is \enquote{appropriate}~\cite{long2004}.
+\end{enumerate}
+
+\noindent The procedure for characteristic-dimensions aggregation is as follows.
+\begin{enumerate}
+    \item If one of the characteristics within a dimension is \enquote{unknown} then the dimension is scored as \enquote{unknown}~\cite{long2004}.
+    \item If the status of all the characteristics is known and at least one is \enquote{not acceptable} then the dimension is \enquote{not acceptable}~\cite{long2004}.
+    \item If the status of all the characteristics is known and they are a combination of \enquote{marginal} and \enquote{appropriate} then the dimension is scored as \enquote{marginal}~\cite{long2004}.
+    \item If all the characteristics are \enquote{appropriate}, then the dimension is \enquote{appropriate}~\cite{long2004}.
+\end{enumerate}
+
+The algorithm proposed by the authors of the article is suitable for datasets which we have complete information about.
+However, this will not be our case.
+There will be too many questions that we cannot answer directly in the questionnaire.
+This would probably lead to a final evaluation of the dimensions as unknown.
+The algorithm also assumes that all dimensions, characteristics, and criteria have the same weight, which generally may not be the case.
+
+\subsection{Conclusion}
+
+The advantage of the presented approach is that it can be used both for individual data sets and for the data catalog.
+The disadvantage of the approach is that the evaluation of criteria in a more specialized field will require the cooperation of industry and IT specialists.
+The main limitation is that the questions in the questionnaire provide only a vague idea of the state of the data in the database (e.g., integrity).
+On the other hand, they provide a comprehensive overview of the status of data, including the process of data collection and staff training.
+Fortunately, this condition is suitable for the COVID-19 dataset.
+
+Additional criteria can be added to the questionnaire.
+However, such an intervention requires a field specialist and subsequent testing of the evaluation process.
