@@ -18,11 +18,6 @@ Available datasets as of April 1, 2020 from the URL address \url{https://onemocn
 
 The data can be downloaded via the REST API in JSON, in addition, the data can be downloaded in CSV together with metadata also in JSON format.
 The format of the JSON data file can be seen in Figure~\ref{ls:data}.
-All data files contain one main object, with three keys (modified, source and data).
-The \enquote{modified} key contains the date of the dataset update in ISO 8601 format with the time offset from UTC (Coordinated Universal Time).
-The \enquote{source} key contains the URL of the dataset, especially the protocol and domain name.
-The last key, the data, contains an array of json objects with a structure given by the metadata.
-This is an array of objects even if the array contains only one object.
 
 \begin{figure}[htb]
     \centering
@@ -41,6 +36,33 @@ This is an array of objects even if the array contains only one object.
 
     \caption{Data file structure}
     \label{ls:data}
+\end{figure}
+\FloatBarrier
+
+All data files contain one main object, with three keys (modified, source and data).
+The \enquote{modified} key contains the date and time of the dataset update in ISO 8601 format, offset from UTC (Coordinated Universal Time).
+The \enquote{source} key contains the dataset's URL, especially the protocol and domain name.
+The last key, \enquote{data}, contains an array of json objects with a structure specified by the metadata.
+This is an array of objects even if the array contains only one object.
+Figure~\ref{ls:sample-data-deceased} depicts a sample structure of the objects in the list.
+
+\begin{figure}[htb]
+    \centering
+
+    \begin{lstlisting}[language=json,firstnumber=1]
+[
+    {
+    "datum": "2020-01-01",
+    "vek": 50,
+    "pohlavi": "M",
+    "kraj_nuts_kod": "CZ000",
+    "okres_lau_kod": "CZ0000"
+    },...
+]
+    \end{lstlisting}
+
+    \caption{Sample data with information on deceased patients}
+    \label{ls:sample-data-deceased}
 \end{figure}
 \FloatBarrier
 
@@ -126,8 +148,8 @@ We will use this checklist as a base for our own data evaluation.
 
     \item The data are found to be worth the resources dedicated to its production.
     \begin{answered}
-        Yes, these data are necessary to inform the public about the current state of development of the pandemic.
-        Almost any expenditure is worthwhile in this case.
+        Yes, these data are necessary to inform the public about the pandemic's current state of development.
+        In this case, almost any expenditure is worthwhile.
     \end{answered}
 
 \end{QandA}
@@ -147,6 +169,7 @@ We will use this checklist as a base for our own data evaluation.
 
 \end{QandA}
 
+\newpage
 \subsection{Accuracy}
 
 \begin{table}[htbp]
@@ -243,6 +266,17 @@ We will use this checklist as a base for our own data evaluation.
 
 \end{QandA}
 
+\paragraph{Logical Errors} One of the most serious errors in the data catalog is the absence of categorization of deaths.
+% V datasetu, obsahujícím data o úmrtí pacientů, se dozvíme datum úmrtí, věk pacienta, pohlaví a kódy kraje a obce ze kterého pacient pocházel.
+In the dataset, which contains data on patients' deaths, we learn the date of death, the patient's age, gender and the codes of the region and municipality from which the patient came.
+It does not take into account whether the patient was very ill (e.g., a patient with a stage 4 pancreatic cancer with primary tumor and metastasis outside pancreas) and therefore had a high probability of death, or if the patient was a completely healthy person.
+No consideration of this fact leads to the introduction of virtually immeasurable systematic (logical) error.
+
+A similar issue can be observed in the data on new COVID-19 cases and the daily number of tests performed.
+In the first case we are unable to determine whether there are any percentage of patients in whom the disease manifested itself repeatedly.
+In the second case, information on retested patients is missing, as well as information on whether the tested patient showed symptoms of the disease.
+All these problems lead to a reduction in data quality, which we are not able to measure effectively.
+
 \subsubsection{Frame}
 
 By the "frame" we mean the structure of files containing data.
@@ -320,22 +354,22 @@ Over-coverage is caused by exclussion of objects belonging to the frame~\cite{un
 \begin{QandA}
     \item The patient service form/chart used for data retrieval from abstraction is easy to understand.
     \begin{answered}
-        Information on internal procedures is \textbf{not known}.
+        There is no information available on internal procedures.
     \end{answered}
 
     \item The form/chart used for abstraction is complete.
     \begin{answered}
-        Information on internal procedures is \textbf{not known}.
+        There is no information available on internal procedures.
     \end{answered}
 
     \item All patient encounters/visits are abstracted and represented in the database.
     \begin{answered}
-        Information on internal procedures is \textbf{not known}.
+        There is no information available on internal procedures.
     \end{answered}
 
     \item All fields are systematically completed per patient record.
     \begin{answered}
-        Information on internal procedures is \textbf{not known}.
+        There is no information available on internal procedures.
     \end{answered}
 
 \end{QandA}
@@ -343,7 +377,7 @@ Over-coverage is caused by exclussion of objects belonging to the frame~\cite{un
 \subsubsection{Bias}
 
 \begin{QandA}
-    \item Explicit standard guidelines are in place and adherence is monitored for data collection
+    \item Explicit standard guidelines are in place and adherence is monitored for data collection.
     \begin{answered}
         Information on internal procedures is \textbf{not known}.
     \end{answered}
@@ -407,6 +441,8 @@ Over-coverage is caused by exclussion of objects belonging to the frame~\cite{un
 
 \subsubsection{Reliability}
 
+The level of agreement between repeated administrations of a diagnostic test by evaluators~\cite{kilem2008}.
+
 \begin{QandA}
     \item Reliability studies of key data elements (e.g., age, gender, and clinical code) are conducted at regular intervals.
     \begin{answered}
@@ -419,7 +455,7 @@ Over-coverage is caused by exclussion of objects belonging to the frame~\cite{un
         This requirement is \textbf{not met}.
     \end{answered}
 
-    \item Rater coefficients are greater than or equal to 0.8 for key data elements (i.e., postal code, patient age, most responsible diagnosis, procedures, and comorbities).
+    \item Evaluation coefficients for key data elements are greater than or equal to 0.8. (i.e., postal code, patient age, most responsible diagnosis, procedures, and comorbities).
     \begin{answered}
         Intra-rater coefficients are not available.
         The criterion is \textbf{not known}.
@@ -559,6 +595,7 @@ The substituted values are meant to produce a data record that is not subject to
 
 \end{QandA}
 
+\newpage
 \subsection{Timeliness}
 
 \begin{table}[htbp]
@@ -623,6 +660,7 @@ The substituted values are meant to produce a data record that is not subject to
 
 \end{QandA}
 
+\newpage
 \subsection{Accessibility}
 
 \begin{table}[htbp]
@@ -679,6 +717,7 @@ The substituted values are meant to produce a data record that is not subject to
 
 \end{QandA}
 
+\newpage
 \subsection{Interpretability}
 
 \begin{table}[htbp]
@@ -704,8 +743,8 @@ The substituted values are meant to produce a data record that is not subject to
 \begin{QandA}
     \item The limitations of the data are documented for users using a standard format and the documentation is readily available for users.
     \begin{answered}
-        We did not find any documentation of this type.
-        This requirement is \textbf{not met}.
+        We have been unable to discover any documentation that satisfies the requirement.
+        This criterion has not been fulfilled.
     \end{answered}
 
     \item The supplementary information and metadata necessary to interpret and utilize the data appropriately are kept up to date and are readily available.
@@ -733,6 +772,7 @@ The substituted values are meant to produce a data record that is not subject to
 
 \end{QandA}
 
+\newpage
 \subsection{Coherence}
 
 \begin{table}[htbp]
@@ -814,24 +854,23 @@ The substituted values are meant to produce a data record that is not subject to
 \subsubsection{Historical Comparability}
 
 \begin{QandA}
-    \item Trend analysis is used to examine changes in key data elements over time and breaks in the series are explained.
+    \item Trend analysis is used to examine changes in key data elements over time, and breaks in the series are explained.
     \begin{answered}
         The data itself is used to analyze the trend.
         The interruption of the series has not yet occurred in the data.
         We consider this requirement to be \textbf{met}.
     \end{answered}
 
-    \item Documentation of changes in concepts or methods exists and is readily accessible.
+    \item Documentation of changes in concepts or methods is available and easily accessible.
     \begin{answered}
-        We did not find any documentation that met the requirement.
-        This requirement is \textbf{not met}.
+        We were unable to identify any documentation that satisfies the requirement.
+        This criterion has not been met.
     \end{answered}
 
 \end{QandA}
 
-\section{Data Quality Evaluation}
-
-\subsection{Characteristics Evaluation}
+\newpage
+\section{Characteristics Evaluation}
 
 \begin{table}[htbp]
     \centering
@@ -872,7 +911,8 @@ The substituted values are meant to produce a data record that is not subject to
 \end{table}
 \FloatBarrier
 
-\subsection{Dimensions Evaluation}
+\newpage
+\section{Dimensions Evaluation}
 
 \begin{table}[htbp]
     \centering
@@ -895,53 +935,51 @@ The substituted values are meant to produce a data record that is not subject to
 \end{table}
 \FloatBarrier
 
-One of the most serious errors in the data catalog is the absence of categorization of deaths.
-% V datasetu, obsahujícím data o úmrtí pacientů, se dozvíme datum úmrtí, věk pacienta, pohlaví a kódy kraje a obce ze kterého pacient pocházel.
-In the dataset, which contains data on patients' deaths, we learn the date of death, the patient's age, gender and the codes of the region and municipality from which the patient came.
-It does not take into account whether the patient was very ill (e.g., a patient with pancreatic cancer in advanced metastasis) or generally polymorbid (i.e., having number of illnesses) and therefore had a high probability of death, or if the patient was a completely healthy person.
-No consideration of this fact leads to the introduction of virtually immeasurable systematic error.
+\section{Data Quality Evaluation}
 
-\begin{figure}[htb]
-    \centering
+Table~\ref{table:dimensions-score} provides an evaluation of the dimensions.
+All dimensions will be of the same weight, because we are not able to objectively assess the importance of individual dimensions.
+By averaging the results, we obtain the value \( 2.\overline{3} \), which belongs to the score \enquote{marginal (2)}.
 
-    \begin{lstlisting}[language=json,firstnumber=1]
-[
-    {
-    "datum": "2020-01-01",
-    "vek": 50,
-    "pohlavi": "M",
-    "kraj_nuts_kod": "CZ000",
-    "okres_lau_kod": "CZ0000"
-    },...
-]
-    \end{lstlisting}
+The second highest rating was given to the data catalog.
+The data can thus be improved in many ways, but the end result corresponds to our perception of the catalog's qualitative condition.
 
-    \caption{Sample data with information on deceased patients}
-    \label{ls:sample-data-deceased}
-\end{figure}
-\FloatBarrier
+\section{Application of the Methodology}
 
-A similar issue can be observed in the data on new COVID-19 cases and the daily number of tests performed.
-In the first case we are unable to determine whether there are any percentage of patients in whom the disease manifested itself repeatedly.
-In the second case, information on retested patients is missing, as well as information on whether the tested patient showed symptoms of the disease.
-All these problems lead to a reduction in data quality, which we are not able to measure effectively.
+Returning to the methodology discussed in Chapter~\ref{ch:methodology}, we will implement the framework to our use case.
+The entire specification process was solved by utilizing the completed questionnaire from Long et al. (2004).
+The \textbf{identification} activity was completed by analyzing the state of Emergency Medical Services (EMS) data in the Canadian health care system.
+A questionnaire, which is part of this work, is used to \textbf{specify metrics}.
+Metrics were \textbf{verified} using EMS administrative data~\cite{long2004}.
+We don't know if the \textit{specification process} was iterative (in the feedback loop), but it's safe to assume it was.
+We would introduce feedback into the process by verifying metrics ourselves.
+However, we believe that metric verification is beyond the scope of this paper because it would necessitate interdisciplinary collaboration with health data experts.
 
-Another factor reducing the quality is the methodology itself.
-According to the methodology, a person is considered cured since the last negative test.
-However, it does not take into account whether this person is still in the \textit{Intensive Care Unit} with post-COVID syndrome or whether he is really cured.
-
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.9\textwidth]{figures/recovered-sma7.eps}
-    \caption{Daily confirmed cases of infection and weekly moving average.}
-    \label{fig:recovered-sma7}
-\end{figure}
-\FloatBarrier
+The data \textbf{collection} activity, which is part of the \textit{execution process}, is completely covered by IHIS CR data.
+The main part of this chapter is data \textbf{verification}, in which the data catalog is evaluated in terms of data quality.
+The analysis result should be attached to the data, and the catalog should be marked as verified or rejected as part of the \textbf{contract} activity.
 
 \section{Summary}
 
-The possibilities of analysis of the selected data set are limited and determining their quality is very difficult.
-The main reason for the difficulties is the nature of the data, which corresponds in structure to econometric data, already processed in a certain way.
+The possibilities of statistical analysis of the selected data set are limited and determining their quality is very difficult.
+The main reason for the difficulties is the nature of the data, which corresponds in structure to econometric data – already processed in a certain way – but without the freedom to use the usual statistical methods.
 Thus, an available data catalog is in practice a set of results without background data.
 Moreover, we tried to draw conclusions from existing data and tried to learn their quality without knowledge of the criterial limitations and general description of the data, which should be determined by the methodological guideline.
 However, the instructions providing the necessary information about the data is missing (or is insufficiently informative) in these cases.
+
+Nevertheless, we assessed the 89 questions posed in the article by Long et al. (2004).
+Through the evaluation, we drew attention to possible problems with the data and their interpretation.
+Despite all efforts to be objective, the data are very extensive and it is therefore possible that part of the questionnaire was not properly evaluated due to insufficient analytical coverage.
+
+% !!! Tohle tvrzení nemám podložené, je nebezpečné ho tam nechávat.
+% Another factor reducing the quality is the methodology itself.
+% According to the methodology, a person is considered cured since the last negative test.
+% However, it does not take into account whether this person is still in the \textit{Intensive Care Unit} with post-COVID syndrome or whether he is really cured.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=0.9\textwidth]{figures/recovered-sma7.eps}
+%     \caption{Daily confirmed cases of infection and weekly moving average.}
+%     \label{fig:recovered-sma7}
+% \end{figure}
+% \FloatBarrier

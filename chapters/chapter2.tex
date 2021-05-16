@@ -14,6 +14,7 @@ There is quite a~few common defects in the field of data engineering and data sc
 
 This is data that does not reach the destination data store.
 This problem usually occurs when handling the data needed to clean up in the source database; by operating with invalid or incorrect lookup table in the transformation logic; or by invalid table joins.
+An example of missing data is shown in Figure~\ref{fig:missing-data}.
 
 \paragraph*{Example} We transform data from Task Management Solution.
 Lookup table should contain a field value of \enquote{Minor} which maps to \enquote{Low}.
@@ -231,6 +232,7 @@ This has several causes, development team rounded the numbers to the wrong decim
 
 Data rows that get rejected by ETL process due to data issues.
 Development team did not take into account data conditions that break the ETL for a particular row.
+An example of an ETL process with rejected rows is shown in Figure~\ref{fig:rejected-rows}.
 
 \paragraph*{Example} Missing data rows on the sales table caused major issues with the end of year sales report.
 
@@ -244,10 +246,11 @@ Development team did not take into account data conditions that break the ETL fo
 
 % a~\cite{web:common-defects}
 
+\newpage
 \section{Model}
 
 The methodology has several important components that need to be identified or developed.
-The metamodel that covers the required components is as depicted in figure~\ref{fig:methodology-metamodel}.
+The metamodel that covers the required components is as depicted in the Figure~\ref{fig:methodology-metamodel}.
 The activities within the process model have a goal to develop those components.
 
 Overall, the methodology consists of two main processes.
@@ -294,9 +297,9 @@ Measuring data quality is all about understanding what data quality attributes a
 A comprehensive list of Data Quality Attributes by Eppler (2006) is available in appendix~\ref{ch:data-quality-attributes}.
 Specific attributes will be further discussed in Chapter~\ref{ch:quality-classification-system}.
 
-\subsubsection{Proof of Concept Verification}
+\subsubsection{Verification}
 
-The last part of current process is verification and Proof of Concept.
+The last part of current process is verification.
 This activity has to ensure that selected metrics are meaningful enough, capturing the actual condition of data.
 
 \subsection{Execution Process}

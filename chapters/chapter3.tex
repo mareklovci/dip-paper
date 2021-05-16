@@ -5,7 +5,7 @@ During thesis elaboration the referential materials turned out to be insufficien
 Shortcoming of white-papers about Machine Learning supported DQ classification probably results from the absence of well-defined general DQA algorithm and output classes.
 Complexity of developing all-embracing method for DQA competes with unfolding general artificial intelligence, indeed.
 
-\section{Data Quality Dimensions}
+\section{Data Quality Dimensions}\label{sec:data-quality-dimensions}
 
 % Tabular vs relational data
 % Tabular data structures: Cross-Sectional, Time-Series, Pooled Cross-Sections, Panel (Longitudal)
@@ -258,9 +258,9 @@ The instrument is designed for the evaluation of medical datasets, we will try t
 
 \subsection{Instrument Usage}
 
-Each of the 89 criteria is meant to be scored as \enquote{unknown (0)}, \enquote{not met (2)}, or \enquote{met (3)}~\cite{long2004}.
+Each of the 89 criteria is meant to be scored as \enquote{unknown (1)}, \enquote{not met (2)}, or \enquote{met (3)}~\cite{long2004}.
 Each score must be briefly substantiated in writing.
-All dimensions are scored as \enquote{unknown (0)}, \enquote{not acceptable (1)}, \enquote{marginal (2)}, and \enquote{appropriate (3)}~\cite{long2004}.
+All dimensions and characteristics are scored as \enquote{unknown (1)}, \enquote{not acceptable (2)}, \enquote{marginal (3)}, and \enquote{appropriate (4)}~\cite{long2004}.
 
 Long et al. (2004) proposed the following procedure for aggregating criteria into characteristics.
 \begin{enumerate}
@@ -284,7 +284,19 @@ There will be too many questions that we cannot answer directly in the questionn
 This would probably lead to a final evaluation of the dimensions as unknown.
 The algorithm also assumes that all dimensions, characteristics, and criteria have the same weight, which generally may not be the case.
 
-\subsection{Conclusion}
+For this reason, we propose to adjust the score scale and modify the algorithm.
+Newly, the criteria will be evaluated as \enquote{unknown (0)}, \enquote{not met (2)}, or \enquote{met (3)}.
+The dimensions and characteristics will be evaluated as \enquote{unknown (0)}, \enquote{not acceptable (1)}, \enquote{marginal (2)}, and \enquote{appropriate (3)}
+The aggregation algorithm will be simplified by averaging the values and then rounding to the nearest score on the scale.
+\begin{enumerate}
+    \item Evaluate all criteria within characteristics.
+    \item Average the rating of the criteria within characteristics and round the result to the nearest integer.
+    \item Repeat the procedure for aggregation at the dimension level.
+\end{enumerate}
+
+By stretching the criteria scores, we are able to use pure mathematical tools rather than analytical ones.
+Weighing of dimensions and characteristics can be added to the proposed procedure.
+In this way, we obtain a model that can express the diversity of datasets.
 
 The advantage of the presented approach is that it can be used both for individual data sets and for the data catalog.
 The disadvantage of the approach is that the evaluation of criteria in a more specialized field will require the cooperation of industry and IT specialists.
