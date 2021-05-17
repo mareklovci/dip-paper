@@ -1,49 +1,51 @@
 \chapter{Introduction}\label{ch:introduction}
 
-Today, we live in what many call the Information Age, where digital data production is at the heart of all ecosystems.
-Businesses of all sizes — large and small — are using some form of data to drive growth.
-All industries are in need of using those data to analyze, manage and control various systems.
-In our highly disruptive society over 1~trillion (\( 10^{12} \)) MB of data is generated daily~\cite{techjury2021}.
-However, one of the downsides of this huge production is poor data quality, causing yearly losses of an estimated \$3.1~trillion in the US alone.
-But how do we know, those data are objetively correct?
+Today, we live in what many refer to as the Information Age, in which digital data production is central to all ecosystems.
+Data is being used to drive growth in businesses of all sizes, large and small.
+All industries require the use of data to analyze, manage, and control various systems.
+Decisions based on data are a rapidly growing phenomenon in the business world.
+And now, with the data, a business owner or manager can make more effective strategic decisions~\cite{chaudhuri2011}.
+Making decisions can be risky at times due to the possibility of inaccurate or insufficient data.
+However, because the data is unstructured and complex, maintaining and governing it is critical for organizations~\cite{blumberg2003}.
+But how can we be certain that the data is objectively correct?
 
 As Orr (1998) stated,
 \blockquote[][]{data quality is the measure of the agreement between the data views presented by an information system and the same data in the real world.
 A~system's data quality of 100\% would indicate, for example, that our data views are in perfect agreement with the real world, whereas a data quality rating of 0\% would indicate no agreement at all~\cite{orr1998}.}
 
-Ensuring certain level of data quality is an IT project like any other.
-There exists some iniciatives for improving especially Open Data Quality, e.g. 5 Star Data, but none of them is really comprehensive.
-In short, objective evaluation of Data Quality is hard.
+Assuring a certain level of data quality is a standard IT project.
+There are some initiatives for improving Open Data Quality, such as 5 Star Data, but none of them are comprehensive.
+In short, objectively assessing data quality is difficult.
 
-Main issue with this topic is that DQ is shrouded in misconceptions.
-Data Quality is a~business problem, not an IT problem.
-But IT enables the business to improve it through tools and processes.
-Bad data impacts every system and every person interating with them.
-Therefore it should be everybody's responsibility to maintain good standards and practices that in turn will increase confidence in data used for reporting and analytics.
+The main issue with this topic is that data quality is shrouded in misconceptions.
+Data quality is a business issue, not an IT issue.
+However, IT enables the business to improve itself by providing tools and processes.
+Bad data has an impact on every system and every person who interacts with it.
+As a result, it should be everyone's responsibility to uphold good standards and practices, which will increase trust in data used for reporting and analytics.
 
-There are two main causes of failure in Data Quality Management implementation.
-The first~one is related to missing data quality process, e.g. lack of proactive DQ surveillance~\cite{risto2011}.
-The second one is a~lack of data quality measurements~\cite{haug2013}.
+There are two major reasons for Data Quality Management implementation failure.
+The first one is related to a~lack of data quality processes, such as a~lack of proactive DQ surveillance~\cite{risto2011}.
+The second is a~scarcity of data quality measurements~\cite{haug2013}.
 
 % Data Quality Assessment (DQA) and Master Data Management (MDM) are both connected to assuring level of DQ, in this body of work we are going to use them interchangeably.
 
 The cost of bad data is defined as \textit{direct} + \textit{indirect} costs.
-Direct costs are, for example, manual and automatic cleaning of master data.
-Indirect cost, on the other hand, is financial loss caused by poor-quality master data resulting in
+Manual and automatic master data cleaning incurs direct costs.~\cite{haug2013}.
+Indirect cost, on the other hand, is financial loss caused by poor-quality master data which leads to
 \begin{enumerate*}[label=(\roman*)]
     \item inadequate managerial decision,
     \item process failure and
-    \item missed opportunity.
+    \item missed opportunity~\cite{haug2013}.
 \end{enumerate*}
 
-Even though the goal of DQA is to lower \textit{cost} \& \textit{complexity}, the DQ process can still provide low quality master data.
-The usual culprit in such cases is already mentioned
+Despite the fact that the goal of data quality assessment is to reduce \textit{costs} and \textit{complexity}, the data quality process can still result in low quality master data.
+The typical perpetrators in such cases are
 \begin{enumerate*}[label=(\roman*)]
     \item lack of DQ measurements (or faulty definition) and
     \item absence of clear roles in the data life-cycle process~\cite{haug2013}.
 \end{enumerate*}
 
-The solution to the problems mentioned above are
+The solutions to the problems mentioned above are as follows
 \begin{enumerate*}[label=(\roman*)]
     \item a data model definition (metadata) and
     \item proactive data quality surveillance~\cite{risto2011}.
@@ -51,11 +53,10 @@ The solution to the problems mentioned above are
 
 \blockquote[][]{One certain way to improve the quality of data: improve its use!}~\cite{orr1998}
 
-\section*{Focus of work}
+\section*{Work emphasis}
 
 There are many things that must be taken into account when implementing the DQ methodology.
 To name a few~\cite{loshin2008}:
-
 \begin{itemize}
     \item stakeholders and participants' involvement,
     \item metadata management,
@@ -70,7 +71,7 @@ To name a few~\cite{loshin2008}:
 
 Batini et al. (2009) recognized activities of data quality methodology.
 In the most general case, the list is composed of four phases listed below~\cite{batini2009}.
-Each of the four sections has additional steps defined, but we will not discuss them explicitly here.
+Additional steps are defined in each of the four sections, but we will not go over them in detail here.
 \begin{enumerate}
     \item \textit{State reconstruction}, which is aimed to get information about business processes and services, data collection, quality issues, and corresponding costs.
     \item \textit{Measurement}, where the objective is to measure the quality of data collection along relevant quality dimensions.
@@ -78,29 +79,30 @@ Each of the four sections has additional steps defined, but we will not discuss 
     \item \textit{Improvement} concerns the selection of the steps, strategies, and techniques for reaching new data quality targets.
 \end{enumerate}
 
-To limit the scope, in order to achieve a good and reasonable goal within a limited given time and resource, this thesis will focus on these parts:
+To narrow the scope, this thesis will concentrate on these components in order to achieve a good and reasonable goal within a limited time and resource:
 \begin{enumerate*}[label=(\roman*)]
-    \item Measurement of Quality,
-    \item Data Quality Score Assesment.
+    \item Definition of Data Quality Methodology and
+    \item Data Quality Score Measurement \& Assesment.
 \end{enumerate*}
-
-\subsection*{Measurement of Quality}
 
 Measurement of Quality (MoQ) is part of the \textit{measurement phase}.
 The idea is to select the quality dimensions affected by the quality issues identified in the DQ requirements analysis and define corresponding metrics~\cite{loshin2008}.
 Measurement can be objective when it is based on quantitative metrics, or subjective, when it is based on qualitative evaluations by data administrators and users~\cite{loshin2008}.
 
-\subsection*{Data Quality Score Assesment}
+To complete this assignment, we will concentrate on automatic assessment of the final dataset score and define a procedure to objectively evaluate the quality score of the given dataset.
+As a result, we will be able to assign a score to the dataset, giving us an idea of its current qualitative state.
+Fully automatic evaluation of Quality Scores will not be possible, as we will see in Chapters~\ref{ch:quality-classification-system} and~\ref{ch:case-study}.
+Therefore, we will use a semi-automatic approach, in which we will evaluate the qualitative foundation of the dataset, but subsequent levels will be evaluated automatically using the \enquote{drill-up} approach.
 
-To achieve the completition ofthe assignment, we will focus on automatic assesment of the final dataset score.
-We will define a procedure to objectively evaluate the quality of the given dataset.
-This way we will be able to asign a mark to the dataset giving an idea of the current qualitative state.
+\section*{Research Purpose}
 
-\section*{Research Goal}
+Data quality is a never-ending topic of discussion and is critical in a variety of fields, including telecommunications, healthcare, manufacturing, banking, and insurance, among others.
+There are numerous characteristics and methodologies that contribute to good data quality, and they vary depending on the domain, with certain data characteristics being more important than others.
+The goal of this research is to understand the characteristics that contribute to data quality in any domain.
 
-The main research goal of this study is to define and use methodology for data quality assesment.
-Therefore to identify, collect, analyze, and evaluate the quality metrics for a~data to allow quantifying and improve their value.
-The selected quality metrics should be the ones objectively quantifying data value.
+The primary research goal of this study is to define and apply methodology for assessing data quality, as well as to identify, collect, analyze, and evaluate quality metrics for data in order to quantify and improve their value.
+To suit the specifics of our case study in the Chapter~\ref{ch:case-study}, we will select the principal characteristics that contribute to data quality in the field of selected data.
+The quality metrics chosen should be those that objectively quantify data value.
 
-In the applied section of work, we are going to use, test and evaluate data from the (currently) ongoing COVID-19 pandemic.
-The reason of choice is general availability, vast collection and opened licence of selected datasets.
+We will use and assess data from the (currently ongoing) COVID-19 pandemic.
+The reason for the selection is the general availability, large collection, and open license of selected datasets.
