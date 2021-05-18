@@ -72,8 +72,14 @@ An example of the structure of the metadata file can be found in the appendix~\r
 
 Long et al. (2004) wrote a comprehesive data quality checklist for emergency medical services data~\cite{long2004}.
 We will use this checklist as a base for our own data evaluation.
+The OECD's Health Care Quality Framework serves as the foundation for the questionnaire.
+The OECD identifies an unique set of dimensions that differs from the set we defined in Section~\ref{sec:data-quality-dimensions} as dimensions suitable for general use.
+However, this is insignificant because the defined dimensions are still appropriate for the quantitative determination of quality, from which we were forced to shift due to the nature of the data to the qualitative determination of quality.
 
 \subsection{Relevance}
+
+Relevance is the degree of correspondence between the data's content and the user's areas of interest~\cite{stork-relevance}.
+In other words, the extent to which data answers provide insight into the individual user's question~\cite{stork-relevance}.
 
 \begin{table}[htbp]
     \centering
@@ -83,7 +89,7 @@ We will use this checklist as a base for our own data evaluation.
         \toprule
         \multirow{2}{*}{Dimension}  & \multirow{2}{*}{Characteristics}  & \multicolumn{10}{c}{Criteria}         \\ \cmidrule(lr){3-12}
                                     &                                   & a & b & c & d & e & f & g & h & i & j \\ \midrule
-        \multirow{2}{*}{Relevance}  & Adaptability                      & 3 & 3 & 3 & 0 & 3 & 0 & 3 & 0 & 3 &   \\
+        \multirow{2}{*}{Relevance}  & Adaptability                      & 3 & 3 & 3 & 3 & 3 & 0 & 3 & 3 &   &   \\
                                     & Value                             & 3 & 0 &   &   &   &   &   &   &   &   \\
         \bottomrule
     \end{tabular}
@@ -95,10 +101,14 @@ We will use this checklist as a base for our own data evaluation.
 
 \subsubsection{Value}
 
+The characteristic is about how valuable the data is to its users and whether or not user requests and comments are taken into account.
+Although evaluation is highly subjective, it is crucial.
+There is no point in publishing data if it does not meet the expectations of users.
+
 \begin{QandA}
     \item The purpose of the data is clear.
     \begin{answered}
-        Yes, the general purpose of the data is obvious.
+        Yes, the data's overall purpose is clearly evident.
         The data is provided by the Institute of Health Information and Statistics of the Czech Republic (IHIS CR).
         Individual datasets have a description that specifies their purpose.
     \end{answered}
@@ -118,7 +128,8 @@ We will use this checklist as a base for our own data evaluation.
 
     \item Client liaison mechanisms are in place and client needs are monitored.
     \begin{answered}
-        Unknown.
+        Yes, IHIS CR does have mechanisms in place for contact with clients (usually in the form of press conferences).
+        Client needs are monitored in some ways, as IHIS expands the data catalog in response to these needs~\cite{uzis-ockovani}.
     \end{answered}
 
     \item How the data are used is known and well understood.
@@ -129,21 +140,13 @@ We will use this checklist as a base for our own data evaluation.
 
     \item Client evaluations are conducted and reviewed.
     \begin{answered}
-        Unknown.
+        We were unable to find sufficient information to answer this question.
     \end{answered}
 
     \item The data are found to meet the needs of its users.
     \begin{answered}
         In this case, as \enquote{needs of the users} is considered the awareness of the general public.
         From this point of view, the question is met.
-    \end{answered}
-
-    \item Client evaluations are conducted and reviewed.
-    \begin{answered}
-        During the publication of datasets, many modifications and additions were made.
-        Feedback taken into account.
-        However, we do not have information to what extent.
-        The point is therefore classified as \textbf{unknown}.
     \end{answered}
 
     \item The data are found to be worth the resources dedicated to its production.
@@ -740,6 +743,8 @@ The substituted values are meant to produce a data record that is not subject to
 
 \subsubsection{Documentation}
 
+Level of data documentation, metadata and its comprehensibility for the public.
+
 \begin{QandA}
     \item The limitations of the data are documented for users using a standard format and the documentation is readily available for users.
     \begin{answered}
@@ -756,6 +761,8 @@ The substituted values are meant to produce a data record that is not subject to
 \end{QandA}
 
 \subsubsection{Education}
+
+The level of employee training and the availability of educational materials.
 
 \begin{QandA}
     \item Examples of how the data can be used appropriately are provided.
@@ -774,6 +781,9 @@ The substituted values are meant to produce a data record that is not subject to
 
 \newpage
 \subsection{Coherence}
+
+The degree to which the data are logically connected and mutually consistent is reflected in coherence~\cite{oecd}.
+Within a dataset, coherence means that the basic data items are based on compatible principles and can be meaningfully integrated~\cite{oecd}.
 
 \begin{table}[htbp]
     \centering
@@ -795,6 +805,9 @@ The substituted values are meant to produce a data record that is not subject to
 \FloatBarrier
 
 \subsubsection{Standardization}
+
+Data standardization is the process of converting data into a standardized format that enables collaborative research and large-scale analytics~\cite{ohdsi-standardization}.
+It is a critical component of the data collection process because data, particularly healthcare data, can vary greatly from one organization to the next~\cite{ohdsi-standardization}.
 
 \begin{QandA}
     \item All data elements are compared to a standard data dictionary in an ongoing manner and for classified data, standard classification methodologies are used (e.g., International Classification of Diseases – ICD10).
@@ -826,6 +839,10 @@ The substituted values are meant to produce a data record that is not subject to
 
 \subsubsection{Linkage}
 
+Data linkage is a technique for combining information on the same person or object from various sources to generate a new, more comprehensive dataset~\cite{tasmania-linkage}.
+The linking of data from many sources allows for the building of chronological sequences of events, which, when leveraged at the macro level, provides useful information for policy and study into the population's health and well-being~\cite{tasmania-linkage}.
+In this case, the questionnaire seeks the level of standardization for the feasibility of forming a relation.
+
 \begin{QandA}
     \item Standard Geographical Classifications (SGC) can be used.
     \begin{answered}
@@ -852,6 +869,8 @@ The substituted values are meant to produce a data record that is not subject to
 \end{QandA}
 
 \subsubsection{Historical Comparability}
+
+The term \enquote{historical comparability} refers to whether the data can be compared to previous values and whether changes in data collecting and management techniques can be traced.
 
 \begin{QandA}
     \item Trend analysis is used to examine changes in key data elements over time, and breaks in the series are explained.
@@ -880,12 +899,13 @@ The \enquote{final score} is the value converted to the scale defined in the pre
 
 \begin{table}[htbp]
     \centering
+    \small
 
     \begin{tabular}{llll}
         \toprule
         Dimension                           & Characteristics               & Calculated Score  & Final Score           \\ \midrule
         \multirow{2}{*}{Relevance}          & Adaptability                  & 2.0               & (2) marginal          \\
-                                            & Value                         & 1.5               & (2) marginal          \\ \midrule
+                                            & Value                         & 2.63              & (3) appropriate       \\ \midrule
         \multirow{13}{*}{Accuracy}          & Form Design and Completion    & 1.5               & (2) marginal          \\
                                             & Frame                         & 3.0               & (3) appropriate       \\
                                             & Over Coverage                 & 0.0               & (0) unknown           \\
@@ -929,7 +949,7 @@ Dimensions can be further grouped to obtain the evaluation data catalog's final 
     \begin{tabular}{lll}
         \toprule
         Dimension           & Calculated Score  & Final Score           \\ \midrule
-        Relevance           & 2.0               & (2) marginal          \\
+        Relevance           & 2.5               & (3) appropriate       \\
         Accuracy            & 1.3               & (1) not acceptable    \\
         Timeliness          & 1.5               & (2) marginal          \\
         Accessibility       & 3.0               & (3) appropriate       \\
@@ -948,9 +968,8 @@ Dimensions can be further grouped to obtain the evaluation data catalog's final 
 
 Table~\ref{table:dimensions-score} provides an evaluation of the dimensions.
 All dimensions will be of the same weight, because we are not able to objectively assess the importance of individual dimensions.
-By averaging the results, we obtain the value \( 2.\overline{3} \), which belongs to the score \enquote{marginal (2)}.
-
-The second highest rating was given to the data catalog.
+By averaging the results, we obtain the value \( 2.5 \), which belongs to the score \enquote{appropriate (3)}.
+% \( 2.\overline{3} \)
 The data can thus be improved in many ways, but the end result corresponds to our perception of the catalog's qualitative condition.
 
 \section{Application of the Methodology}
@@ -976,7 +995,7 @@ Thus, an available data catalog is in practice a set of results without backgrou
 Moreover, we tried to draw conclusions from existing data and tried to learn their quality without knowledge of the criterial limitations and general description of the data, which should be determined by the methodological guideline.
 However, the instructions providing the necessary information about the data is missing (or is insufficiently informative) in these cases.
 
-Nevertheless, we assessed the 89 questions posed in the article by Long et al. (2004).
+Nevertheless, we assessed the 88 questions posed in the article by Long et al. (2004).
 Through the evaluation, we drew attention to possible problems with the data and their interpretation.
 Despite all efforts to be objective, the data are very extensive and it is therefore possible that part of the questionnaire was not properly evaluated due to insufficient analytical coverage.
 

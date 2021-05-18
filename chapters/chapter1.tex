@@ -339,8 +339,8 @@ The methodology consists of four Data Quality Risk evaluation phases:
     \item monitoring.
 \end{enumerate}
 
-In the work, authors provided a comprehensive classification of costs of poor data quality.
-In short, they categorized costs into three classes:
+The authors provided a comprehensive classification of the costs of poor data quality in their work.
+In short, they classified costs into three categories.
 
 \begin{itemize}
     \item current cost of insufficient data quality,
@@ -431,6 +431,248 @@ To prevent data misuse (re-identification of users) after a security breach, sev
 In a certain subset of data, statistical noise is added, which compromises individual records (the record may or may not be true), but still allows accurate statistical analysis over the entire dataset~\cite{difpriv2016}.
 By leveraging of Laplace distribution to spread data over a~large \textit{state space} and to increase the level of anonymity, the differential privacy model ensures that even if someone has full information on 99 of 100 people in a data collection, they will not be able to deduce information about the final user~\cite{web:differential-privacy,dwork2014}.
 This mechanism is interesting because it certainly affects the quality of the data, but in a different way than we would expect – making impossible to look at a specific record, but allowing analysis of the whole and the trend.
+
+\section{Business Problems and Data Defects}
+
+% Není možné mluvit o kvalitě dat a metodikách pro její zajištění, bez zmínky o konkrétních typech problémů, které se v rámci tématu vyskytují.
+It is impossible to discuss data quality and methodologies for ensuring it without mentioning the specific types of issues that arise within the topic.
+In the field of data engineering and data science, there are a number of common data defects.
+
+\subsection*{Missing Data}
+
+This is data that does not reach the destination data store.
+This problem usually occurs when handling the data needed to clean up in the source database; by operating with invalid or incorrect lookup table in the transformation logic; or by invalid table joins.
+An example of missing data is shown in Figure~\ref{fig:missing-data}.
+
+\paragraph*{Example} We transform data from Task Management Solution.
+Lookup table should contain a field value of \enquote{Minor} which maps to \enquote{Low}.
+However, source data field contains \enquote{Mino} - missing the \textit{r} and fails the lookup, resulting in the target data field containing null.
+If this occurs on a key field, a possible join would be missed and the entire row could fall out.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.5\textwidth]{figures/missing-data.png}
+    \caption{Missing Data}
+    \label{fig:missing-data}
+\end{figure}
+\FloatBarrier
+
+\subsection*{Truncation of Data}
+
+Many data is being lost by truncation of the data fields.
+This happens when there are invalid field lengths on target database or by transformation logic not taking into account field lengths from the source.
+
+\paragraph*{Example} We transform financial data with complete exchange-traded fund (ETF) names.
+Source field value \enquote{iShares Global High Yield Corp Bond UCITS ETF} is being truncated to \textit{varchar(32)}.
+since the source data field did not have the correct length to capture the entire field, only \enquote{iShares Global High Yield Corp B} is stored.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/truncation-data.png}
+%     \caption{Data Truncation}
+%     \label{fig:truncation-data}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Data Type Mismatch}
+
+Data types not setup correctly on target database cause serious problems.
+This usually happens when using ETL pipeline with an automatic or semi-automatic column type recognition.
+% Data inženýr spoléhá na bezchybné rozpoznání datového typu a nezkontroluje správnost výstupních tabulek.
+The data engineer relies on error-free data type recognition and does not check the accuracy of the output tables.
+
+\paragraph*{Example} Source data field was required to be a \textit{varchar}, however, when initially configured, was setup as a \textit{date}.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/mismatch-data.png}
+%     \caption{Data Type Mismatch}
+%     \label{fig:mismatch-data}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Null Translation}
+
+In the source dataset, \textit{null} values are not being transformed to correct target values.
+Development team did not include the \textit{null} translation in the ETL process.
+
+\paragraph*{Example} A \enquote{Null} source data field was supposed to be transformed to \enquote{None} in the target data field.
+However, the logic was not implemented, resulting in the target data field containing \enquote{null} values\footnotemark.
+
+\footnotetext{
+    None is a concept that describes the absence of anything at all (nothingness), while Null means \textit{unknown} (we do not know if there is a value or not).
+}
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/null-translation.png}
+%     \caption{Null Translation}
+%     \label{fig:null-translation}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Wrong Translation}
+
+Wrong translations happen when a source data field for \textit{null} was supposed to be transformed to \enquote{None} in the target data field, but was not transformed correctly.
+The logic was not implemented, resulting in the target data field containing \textit{null} values.
+Wrong translation is the exact opposite to \textit{Null Translation}.
+
+\paragraph*{Example} Target field should only be populated when the source field contains certain values, otherwise should be set to null.
+Let's look at a very basic example.
+During analytical processing of medical data (e.g., list of patients with oncological finding), we need to set target field to \textit{true} if the one or multiple source values indicate certain treatment.
+However, the target field is populated (either with blank charater or other values) although source values do not correspond to the required logic.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/wrong-translation.png}
+%     \caption{Wrong Translation}
+%     \label{fig:wrong-translation}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Misplaced Data}
+
+If the source data fields are not being transformed to the correct target data fields, we call the issue \enquote{Misplaced Data}.
+One of the possible causes is that development team inadvertently mapped the source data field to the wrong target data field.
+
+\paragraph*{Example} A source data field was supposed to be transformed to target data field \enquote{Last\_Update}.
+However, the development team inadvertently mapped the source data field to \enquote{Date\_Created}.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/misplaced-data.png}
+%     \caption{Misplaced Data}
+%     \label{fig:misplaced-data}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Extra Records}
+
+Records which should be excluded in the ETL are included in the ETL.
+This happens when developers do not include filter in their code.
+
+\paragraph*{Example} If a record has the deleted field populated, the record and any data related to that record should not be in any ETL.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/extra-records.png}
+%     \caption{Extra Records}
+%     \label{fig:extra-records}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Not Enough Records}
+
+Records which should be in the ETL are not included in the ETL.
+Development team had a filter in their code which should not have been there.
+
+\paragraph*{Example} If a record was in a certain state, it should be sent through ETL pipeline over to the data warehouse.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/notenough-records.png}
+%     \caption{Not Enough Records}
+%     \label{fig:notenough-records}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Transformation Logic Errors}
+
+Testing sometimes can lead to finding \enquote{holes} in the transformation logic or realizing the logic is unclear.
+
+Sometimes, the processes are just way too complicated and development team does not take into account special cases.
+Most cases fall into a certain branch of logic for a transformation, but a small subset of cases (sometimes with unusual data) may not fall into any branches.
+How the analytics and developers handles these cases could be different (and may both end up being wrong) and the logic is changed to accommodate the cases.
+The next reason why this happens is that analytic and developer have different interpretation of transformation logic, which results in different values.
+This leads to the logic being re-written to become clearer.
+
+\paragraph*{Example} Foreign country cities that contain special language specific characters might need to be dealt with in the ETL code (e.g., Århus).
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/logic-errors.png}
+%     \caption{Transformation Logic Errors}
+%     \label{fig:logic-errors}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Simple and Small Errors}
+
+Capitalization, spacing and other small errors cause problems with data.
+Data inconsistencies are easy to fix, but happen often.
+The only real solution is to always double check data and ETL procedure.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/small-errors.png}
+%     \caption{Simple and Small Errors}
+%     \label{fig:small-errors}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Sequence Generator}
+
+Ensuring that the sequence number of reports are in the correct order is very important when processing follow up reports or answering to an audit.
+If the sequence generator is not configured correctly, procedure results in records with a duplicate sequence number.
+
+\paragraph*{Example} Duplicate records in the sales report were doubling up several sales transactions which skewed the report significantly.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/sequence-generator-error.png}
+%     \caption{Sequence Generator Error}
+%     \label{fig:sequence-generator-error}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Undocumented Requirements}
+
+During ETL development, sometimes certain requirements are found, that are \enquote{understood} but are not actually documented anywhere.
+This causes issues when members of the development team do not understand or misunderstood the undocumented requirements.
+
+\paragraph*{Example} ETL pipeline contains a restriction in the \enquote{where} clause, limiting how certain reports are brought over.
+Moreover, there were used mappings that were understood to be necessary, but were not actually in the requirements.
+Occasionally, it turns out that the understood requirements are not what the business wanted.
+
+\subsection*{Duplicate Records}
+
+Duplicate records are two or more records that contain the same data.
+This issue happens when development team does not add the appropriate code to filter out duplicate records or there is some unexpected error in data generators.
+
+\paragraph*{Example} Duplicate records in the sales report were doubling up several sales transactions which skewed the report significantly.
+
+% \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{figures/duplicate-records.png}
+%     \caption{Duplicate Records}
+%     \label{fig:duplicate-records}
+% \end{figure}
+% \FloatBarrier
+
+\subsection*{Numeric Field Precision}
+
+Numbers that are not formatted to the correct decimal point or not rounded per specifications cause precision problems.
+This has several causes, development team rounded the numbers to the wrong decimal point, used wrong rounding type or used wrong data type which lead to faulty rounding.
+
+\paragraph*{Example} The sales data did not contain the correct precision and all sales were being rounded to the whole dollar.
+
+\subsection*{Rejected Rows}
+
+Data rows that get rejected by ETL process due to data issues.
+Development team did not take into account data conditions that break the ETL for a particular row.
+An example of an ETL process with rejected rows is shown in Figure~\ref{fig:rejected-rows}.
+
+\paragraph*{Example} Missing data rows on the sales table caused major issues with the end of year sales report.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.8\textwidth]{figures/rejected-rows.png}
+    \caption{Talend ETL Rejects Rows}
+    \label{fig:rejected-rows}
+\end{figure}
+\FloatBarrier
+
+% a~\cite{web:common-defects}
 
 % Two main perspectives on Data Quality Management:
 % Broad Perspective (from the enterprise poin of view on the lifecycle of data circulating in the company)~\cite{book:dama}
