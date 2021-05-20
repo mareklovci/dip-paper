@@ -24,6 +24,7 @@ bindingoffset=.5cm
 \usepackage{subcaption}
 \usepackage{multicol}
 \usepackage{textcomp}
+\usepackage{pdfpages}
 
 \usepackage[backend=biber,style=numeric]{biblatex}
 \addbibresource{bibliography.bib}
@@ -116,6 +117,7 @@ bindingoffset=.5cm
 
     \include{sections/titlepage}
 
+    \includepdf[pages=-]{sections/assignment.pdf}
     \input{sections/assignment}
     \input{sections/declaration}
     \input{sections/abstract}
