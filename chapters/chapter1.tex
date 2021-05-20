@@ -331,37 +331,35 @@ Those roles are:
 
 Batini et al. (2007) provided DQ assessment methodology called ORME (from italian word \enquote{orme} meaning track or trace).
 The methodology consists of four Data Quality Risk evaluation phases:
-
 \begin{enumerate}
     \item prioritization,
     \item identification,
     \item measurement,
-    \item monitoring.
+    \item monitoring~\cite{batini2007}.
 \end{enumerate}
 
 The authors provided a comprehensive classification of the costs of poor data quality in their work.
-In short, they classified costs into three categories.
-
+In short, they classified costs into three categories:
 \begin{itemize}
     \item current cost of insufficient data quality,
     \item cost of IT/DQ initiative to improve current quality status,
-    \item benefits gained from improvement initiative implementation.
+    \item benefits gained from improvement initiative implementation~\cite{batini2007}.
 \end{itemize}
 
 \subsection{Prioritization}
 
 In this phase the model reconstruction happen.
-All the relationships among organization units, processes, services and data are put together and organized e.g. in the form of matrices (database/organization matrix, dataflow/organization matrix, database/process matrix).
-The main goal is to provide map of the main data use across data providers, consumers and flows.
+All the relationships among organization units, processes, services and data are put together and organized e.g. in the form of matrices (database/organization matrix, dataflow/organization matrix, database/process matrix)~\cite{batini2007}.
+The main goal is to provide map of the main data use across data providers, consumers and flows~\cite{batini2007}.
 
 \subsection{Identification}
 
-This phase main focus is on identification of loss events and definition of overall economic loss metrics.
+This phase main focus is on identification of loss events and definition of overall economic loss metrics~\cite{batini2007}.
 In this case, loss can be expressed in 
 \begin{enumerate*}[label=(\roman*)]
     \item absolute values (e.g. 100 USD),
     \item a~percentage with respect to reference variables (e.g. 10\% of GDP), or
-    \item a~qualitative evaluation (e.g. low-medium-high).
+    \item a~qualitative evaluation (e.g. low-medium-high)~\cite{batini2007}.
 \end{enumerate*}
 
 \subsection{Measurement}
@@ -372,7 +370,7 @@ In this phase actual qualitative and quantitative assessment of data quality is 
 
 The last phase establishes a feedback loop and threshold in the DQ assessment process.
 DQ dimensions should be, according to the authors, evaluated periodically.
-Therefore quality rule violation allerts and automatic processes should be defined in order to ensure required DQ levels.
+Therefore quality rule violation allerts and automatic processes should be defined in order to ensure required DQ levels~\cite{batini2007}.
 
 Authors suggest discriminant analysis as an easy and effective way of loss event identification.
 The goal is to identify loss event based on set of new values in the data source.
@@ -383,7 +381,7 @@ A set of linear functions from predictors is constructed,
     L = b_1 x_1 + b_2 x_2 + \ldots + b_3 x_3 + c
 \end{equation*}
 
-where \( b_k \) are discriminant coeficient, \( x_k \) are input variables (predictors) and \( c \) is a~constant.
+where \( b_k \) are discriminant coeficient, \( x_k \) are input variables (predictors) and \( c \) is a~constant~\cite{batini2007}.
 
 \section{Data Quality and Security}\label{sec:data-quality-and-security}
 
@@ -440,7 +438,7 @@ In the field of data engineering and data science, there are a number of common 
 
 \subsection*{Missing Data}
 
-This is data that does not reach the destination data store.
+This is data that does not reach the destination data store~\cite{web:common-defects}.
 This problem usually occurs when handling the data needed to clean up in the source database; by operating with invalid or incorrect lookup table in the transformation logic; or by invalid table joins.
 An example of missing data is shown in Figure~\ref{fig:missing-data}.
 
@@ -460,7 +458,7 @@ If this occurs on a key field, a possible join would be missed and the entire ro
 \subsection*{Truncation of Data}
 
 Many data is being lost by truncation of the data fields.
-This happens when there are invalid field lengths on target database or by transformation logic not taking into account field lengths from the source.
+This happens when there are invalid field lengths on target database or by transformation logic not taking into account field lengths from the source~\cite{web:common-defects}.
 
 \paragraph*{Example} We transform financial data with complete exchange-traded fund (ETF) names.
 Source field value \enquote{iShares Global High Yield Corp Bond UCITS ETF} is being truncated to \textit{varchar(32)}.
@@ -477,7 +475,7 @@ since the source data field did not have the correct length to capture the entir
 \subsection*{Data Type Mismatch}
 
 Data types not setup correctly on target database cause serious problems.
-This usually happens when using ETL pipeline with an automatic or semi-automatic column type recognition.
+This usually happens when using ETL pipeline with an automatic or semi-automatic column type recognition~\cite{web:common-defects}.
 % Data inženýr spoléhá na bezchybné rozpoznání datového typu a nezkontroluje správnost výstupních tabulek.
 The data engineer relies on error-free data type recognition and does not check the accuracy of the output tables.
 
@@ -493,7 +491,7 @@ The data engineer relies on error-free data type recognition and does not check 
 
 \subsection*{Null Translation}
 
-In the source dataset, \textit{null} values are not being transformed to correct target values.
+In the source dataset, \textit{null} values are not being transformed to correct target values~\cite{web:common-defects}.
 Development team did not include the \textit{null} translation in the ETL process.
 
 \paragraph*{Example} A \enquote{Null} source data field was supposed to be transformed to \enquote{None} in the target data field.
@@ -513,7 +511,7 @@ However, the logic was not implemented, resulting in the target data field conta
 
 \subsection*{Wrong Translation}
 
-Wrong translations happen when a source data field for \textit{null} was supposed to be transformed to \enquote{None} in the target data field, but was not transformed correctly.
+Wrong translations happen when a source data field for \textit{null} was supposed to be transformed to \enquote{None} in the target data field, but was not transformed correctly~\cite{web:common-defects}.
 The logic was not implemented, resulting in the target data field containing \textit{null} values.
 Wrong translation is the exact opposite to \textit{Null Translation}.
 
@@ -532,7 +530,7 @@ However, the target field is populated (either with blank charater or other valu
 
 \subsection*{Misplaced Data}
 
-If the source data fields are not being transformed to the correct target data fields, we call the issue \enquote{Misplaced Data}.
+If the source data fields are not being transformed to the correct target data fields, we call the issue \enquote{Misplaced Data}~\cite{web:common-defects}.
 One of the possible causes is that development team inadvertently mapped the source data field to the wrong target data field.
 
 \paragraph*{Example} A source data field was supposed to be transformed to target data field \enquote{Last\_Update}.
@@ -549,7 +547,7 @@ However, the development team inadvertently mapped the source data field to \enq
 \subsection*{Extra Records}
 
 Records which should be excluded in the ETL are included in the ETL.
-This happens when developers do not include filter in their code.
+This happens when developers do not include filter in their code~\cite{web:common-defects}.
 
 \paragraph*{Example} If a record has the deleted field populated, the record and any data related to that record should not be in any ETL.
 
@@ -564,7 +562,7 @@ This happens when developers do not include filter in their code.
 \subsection*{Not Enough Records}
 
 Records which should be in the ETL are not included in the ETL.
-Development team had a filter in their code which should not have been there.
+Development team had a filter in their code which should not have been there~\cite{web:common-defects}.
 
 \paragraph*{Example} If a record was in a certain state, it should be sent through ETL pipeline over to the data warehouse.
 
@@ -578,13 +576,13 @@ Development team had a filter in their code which should not have been there.
 
 \subsection*{Transformation Logic Errors}
 
-Testing sometimes can lead to finding \enquote{holes} in the transformation logic or realizing the logic is unclear.
+Testing sometimes can lead to finding \enquote{holes} in the transformation logic or realizing the logic is unclear~\cite{web:common-defects}.
 
-Sometimes, the processes are just way too complicated and development team does not take into account special cases.
-Most cases fall into a certain branch of logic for a transformation, but a small subset of cases (sometimes with unusual data) may not fall into any branches.
+Sometimes the processes are overly complicated, and the development team fails to account for special cases.
+Most cases fall into a certain branch of logic for a transformation, but a small subset of cases (sometimes with unusual data) may not fall into any branches~\cite{web:common-defects}.
 How the analytics and developers handles these cases could be different (and may both end up being wrong) and the logic is changed to accommodate the cases.
-The next reason why this happens is that analytic and developer have different interpretation of transformation logic, which results in different values.
-This leads to the logic being re-written to become clearer.
+The next reason why this happens is that analytic and developer have different interpretation of transformation logic, which results in different values~\cite{web:common-defects}.
+As a result, the logic is rewritten to make it more clear.
 
 \paragraph*{Example} Foreign country cities that contain special language specific characters might need to be dealt with in the ETL code (e.g., Århus).
 
@@ -599,8 +597,8 @@ This leads to the logic being re-written to become clearer.
 \subsection*{Simple and Small Errors}
 
 Capitalization, spacing and other small errors cause problems with data.
-Data inconsistencies are easy to fix, but happen often.
-The only real solution is to always double check data and ETL procedure.
+Data inconsistencies are easy to fix, but happen often~\cite{web:common-defects}.
+The only real solution is to always double check data and ETL procedure~\cite{web:common-defects}.
 
 % \begin{figure}[htb]
 %     \centering
@@ -613,7 +611,7 @@ The only real solution is to always double check data and ETL procedure.
 \subsection*{Sequence Generator}
 
 Ensuring that the sequence number of reports are in the correct order is very important when processing follow up reports or answering to an audit.
-If the sequence generator is not configured correctly, procedure results in records with a duplicate sequence number.
+If the sequence generator is not configured correctly, procedure results in records with a duplicate sequence number~\cite{web:common-defects}.
 
 \paragraph*{Example} Duplicate records in the sales report were doubling up several sales transactions which skewed the report significantly.
 
@@ -628,7 +626,7 @@ If the sequence generator is not configured correctly, procedure results in reco
 \subsection*{Undocumented Requirements}
 
 During ETL development, sometimes certain requirements are found, that are \enquote{understood} but are not actually documented anywhere.
-This causes issues when members of the development team do not understand or misunderstood the undocumented requirements.
+This causes issues when members of the development team do not understand or misunderstood the undocumented requirements~\cite{web:common-defects}.
 
 \paragraph*{Example} ETL pipeline contains a restriction in the \enquote{where} clause, limiting how certain reports are brought over.
 Moreover, there were used mappings that were understood to be necessary, but were not actually in the requirements.
@@ -652,14 +650,14 @@ This issue happens when development team does not add the appropriate code to fi
 \subsection*{Numeric Field Precision}
 
 Numbers that are not formatted to the correct decimal point or not rounded per specifications cause precision problems.
-This has several causes, development team rounded the numbers to the wrong decimal point, used wrong rounding type or used wrong data type which lead to faulty rounding.
+This has several causes, development team rounded the numbers to the wrong decimal point, used wrong rounding type or used wrong data type which lead to faulty rounding~\cite{web:common-defects}.
 
 \paragraph*{Example} The sales data did not contain the correct precision and all sales were being rounded to the whole dollar.
 
 \subsection*{Rejected Rows}
 
 Data rows that get rejected by ETL process due to data issues.
-Development team did not take into account data conditions that break the ETL for a particular row.
+Development team did not take into account data conditions that break the ETL for a particular row~\cite{web:common-defects}.
 An example of an ETL process with rejected rows is shown in Figure~\ref{fig:rejected-rows}.
 
 \paragraph*{Example} Missing data rows on the sales table caused major issues with the end of year sales report.
@@ -671,8 +669,6 @@ An example of an ETL process with rejected rows is shown in Figure~\ref{fig:reje
     \label{fig:rejected-rows}
 \end{figure}
 \FloatBarrier
-
-% a~\cite{web:common-defects}
 
 % Two main perspectives on Data Quality Management:
 % Broad Perspective (from the enterprise poin of view on the lifecycle of data circulating in the company)~\cite{book:dama}
