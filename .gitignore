@@ -307,3 +307,4 @@ TSWLatexianTemp*
 
 ## Include sections *.pdf
 !sections/*.pdf
+!figures/*.pdf
