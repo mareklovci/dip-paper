@@ -1,8 +1,8 @@
 \chapter{Methodology}\label{ch:methodology}
 
-Data Quality methodology consists of two main parts, the model and the metamodel.
-The model defines activities, their description, goals and sequence of order needed for extraction of Data Quality metrics.
-The metamodel defines components of DQ process, maps the relationship among the components and activities respectively.
+The proposed data quality methodology will have two major components, a model and supporting processes.
+The model defines the activities, their descriptions, goals, and the order in which they must be completed in order to ensure data quality.
+Support processes will then provide additional value by increasing the security and timeliness of datasets.
 
 \section{Model}
 
@@ -106,12 +106,11 @@ This leads to workflow automation, initiating the next step if all conditions ha
 The contracts work by following simple \enquote{if-then} statements.
 This mechanism might include allocation of funds to the appropriate parties, sending notifications, or releasing a ticket.
 
-\subsection{Supporting Techniques}
+\section{Supporting Techniques}
 
-There are a several data quality rules one can deduce from a Feedback-Control Systems view of information systems reviewed by Orr (1998).
-
+There are a several data quality rules one can deduce from a Feedback-Control Systems view of information systems reviewed by Orr (1998):
 \begin{enumerate}
-    \item Unused data cannot remain correct for very long;
+    \item unused data cannot remain correct for very long;
     \item data quality in an information system is a function of its use, not its collection;
     \item data quality cannot be better than its most strict use;
     \item data quality problems tend to become worse as the system ages;
@@ -122,23 +121,23 @@ There are a several data quality rules one can deduce from a Feedback-Control Sy
 To prevent the consequences of these rules and the unauthorized creation of data, we present two additianal concepts.
 These concepts should be incorporated into the design of the information system respecting the proposed methodology.
 
-\subsubsection{Proof of Constancy}
+\subsection{Proof of Constancy}
 
-Proof of Constant Data, alias Proof of Constancy, is a way to assure a constant accuracy of data.
+Proof of Constant Data, alias Proof of Constancy, is a way to assure a constant accuracy of data~\cite{dataeum}.
 Data have to be regularly updated to keep the accuracy rate high.
-Data accuracy rate will decrease progressively based on a specific time frame basis (e.g., X\% per month).
+Data accuracy rate will decrease progressively based on a specific time frame basis (e.g., X\% per month)~\cite{dataeum}.
 This percentage is different depending on the type of data.
-Datasets more sensitive to changes may see this rate decrease by 5\% to 10\% per month or day depending on the circumstances.
+Datasets more sensitive to changes may see this rate decrease by 5\% to 10\% per month or day depending on the circumstances~\cite{dataeum}.
 On the other hand, established, well-known sets, will see their rate decrease by 0.1\% per month or even year.
 A scale of discount rates will have to be established based on the areas of interest and actual items collected.
 
-\subsubsection{Proof of Trust}
+\subsection{Proof of Trust}
 
-Proof of Trust is an instrument for data collector evaluation.
-The collector or generator will get \enquote*{quality score} for his/her or its collection actions.
-The more collectors initiate, update and verify data correctly, the higher their \enquote*{quality score} will be.
+Proof of Trust is an instrument for data collector evaluation~\cite{dataeum}.
+The collector or generator will get \enquote*{quality score} for his/her or its collection actions~\cite{dataeum}.
+The more collectors initiate, update and verify data correctly, the higher their \enquote*{quality score} will be~\cite{dataeum}.
 A higher quality score leads to a higher level of \enquote*{trust}.
-On the other hand, incorrect collection leads to a retroactive decrease of the collector's quality score.
+Incorrect collection, on the other hand, results in a retroactive decrease in the collector's quality score~\cite{dataeum}.
 
 \section{Use Cases}
 
@@ -184,37 +183,38 @@ Data from defective equipment should also not be taken into account in many case
 
 \subsection{Open Data Library}
 
-The last Use Case shows usage of completely decentralized solution.
-The system would allow those who collect and generate data to be rewarded and data would be accessible for use within a decentralized marketplace.
-This decentralized network would democratize access to data while rewarding those who generate it.
+The final use case demonstrates the use of a completely decentralized solution.
+The system would reward those who collect and generate data, and the data would be available for use in a decentralized marketplace.
+The decentralized network would democratize data access while rewarding data creators~\cite{dataeum}.
 
-Data collection would be done through an application (system) used by a community of collectors who are rewarded for their actions.
-This reward is calculated according to a~\enquote*{collection value} price.
+Data would be collected using an application (system) that would be used by a~community of collectors who would be rewarded for their efforts.
+The reward should be determined by a~\enquote*{collection value}.
 
-The collection value would be calculated using an algorithm that takes into account several criteria, such as:
+The collection value would be calculated using an algorithm that considers a number of factors, including:
 \begin{itemize}
     \item demand and rarity,
-    \item online availability and accessibility,
-    \item data licensing market value.
+    \item availability and accessibility,
+    \item data licensing and
+    \item market value~\cite{dataeum}.
 \end{itemize}
 
-Each collector receives a quality score to maintain a high level of reliability.
-The verified data is then made accessible (through contracting) on the decentralized marketplace and regularly updated to keep it accurate.
+To maintain a high level of dependability, each collector receives a quality score.
+The verified data is then made available (via contract) on the decentralized marketplace and is updated on a regular basis to ensure its accuracy.
 
-Due to the variety of open data, automation of the verification process is practically impossible.
-The data must be verified manually.
-Thus, a collector has two functions:
+Automation of the verification process is nearly impossible due to the variety of open data.
+The data must be manually verified.
+As a result, a collector serves two purposes:
 \begin{itemize}
     \item initiate the data collection (input and update data),
-    \item verify the data collected (check a collected data not yet verified).
+    \item verify the collected data (check a collected data not yet verified)~\cite{dataeum}.
 \end{itemize}
 
-The mechanism ensures that reward for data collection is divided between collector and verifier.
-For example, the collector, who initiated the data, would obtain 60-80\% of the reward.
-The verifier would obtain remaining 20-40\%.
+The process guarantees that the reward for data collection is split equally between the collector and the verifier~\cite{dataeum}.
+For example, the collector who initiated the data collection would receive 60-80\% of the reward~\cite{dataeum}.
+The remaining 20-40\% would be obtained by the verifier~\cite{dataeum}.
 
 Depending on the data, a decentralized network like filecoin could be used as data storage.
-Using the blockchain makes the data unalterable, guaranteeing the transparency and traceability of its validation process (collection, verification, update).
-The blockchain (tamper-proof, immutable and decentralized) ensures the integrity and verification of the data available on the marketplace.
-This brings confidence and security to the data users.
-Using \textbf{Smart Contract} technology also guarantees the rewards of the collectors.
+The use of blockchain renders the data unalterable, ensuring the transparency and traceability of the validation process (collection, verification, update).
+The blockchain (which is tamper-proof, immutable, and decentralized) ensures the integrity and verification of the data on the marketplace.
+This gives data users confidence and security.
+The use of \textbf{Smart Contract} technology also ensures the collectors' rewards.
